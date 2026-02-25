@@ -39,7 +39,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.6;display:flex;transition:background .4s,color .4s}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.7;display:flex;transition:background .4s,color .4s;font-size:15px}
 
 /* ═══ SIDEBAR ═══ */
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:300px;background:linear-gradient(180deg,hsl(var(--hue),65%,18%) 0%,hsl(var(--hue),50%,12%) 40%,#0a0f1a 100%);color:#fff;z-index:100;display:flex;flex-direction:column;transition:transform .3s,background .5s;overflow-y:auto}
@@ -49,18 +49,24 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .sidebar>*{position:relative;z-index:1}
 
 /* Brand */
-.side-brand{padding:28px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06)}
-.side-brand .brand-top{display:flex;align-items:center;gap:14px;margin-bottom:6px}
-.side-brand .logo-img{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.side-brand .brand-text h2{font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:.2px}
-.side-brand .brand-text p{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
+.side-brand{padding:30px 22px 26px;border-bottom:none;position:relative}
+.side-brand::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
+.side-brand .brand-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
+.side-brand .logo-img{width:68px;height:68px;border-radius:18px;background:linear-gradient(135deg,hsla(var(--hue),70%,45%,.4),hsla(var(--hue),60%,30%,.2));backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 4px hsla(var(--hue),70%,40%,.1);margin-bottom:14px;transition:all .4s}
+.side-brand .logo-img:hover{transform:scale(1.05);box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 6px hsla(var(--hue),70%,40%,.15)}
+.side-brand .brand-text h2{font-family:'Kanit',sans-serif;font-size:18px;font-weight:800;line-height:1.25;letter-spacing:.3px;background:linear-gradient(135deg,#fff,rgba(255,255,255,.75));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.side-brand .brand-text p{font-size:12px;color:rgba(255,255,255,.35);margin-top:3px;font-weight:500;letter-spacing:.3px}
+.side-brand .brand-tag{display:inline-flex;align-items:center;gap:5px;margin-top:12px;padding:4px 14px;border-radius:100px;background:hsla(var(--hue),70%,40%,.15);border:1px solid hsla(var(--hue),70%,50%,.12);font-size:10px;font-weight:700;color:hsl(var(--hue),60%,65%);letter-spacing:1.5px;text-transform:uppercase}
+.side-brand .brand-tag .dot{width:6px;height:6px;border-radius:50%;background:hsl(var(--hue),70%,55%);box-shadow:0 0 6px hsl(var(--hue),70%,50%);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* Section */
-.side-sec{padding:20px 20px 8px;font-size:9.5px;font-weight:800;color:rgba(255,255,255,.2);letter-spacing:2px;text-transform:uppercase}
+.side-sec{padding:22px 22px 10px;font-size:10.5px;font-weight:800;color:rgba(255,255,255,.25);letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.side-sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.08),transparent)}
 
 /* Nav */
 .side-nav{padding:0 14px;flex:1}
-.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;transition:all .25s;margin-bottom:3px;position:relative;overflow:hidden}
+.nav-item{display:flex;align-items:center;gap:13px;padding:12px 15px;border-radius:13px;font-size:14.5px;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;transition:all .25s;margin-bottom:3px;position:relative;overflow:hidden}
 .nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
 
 /* Tooltip */
@@ -73,28 +79,28 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .nav-item.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,hsl(var(--hue),70%,55%),hsl(var(--hue),80%,40%));box-shadow:0 0 12px hsla(var(--hue),80%,50%,.4)}
 
 /* Nav icon */
-.nav-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
+.nav-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;font-size:17px}
 .nav-ic svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .nav-item.active .nav-ic{background:rgba(255,255,255,.1);box-shadow:0 0 8px hsla(var(--hue),60%,50%,.15)}
 
 /* Sub-menu */
-.nav-sub{padding:0 14px 0 60px;max-height:0;overflow:hidden;transition:max-height .35s ease}
+.nav-sub{padding:0 14px 0 64px;max-height:0;overflow:hidden;transition:max-height .35s ease}
 .nav-sub.open{max-height:220px}
-.nav-sub a{display:flex;align-items:center;gap:9px;padding:8px 14px;border-radius:9px;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;margin-bottom:2px}
+.nav-sub a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:10px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;margin-bottom:2px}
 .nav-sub a:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8)}
 .nav-sub a.active{color:#fff;font-weight:600;background:rgba(255,255,255,.05)}
-.nav-sub a::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.4;flex-shrink:0;transition:all .2s}
-.nav-sub a.active::before{opacity:1;background:hsl(var(--hue),70%,55%);box-shadow:0 0 6px hsla(var(--hue),70%,55%,.5)}
-.nav-arrow{margin-left:auto;font-size:10px;transition:transform .3s;opacity:.35}
+.nav-sub a::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.4;flex-shrink:0;transition:all .2s}
+.nav-sub a.active::before{opacity:1;background:hsl(var(--hue),70%,55%);box-shadow:0 0 8px hsla(var(--hue),70%,55%,.5)}
+.nav-arrow{margin-left:auto;font-size:11px;transition:transform .3s;opacity:.35}
 .nav-item.expanded .nav-arrow{transform:rotate(180deg);opacity:.6}
 
 /* Footer */
-.side-ft{padding:16px 22px;border-top:1px solid rgba(255,255,255,.05);font-size:10.5px;color:rgba(255,255,255,.18);line-height:1.5}
+.side-ft{padding:16px 22px;border-top:1px solid rgba(255,255,255,.05);font-size:11.5px;color:rgba(255,255,255,.2);line-height:1.6}
 
 /* Controls */
 .side-ctrl{padding:14px 18px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.05)}
 .ctrl-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.ctrl-label{font-size:11px;color:rgba(255,255,255,.35);font-weight:500}
+.ctrl-label{font-size:12px;color:rgba(255,255,255,.4);font-weight:500}
 .toggle{position:relative;width:42px;height:23px;cursor:pointer}
 .toggle input{display:none}
 .toggle span{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:23px;transition:.3s}
@@ -117,7 +123,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 /* ═══ TOPBAR ═══ */
 .topbar{position:sticky;top:0;z-index:50;background:var(--topbar-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:14px;transition:background .4s}
-.topbar h1{font-family:'Kanit',sans-serif;font-size:17px;font-weight:700;color:var(--t1);flex:1}
+.topbar h1{font-family:'Kanit',sans-serif;font-size:19px;font-weight:700;color:var(--t1);flex:1}
 .topbar .topicon{font-size:20px}
 .tb-btn{display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Sarabun',sans-serif}
 .tb-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
@@ -147,16 +153,16 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 /* ═══ METHOD ═══ */
 .meth{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:16px;padding:16px 20px;margin-bottom:20px;box-shadow:var(--sh);transition:background .4s,border-color .4s}
 .meth-h{display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
-.meth-h h3{font-family:'Kanit',sans-serif;font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:9px;transition:color .4s}
+.meth-h h3{font-family:'Kanit',sans-serif;font-size:14.5px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:9px;transition:color .4s}
 .meth-arr{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:var(--primary-s);color:var(--primary);font-size:11px;transition:transform .3s}
 .meth.open .meth-arr{transform:rotate(180deg)}
 .meth-b{max-height:0;overflow:hidden;transition:max-height .4s}
 .meth.open .meth-b{max-height:900px;padding-top:12px}
-.meth-b>p{color:var(--t2);font-size:12.5px;line-height:1.8;margin-bottom:8px}
+.meth-b>p{color:var(--t2);font-size:13.5px;line-height:1.8;margin-bottom:8px}
 .mgr{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:9px}
 .mgi{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px;transition:background .4s}
-.mgi h4{font-size:10.5px;font-weight:700;color:var(--accent);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
-.mgi ul{margin:2px 0 0 14px;font-size:11.5px;color:var(--t2);line-height:1.8}
+.mgi h4{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.mgi ul{margin:2px 0 0 14px;font-size:13px;color:var(--t2);line-height:1.8}
 
 /* ═══ KPI ═══ */
 .kpig{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px;margin-bottom:24px}
@@ -164,13 +170,13 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .kpi:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
 .kpi-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .kpi-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
-.kpi-trend{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:100px}
+.kpi-trend{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;padding:3px 8px;border-radius:100px}
 .kpi-trend.up{color:var(--danger);background:var(--danger-l)}
 .kpi-trend.down{color:var(--success);background:var(--success-l)}
 .kpi-trend.same{color:var(--t3);background:var(--bg2)}
-.kpi-lb{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
-.kpi-vl{font-family:'Kanit',sans-serif;font-size:28px;font-weight:800;line-height:1;margin-bottom:3px}
-.kpi-sb{font-size:11px;color:var(--t2)}
+.kpi-lb{font-size:12.5px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.kpi-vl{font-family:'Kanit',sans-serif;font-size:32px;font-weight:800;line-height:1;margin-bottom:3px}
+.kpi-sb{font-size:12px;color:var(--t2)}
 .kt .kpi-ic{background:var(--primary-l)}.kt .kpi-vl{color:var(--primary)}
 .kr .kpi-ic{background:var(--danger-l)}.kr .kpi-vl{color:var(--danger)}
 .kpp .kpi-ic{background:var(--purple-l)}.kpp .kpi-vl{color:var(--purple)}
@@ -181,7 +187,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .rc-lb{font-weight:700;color:var(--primary);margin-right:4px;font-size:13px}
 
 /* ═══ SECTION ═══ */
-.stit{font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;margin-bottom:13px;display:flex;align-items:center;gap:10px}
+.stit{font-family:'Kanit',sans-serif;font-size:16px;font-weight:600;margin-bottom:13px;display:flex;align-items:center;gap:10px}
 .stit .ln{flex:1;height:1px;background:var(--border)}
 
 /* ═══ CHART ═══ */
@@ -189,16 +195,16 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 @media(max-width:900px){.cgr{grid-template-columns:1fr}}
 .cc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--sh);transition:box-shadow .3s,background .4s}
 .cc:hover{box-shadow:var(--sh2)}
-.cc h3{font-family:'Kanit',sans-serif;font-size:13px;font-weight:600;margin-bottom:1px}
-.cc .cs{font-size:11px;color:var(--t3);margin-bottom:14px}
+.cc h3{font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;margin-bottom:1px}
+.cc .cs{font-size:12.5px;color:var(--t3);margin-bottom:14px}
 .cw{position:relative;width:100%;height:260px}.cw canvas{width:100%!important;height:100%!important}
 .fl{grid-column:1/-1}
-.pw{margin-top:9px}.pl{display:flex;justify-content:space-between;font-size:11px;color:var(--t2);margin-bottom:3px}
+.pw{margin-top:9px}.pl{display:flex;justify-content:space-between;font-size:12.5px;color:var(--t2);margin-bottom:3px}
 .pb{height:6px;background:var(--bg2);border-radius:100px;overflow:hidden;transition:background .4s}
 .pf{height:100%;border-radius:100px;transition:width 1.5s}
 
 /* ═══ DESC ═══ */
-.db{border-radius:11px;padding:12px 15px;margin-top:11px;font-size:12px;color:var(--t2);line-height:1.8}
+.db{border-radius:11px;padding:12px 15px;margin-top:11px;font-size:13px;color:var(--t2);line-height:1.8}
 .db strong{font-weight:700}
 .db.dg{background:var(--warn-l);border:1px solid hsla(45,90%,50%,.1)}.db.dg strong{color:var(--warn)}
 .db.di{background:hsla(var(--hue),80%,40%,.08);border:1px solid hsla(var(--hue),80%,40%,.1)}.db.di strong{color:var(--accent)}
@@ -208,8 +214,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .rg{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:24px}
 @media(max-width:700px){.rg{grid-template-columns:1fr}}
 .rc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--sh);transition:background .4s}
-.rc h4{font-family:'Kanit',sans-serif;font-size:12.5px;font-weight:600;margin-bottom:7px;display:flex;align-items:center;gap:6px}
-.rr{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.rc h4{font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.rr{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
 .rr:last-child{border-bottom:none}
 .rr .rl{color:var(--t2)}.rr .rv{font-weight:700;color:var(--primary);font-family:'Kanit',sans-serif}
 
@@ -224,7 +230,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .await-card h3{font-family:'Kanit',sans-serif;font-size:18px;font-weight:600;color:var(--t2);margin-bottom:6px}
 .await-card p{color:var(--t3);font-size:13px;max-width:400px;margin:0 auto}
 
-.credit{text-align:right;padding:14px 0;margin-top:14px;border-top:1px solid var(--border);font-size:11.5px;color:var(--t2);font-weight:500}
+.credit{text-align:right;padding:14px 0;margin-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--t2);font-weight:500}
 .pg-pad{padding:26px 28px}
 </style>
 </head>
@@ -241,6 +247,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
         <h2>ระบบข้อมูลสุขภาพ</h2>
         <p>โรงพยาบาลทับคล้อ จ.พิจิตร</p>
       </div>
+      <div class="brand-tag"><span class="dot"></span> ระบบพร้อมใช้งาน</div>
     </div>
   </div>
   <div class="side-sec">เมนูหลัก</div>
@@ -248,7 +255,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
     <a class="nav-item active expanded" data-tip="เหมืองแร่ทองคำ จ.พิจิตร" onclick="togSub(this,'sub-mine')"><span class="nav-ic">⛏️</span><span>งานเหมืองทอง</span><span class="nav-arrow">▾</span></a>
     <div class="nav-sub open" id="sub-mine">
       <a class="active" onclick="goPage('mine',this)">ผลตรวจสุขภาพประชาชน</a>
-      <a onclick="goPage('water',this)">ประปารอบเหมืองทอง</a>
+      <a onclick="goPage('water',this)">ผลน้ำประปารอบเหมือง</a>
     </div>
     <a class="nav-item" data-tip="น้ำเสีย & น้ำประปา รพ." onclick="togSub(this,'sub-env')"><span class="nav-ic">🌿</span><span>งานสิ่งแวดล้อม</span><span class="nav-arrow">▾</span></a>
     <div class="nav-sub" id="sub-env">
@@ -299,18 +306,18 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div class="stit"><span>📋 ข้อมูลประชากร</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc"><h3>สัดส่วนเพศ</h3><div class="cs">N=150 — หญิง 75%, ชาย 25%</div><div class="cw"><canvas id="g67"></canvas></div></div>
-  <div class="cc"><h3>กลุ่มอายุ</h3><div class="cs">อายุ >60 ปี มากที่สุด (42%)</div><div class="cw"><canvas id="a67"></canvas></div></div>
-  <div class="cc"><h3>อาชีพ</h3><div class="cs">เกษตร 53% — N=150</div><div class="cw"><canvas id="o67"></canvas></div></div>
-  <div class="cc"><h3>การศึกษา</h3><div class="cs">ประถม 49% — N=150</div><div class="cw"><canvas id="e67"></canvas></div></div>
+  <div class="cc"><h3>สัดส่วนเพศ</h3><div class="cs">N=150 — หญิง 75%, ชาย 25%</div><div class="cw"><canvas id="g67"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> ผู้เข้ารับการตรวจเป็นหญิง 3 ใน 4 (75%) สะท้อนว่า<strong>ผู้หญิงเข้าถึงบริการสุขภาพมากกว่า</strong>ผู้ชายในพื้นที่</div></div>
+  <div class="cc"><h3>กลุ่มอายุ</h3><div class="cs">อายุ >60 ปี มากที่สุด (42%)</div><div class="cw"><canvas id="a67"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> กลุ่มอายุ >60 ปี มากที่สุด (42%) รองลงมา 46-60 ปี (33%) สะท้อนว่า<strong>ผู้สูงอายุเป็นกลุ่มเสี่ยงหลัก</strong>ที่สัมผัสสารพิษมานาน</div></div>
+  <div class="cc"><h3>อาชีพ</h3><div class="cs">เกษตร 53% — N=150</div><div class="cw"><canvas id="o67"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> อาชีพเกษตรกรรมมากที่สุด 53% ตามด้วยนักเรียน 23% และรับจ้าง 14% — <strong>เกษตรกรมีโอกาสสัมผัสสารเคมีจากทั้งเหมืองและการเกษตร</strong></div></div>
+  <div class="cc"><h3>การศึกษา</h3><div class="cs">ประถม 49% — N=150</div><div class="cw"><canvas id="e67"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> การศึกษาระดับประถม 49% มัธยม 32% — <strong>ต้องสื่อสารความเสี่ยงด้วยภาษาที่เข้าใจง่าย</strong>สำหรับชุมชน</div></div>
 </div>
 <div class="stit"><span>🧪 ผลตรวจ Lab</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc"><h3>Total Arsenic</h3><div class="cs">>100 µg/L (N=149)</div><div class="cw"><canvas id="as67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>8.1%</span></div><div class="pb"><div class="pf" style="width:8.1%;background:linear-gradient(90deg,#dc2626,#f87171)"></div></div></div></div>
-  <div class="cc"><h3>Inorganic Arsenic</h3><div class="cs">>10 µg/g creat. (จาก 12 ราย)</div><div class="cw"><canvas id="ia67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>66.7%</span></div><div class="pb"><div class="pf" style="width:66.7%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div></div>
-  <div class="cc"><h3>Thiocyanate — ไม่สูบบุหรี่</h3><div class="cs">>4 mg/L (N=136)</div><div class="cw"><canvas id="cn67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>69.9%</span></div><div class="pb"><div class="pf" style="width:69.9%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div></div>
-  <div class="cc"><h3>Thiocyanate — สูบบุหรี่</h3><div class="cs">>17 mg/L (N=13)</div><div class="cw"><canvas id="cs67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>30.8%</span></div><div class="pb"><div class="pf" style="width:30.8%;background:linear-gradient(90deg,#0891b2,#22d3ee)"></div></div></div></div>
-  <div class="cc fl"><h3>สถานะสูบบุหรี่ & ประสบการณ์เหมือง</h3><div class="cs">N=149 / N=150</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:240px"><div class="cw"><canvas id="sm67"></canvas></div><div class="cw"><canvas id="mn67"></canvas></div></div></div>
+  <div class="cc"><h3>Total Arsenic</h3><div class="cs">>100 µg/L (N=149)</div><div class="cw"><canvas id="as67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>8.1%</span></div><div class="pb"><div class="pf" style="width:8.1%;background:linear-gradient(90deg,#dc2626,#f87171)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> พบ Total Arsenic เกินค่าอ้างอิง <strong>12 คน (8.1%)</strong> จาก 149 คน ปกติ 137 คน — ส่งตรวจ Inorganic As ต่อทั้ง 12 ราย</div></div>
+  <div class="cc"><h3>Inorganic Arsenic</h3><div class="cs">>10 µg/g creat. (จาก 12 ราย)</div><div class="cw"><canvas id="ia67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>66.7%</span></div><div class="pb"><div class="pf" style="width:66.7%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> จาก 12 รายที่ Total As เกิน พบ Inorganic As เกินค่าอ้างอิง <strong>8 คน (66.7%)</strong> ปกติ 4 คน — <strong>ต้องติดตามสุขภาพอย่างใกล้ชิด</strong></div></div>
+  <div class="cc"><h3>Thiocyanate — ไม่สูบบุหรี่</h3><div class="cs">>4 mg/L (N=136)</div><div class="cw"><canvas id="cn67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>69.9%</span></div><div class="pb"><div class="pf" style="width:69.9%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> คนไม่สูบบุหรี่ที่ SCN เกินค่าอ้างอิง <strong>95 คน (69.9%)</strong> จาก 136 คน — <strong>สัดส่วนสูงมาก</strong> อาจเกี่ยวข้องกับอาหาร (หน่อไม้ ยอดมัน) หรือแหล่งน้ำ</div></div>
+  <div class="cc"><h3>Thiocyanate — สูบบุหรี่</h3><div class="cs">>17 mg/L (N=13)</div><div class="cw"><canvas id="cs67"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>30.8%</span></div><div class="pb"><div class="pf" style="width:30.8%;background:linear-gradient(90deg,#0891b2,#22d3ee)"></div></div></div><div class="db di"><strong>📌 สรุป:</strong> คนสูบบุหรี่ที่ SCN เกิน 17 mg/L จำนวน <strong>4 คน (30.8%)</strong> จาก 13 คน — ค่าอ้างอิงสูงกว่าคนไม่สูบ เพราะบุหรี่เป็นแหล่ง CN โดยตรง</div></div>
+  <div class="cc fl"><h3>สถานะสูบบุหรี่ & ประสบการณ์เหมือง</h3><div class="cs">N=149 / N=150</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:240px"><div class="cw"><canvas id="sm67"></canvas></div><div class="cw"><canvas id="mn67"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> ไม่สูบบุหรี่ 91% สูบ 9% | ไม่เคยทำงานเหมือง 89% เคย 11% — <strong>ผลตรวจ SCN ที่สูงในคนไม่สูบบุหรี่จึงน่าจับตา</strong>เพราะไม่ได้มาจากการสูบ</div></div>
 </div>
 <div class="stit"><span>📏 ค่าอ้างอิง</span><span class="ln"></span></div>
 <div class="rg"><div class="rc"><h4>⚗️ สารหนู</h4><div class="rr"><span class="rl">Total As</span><span class="rv">> 100 µg/L</span></div><div class="rr"><span class="rl">Inorganic As</span><span class="rv">> 10 µg/g creat.</span></div><div class="rr"><span class="rl">อ้างอิง</span><span style="font-size:11px;color:var(--t3)">ATSDR/CDC, Casarett & Doull's</span></div></div><div class="rc"><h4>🧪 ไทโอไซยาเนต</h4><div class="rr"><span class="rl">สูบบุหรี่</span><span class="rv">> 17 mg/L</span></div><div class="rr"><span class="rl">ไม่สูบ</span><span class="rv">> 4 mg/L</span></div><div class="rr"><span class="rl">หมายเหตุ</span><span style="font-size:11px;color:var(--t3)">เฉพาะผู้ใหญ่ (นอร์เวย์)</span></div></div></div>
@@ -330,24 +337,24 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div class="stit"><span>📋 ข้อมูลประชากร</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc"><h3>สัดส่วนเพศ</h3><div class="cs">N=150 — หญิง 73%, ชาย 27%</div><div class="cw"><canvas id="g68"></canvas></div></div>
-  <div class="cc"><h3>กลุ่มอายุ</h3><div class="cs">>60 ปี มากที่สุด (68 คน)</div><div class="cw"><canvas id="a68"></canvas></div></div>
-  <div class="cc"><h3>อาชีพ</h3><div class="cs">เกษตร 53% — N=150</div><div class="cw"><canvas id="o68"></canvas></div></div>
-  <div class="cc"><h3>การศึกษา</h3><div class="cs">ประถม 42% — N=149</div><div class="cw"><canvas id="e68"></canvas></div></div>
-  <div class="cc"><h3>สถานภาพ & ระยะห่างเหมือง</h3><div class="cs">สมรส 64%, <5กม. 69%</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="st68"></canvas></div><div class="cw"><canvas id="ds68"></canvas></div></div></div>
-  <div class="cc"><h3>โรคประจำตัว & เคยทำงานเหมือง</h3><div class="cs">N=149</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="di68"></canvas></div><div class="cw"><canvas id="me68"></canvas></div></div></div>
-  <div class="cc"><h3>เคยทำงานอุตสาหกรรม & สูบบุหรี่</h3><div class="cs">N=149 / N=150</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="ind68"></canvas></div><div class="cw"><canvas id="smk68"></canvas></div></div></div>
-  <div class="cc"><h3>สารเคมี/ยาฆ่าแมลง ใน 7 วัน</h3><div class="cs">N=149</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="chm68"></canvas></div><div class="cw"><canvas id="pest68"></canvas></div></div></div>
-  <div class="cc"><h3>ดื่มสุรา</h3><div class="cs">N=149 — ไม่ดื่ม 78%</div><div class="cw"><canvas id="alc68"></canvas></div></div>
-  <div class="cc"><h3>พฤติกรรมอาหาร ใน 3 วัน</h3><div class="cs">อาหารทะเล, หน่อไม้, ยอดมัน — N=150</div><div class="cw"><canvas id="food68"></canvas></div></div>
-  <div class="cc"><h3>แหล่งน้ำดื่ม & น้ำใช้</h3><div class="cs">N=149</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="wdr68"></canvas></div><div class="cw"><canvas id="wus68"></canvas></div></div></div>
-  <div class="cc"><h3>ปลูกข้าว/พืชกินเอง</h3><div class="cs">N=149 — ปลูก 74%</div><div class="cw"><canvas id="farm68"></canvas></div></div>
+  <div class="cc"><h3>สัดส่วนเพศ</h3><div class="cs">N=150 — หญิง 73%, ชาย 27%</div><div class="cw"><canvas id="g68"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> หญิง 73% ชาย 27% — สัดส่วนใกล้เคียงปี 67 (75:25) <strong>ผู้ชายเข้าร่วมเพิ่มขึ้นเล็กน้อย</strong></div></div>
+  <div class="cc"><h3>กลุ่มอายุ</h3><div class="cs">>60 ปี มากที่สุด (68 คน)</div><div class="cw"><canvas id="a68"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> กลุ่มอายุ >60 ปี มากที่สุด 68 คน รองลงมา 46-60 ปี 52 คน — <strong>กลุ่มผู้สูงอายุยังคงเป็นกลุ่มหลัก</strong>ที่เข้ารับการตรวจ</div></div>
+  <div class="cc"><h3>อาชีพ</h3><div class="cs">เกษตร 53% — N=150</div><div class="cw"><canvas id="o68"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> สัดส่วนอาชีพเหมือนปี 67 — เกษตร 53% นักเรียน 23% รับจ้าง 14% <strong>ชุมชนเกษตรกรรมเป็นหลัก</strong></div></div>
+  <div class="cc"><h3>การศึกษา</h3><div class="cs">ประถม 42% — N=149</div><div class="cw"><canvas id="e68"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ประถม 42% มัธยม 33% ไม่ได้เรียน 12% — สัดส่วนไม่ได้เรียนสูงขึ้นจากกลุ่มใหม่ 31 คน</div></div>
+  <div class="cc"><h3>สถานภาพ & ระยะห่างเหมือง</h3><div class="cs">สมรส 64%, <5กม. 69%</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="st68"></canvas></div><div class="cw"><canvas id="ds68"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> สมรส 64% โสด 23% | อาศัย &lt;5 กม. จากเหมือง <strong>69%</strong> — <strong>ส่วนใหญ่อยู่ใกล้แหล่งความเสี่ยง</strong></div></div>
+  <div class="cc"><h3>โรคประจำตัว & เคยทำงานเหมือง</h3><div class="cs">N=149</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="di68"></canvas></div><div class="cw"><canvas id="me68"></canvas></div></div><div class="db dr"><strong>📌 สรุป:</strong> มีโรคประจำตัว <strong>54%</strong> (เบาหวาน ความดัน ฯลฯ) | เคยทำงานเหมือง 14% — กลุ่มที่มีโรคร่วมมีความเสี่ยงสะสมสูงขึ้น</div></div>
+  <div class="cc"><h3>เคยทำงานอุตสาหกรรม & สูบบุหรี่</h3><div class="cs">N=149 / N=150</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="ind68"></canvas></div><div class="cw"><canvas id="smk68"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> เคยทำงานอุตสาหกรรม 23% | สูบบุหรี่ <strong>20% (30 คน)</strong> ไม่สูบ 80% (120 คน) — สูบบุหรี่เพิ่มจาก 9% (ปี 67) เนื่องจากกลุ่มใหม่</div></div>
+  <div class="cc"><h3>สารเคมี/ยาฆ่าแมลง ใน 7 วัน</h3><div class="cs">N=149</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="chm68"></canvas></div><div class="cw"><canvas id="pest68"></canvas></div></div><div class="db di"><strong>📌 สรุป:</strong> ใช้สารเคมี 10% ยาฆ่าแมลง 10% ใน 7 วันก่อนเก็บตัวอย่าง — <strong>อาจเป็นปัจจัยกวนในผล As</strong></div></div>
+  <div class="cc"><h3>ดื่มสุรา</h3><div class="cs">N=149 — ไม่ดื่ม 78%</div><div class="cw"><canvas id="alc68"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> ไม่ดื่มสุรา 78% ดื่ม 1-2 ครั้ง/เดือน 13% ดื่มเกือบทุกวัน 5% — <strong>ส่วนใหญ่ไม่ดื่ม</strong></div></div>
+  <div class="cc"><h3>พฤติกรรมอาหาร ใน 3 วัน</h3><div class="cs">อาหารทะเล, หน่อไม้, ยอดมัน — N=150</div><div class="cw"><canvas id="food68"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> หน่อไม้ <strong>21%</strong> อาหารทะเล 8% ยอดมัน 1% — หน่อไม้และยอดมันเป็นแหล่ง CN ธรรมชาติ <strong>อาจเป็นสาเหตุ SCN สูง</strong></div></div>
+  <div class="cc"><h3>แหล่งน้ำดื่ม & น้ำใช้</h3><div class="cs">N=149</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:250px"><div class="cw"><canvas id="wdr68"></canvas></div><div class="cw"><canvas id="wus68"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> น้ำดื่ม: ขวด/ถัง <strong>97%</strong> (ปลอดภัย) | น้ำใช้: ประปาหมู่บ้าน 58% ขวด/ถัง 35% — <strong>น้ำใช้จากประปาอาจเป็นช่องทางสัมผัสสาร</strong></div></div>
+  <div class="cc"><h3>ปลูกข้าว/พืชกินเอง</h3><div class="cs">N=149 — ปลูก 74%</div><div class="cw"><canvas id="farm68"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ปลูกข้าว/พืชกินเอง <strong>74%</strong> — หากดินหรือน้ำมีโลหะหนักปนเปื้อน <strong>ห่วงโซ่อาหารอาจเป็นช่องทางรับสัมผัสสำคัญ</strong></div></div>
 </div>
 <div class="stit"><span>🧪 ผลตรวจ Lab ปี 2568</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc"><h3>Total Arsenic</h3><div class="cs">>100 µg/L (N=150)</div><div class="cw"><canvas id="as68"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>2.7%</span></div><div class="pb"><div class="pf" style="width:2.7%;background:linear-gradient(90deg,#dc2626,#f87171)"></div></div></div></div>
-  <div class="cc"><h3>Inorganic Arsenic</h3><div class="cs">>10 µg/g creat. (จาก 4 ราย)</div><div class="cw"><canvas id="ia68"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>75%</span></div><div class="pb"><div class="pf" style="width:75%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div></div>
-  <div class="cc fl"><h3>Thiocyanate (SCN) in Urine ปี 2568</h3><div class="cs">N=150 — สูบบุหรี่ 30 คน, ไม่สูบบุหรี่ 120 คน</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px"><div><div style="text-align:center;font-size:11px;color:var(--t3);font-weight:600;margin-bottom:6px">จำนวนผู้ตรวจ (N=150)</div><div class="cw" style="height:240px"><canvas id="scn68"></canvas></div></div><div><div style="text-align:center;font-size:11px;color:var(--t3);font-weight:600;margin-bottom:6px">ในคนสูบบุหรี่ ค่าอ้างอิง >17 mg/L</div><div class="cw" style="height:240px"><canvas id="scnS68"></canvas></div></div><div><div style="text-align:center;font-size:11px;color:var(--t3);font-weight:600;margin-bottom:6px">ในคนไม่สูบบุหรี่ ค่าอ้างอิง >4 mg/L</div><div class="cw" style="height:240px"><canvas id="scnN68"></canvas></div></div></div></div>
+  <div class="cc"><h3>Total Arsenic</h3><div class="cs">>100 µg/L (N=150)</div><div class="cw"><canvas id="as68"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>2.7%</span></div><div class="pb"><div class="pf" style="width:2.7%;background:linear-gradient(90deg,#dc2626,#f87171)"></div></div></div><div class="db dg"><strong>📌 สรุป:</strong> Total As เกินค่าอ้างอิง <strong>4 คน (2.7%)</strong> ปกติ 146 คน — <strong>ลดลงจากปี 67 ที่พบ 12 คน (8.1%)</strong> ลดลง 67%</div></div>
+  <div class="cc"><h3>Inorganic Arsenic</h3><div class="cs">>10 µg/g creat. (จาก 4 ราย)</div><div class="cw"><canvas id="ia68"></canvas></div><div class="pw"><div class="pl"><span>เกินอ้างอิง</span><span>75%</span></div><div class="pb"><div class="pf" style="width:75%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> จาก 4 รายที่ Total As เกิน พบ Inorganic As เกิน <strong>3 คน (75%)</strong> ปกติ 1 คน — <strong>ลดลงจากปี 67 (8 คน → 3 คน)</strong></div></div>
+  <div class="cc fl"><h3>Thiocyanate (SCN) in Urine ปี 2568</h3><div class="cs">N=150 — สูบบุหรี่ 30 คน, ไม่สูบบุหรี่ 120 คน</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px"><div><div style="text-align:center;font-size:12px;color:var(--t3);font-weight:600;margin-bottom:6px">จำนวนผู้ตรวจ (N=150)</div><div class="cw" style="height:240px"><canvas id="scn68"></canvas></div></div><div><div style="text-align:center;font-size:12px;color:var(--t3);font-weight:600;margin-bottom:6px">ในคนสูบบุหรี่ ค่าอ้างอิง >17 mg/L</div><div class="cw" style="height:240px"><canvas id="scnS68"></canvas></div></div><div><div style="text-align:center;font-size:12px;color:var(--t3);font-weight:600;margin-bottom:6px">ในคนไม่สูบบุหรี่ ค่าอ้างอิง >4 mg/L</div><div class="cw" style="height:240px"><canvas id="scnN68"></canvas></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> สูบบุหรี่ 30 คน เกิน >17 mg/L จำนวน <strong>6 คน (20%)</strong> | ไม่สูบบุหรี่ 120 คน เกิน >4 mg/L จำนวน <strong>43 คน (35.8%)</strong> — ลดลงจากปี 67 (69.9%) อย่างมาก <strong>แนวโน้มดีขึ้นชัดเจน</strong></div></div>
 
 </div>
 <div class="stit"><span>📊 เปรียบเทียบ 2567 vs 2568 (กลุ่มเดียวกัน 119 คน)</span><span class="ln"></span></div>
@@ -364,7 +371,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ WATER ▓▓ -->
 <div class="page" id="page-water">
-<div class="topbar"><span class="topicon">💧</span><h1>ประปารอบเหมืองทอง</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
+<div class="topbar"><span class="topicon">💧</span><h1>ผลน้ำประปารอบเหมือง</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
 <div class="pg-pad" id="water-content">
 <div class="hero"><div class="hero-bg"></div><div class="hero-ct"><div class="badge">💧 Water Quality Surveillance</div><h1>การเฝ้าระวังคุณภาพน้ำประปา<br><em>รอบเหมืองแร่ทองคำ จ.พิจิตร</em></h1></div></div>
 
@@ -383,15 +390,30 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   <div class="mgi"><h4>🏢 หน่วยงาน</h4><ul><li>ศูนย์อนามัยที่ 3 นครสวรรค์</li><li>สสจ.พิจิตร / สสอ.ทับคล้อ</li><li>รพ.ทับคล้อ / รพ.สต.เขาเจ็ดลูก</li><li>คืนข้อมูล 8 ธ.ค. 67 ณ อบต.เขาเจ็ดลูก</li></ul></div>
 </div></div></div>
 
-<div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-  <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 1)</div><div class="kpi-vl" data-count="42">0</div><div class="kpi-sb">ส.ค. 67 | จ.พิจิตร รัศมี 10 กม.</div></div>
-  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">14.3% ของ 42 แห่ง</div></div>
-  <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="36">0</div><div class="kpi-sb">85.7% ของ 42 แห่ง</div></div>
-  <div class="kpi kb"><div class="kpi-top"><div class="kpi-ic">🔬</div></div><div class="kpi-lb">พารามิเตอร์ที่ตรวจ</div><div class="kpi-vl" data-count="23">0</div><div class="kpi-sb">21 + Ni + CN</div></div>
-  <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="41">0</div><div class="kpi-sb">พ.ย. 67 | ลดลง 1 แห่ง</div></div>
-  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">↑ +3</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="9">0</div><div class="kpi-sb">22.0% ของ 41 แห่ง</div></div>
-  <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div><div class="kpi-trend down">↓ −4</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="32">0</div><div class="kpi-sb">78.0% ของ 41 แห่ง</div></div>
-  <div class="kpi kpp"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">แนวโน้ม</div><div class="kpi-vl" style="font-size:18px;color:var(--success)">ดีขึ้น</div><div class="kpi-sb">ผ่านเกณฑ์ 14.3% → 22.0%</div></div>
+<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
+  <!-- Round 1 group -->
+  <div style="background:linear-gradient(135deg,rgba(2,132,199,.06),rgba(14,165,233,.03));border:1px solid rgba(2,132,199,.12);border-radius:16px;padding:16px 14px 10px">
+    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#0284c7;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 1 — ส.ค. 2567 (N=42)</div>
+    <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:0">
+      <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 1)</div><div class="kpi-vl" data-count="42">0</div><div class="kpi-sb">จ.พิจิตร รัศมี 10 กม.</div></div>
+      <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">14.3% ของ 42 แห่ง</div></div>
+      <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="36">0</div><div class="kpi-sb">85.7% ของ 42 แห่ง</div></div>
+    </div>
+  </div>
+  <!-- Round 2 group -->
+  <div style="background:linear-gradient(135deg,rgba(22,163,74,.06),rgba(74,222,128,.03));border:1px solid rgba(22,163,74,.12);border-radius:16px;padding:16px 14px 10px">
+    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 2 — พ.ย. 2567 (N=41)</div>
+    <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:0">
+      <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="41">0</div><div class="kpi-sb">ลดลง 1 แห่งจากรอบ 1</div></div>
+      <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">↑ +3</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="9">0</div><div class="kpi-sb">22.0% ของ 41 แห่ง</div></div>
+      <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div><div class="kpi-trend down">↓ −4</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="32">0</div><div class="kpi-sb">78.0% ของ 41 แห่ง</div></div>
+    </div>
+  </div>
+  <!-- Summary row -->
+  <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:0">
+    <div class="kpi kpp"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">แนวโน้ม</div><div class="kpi-vl" style="font-size:20px;color:var(--success)">ดีขึ้น</div><div class="kpi-sb">ผ่านเกณฑ์ 14.3% → 22.0% (+7.7%)</div></div>
+    <div class="kpi kb"><div class="kpi-top"><div class="kpi-ic">🔬</div></div><div class="kpi-lb">พารามิเตอร์ที่ตรวจ</div><div class="kpi-vl" data-count="23">0</div><div class="kpi-sb">21 มาตรฐาน + Ni + CN</div></div>
+  </div>
 </div>
 
 <div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
@@ -443,18 +465,179 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ═ 2568 ═ -->
 <div id="w68" class="wyp">
-  <div class="await-card"><span class="aw-ic">💧</span><h3>รอเพิ่มข้อมูล ปี 2568</h3><p>ข้อมูลเฝ้าระวังคุณภาพน้ำประปารอบเหมืองทอง ปี 2568 อยู่ระหว่างจัดเตรียม</p></div>
-  <div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+
+<div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางเฝ้าระวังน้ำประปา ปี 2568</h3><span class="meth-arr">▾</span></div><div class="meth-b">
+<p><strong>Standard</strong> — เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</p>
+<div class="mgr">
+  <div class="mgi"><h4>📍 ขอบเขตพื้นที่</h4><ul><li>จ.พิจิตร อ.ทับคล้อ รัศมี 10 กม.</li><li>รอบ 1: 36 ระบบ / รอบ 2: 34 ระบบ</li><li>2 ตำบล: เขาเจ็ดลูก & เขาทราย</li></ul></div>
+  <div class="mgi"><h4>🔬 พารามิเตอร์ 23 รายการ</h4><ul><li>กายภาพ: สี ความขุ่น pH</li><li>เคมี: TDS Hardness Sulfate Chloride Nitrate Nitrite Fluoride</li><li>โลหะหนักพิษ: Pb Cr Cd As Hg CN Ni</li><li>โลหะหนักทั่วไป: Fe Mn Cu Zn</li><li>ชีวภาพ: Coliform E.coli</li></ul></div>
+  <div class="mgi"><h4>📅 ความถี่ & จุดเก็บ</h4><ul><li>2 ครั้ง/ปี (รอบ 1: เม.ย. 68, รอบ 2: ต.ค. 68)</li><li>จุดเก็บ: น้ำออกจากระบบ/ต้นท่อ</li><li>วิธี: Standard Methods 23rd Ed.</li></ul></div>
+  <div class="mgi"><h4>🏢 หน่วยงาน</h4><ul><li>ศูนย์อนามัยที่ 3 นครสวรรค์</li><li>สสจ.พิจิตร / สสอ.ทับคล้อ</li><li>รพ.ทับคล้อ / รพ.สต.เขาเจ็ดลูก</li><li>รายงานผล: 6 มิ.ย. 68 & 3 พ.ย. 68</li></ul></div>
+</div></div></div>
+
+<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
+  <div style="background:linear-gradient(135deg,rgba(2,132,199,.06),rgba(14,165,233,.03));border:1px solid rgba(2,132,199,.12);border-radius:16px;padding:16px 14px 10px">
+    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#0284c7;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 1 — เม.ย. 2568 (N=36)</div>
+    <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:0">
+      <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 1)</div><div class="kpi-vl" data-count="36">0</div><div class="kpi-sb">เม.ย. 68 | จ.พิจิตร รัศมี 10 กม.</div></div>
+      <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">16.7% ของ 36 แห่ง</div></div>
+      <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="30">0</div><div class="kpi-sb">83.3% ของ 36 แห่ง</div></div>
+    </div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(22,163,74,.06),rgba(74,222,128,.03));border:1px solid rgba(22,163,74,.12);border-radius:16px;padding:16px 14px 10px">
+    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 2 — ต.ค. 2568 (N=34)</div>
+    <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:0">
+      <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="34">0</div><div class="kpi-sb">ลดลง 2 แห่งจากรอบ 1</div></div>
+      <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">→ 0</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">17.6% ของ 34 แห่ง</div></div>
+      <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div><div class="kpi-trend down">↓ −2</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="28">0</div><div class="kpi-sb">82.4% ของ 34 แห่ง</div></div>
+    </div>
+  </div>
+  <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:0">
+    <div class="kpi kpp"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">แนวโน้ม</div><div class="kpi-vl" style="font-size:20px;color:var(--warning)">ทรงตัว</div><div class="kpi-sb">ผ่านเกณฑ์ 16.7% → 17.6% (+0.9%)</div></div>
+    <div class="kpi kb"><div class="kpi-top"><div class="kpi-ic">🔬</div></div><div class="kpi-lb">พารามิเตอร์ที่ตรวจ</div><div class="kpi-vl" data-count="23">0</div><div class="kpi-sb">21 มาตรฐาน + Ni + CN</div></div>
+  </div>
+</div>
+
+<div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:280px"><canvas id="w68Ovr"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 (N=36) ผ่านเกณฑ์ 6 แห่ง (16.7%) ไม่ผ่าน 30 แห่ง (83.3%) → รอบ 2 (N=34) ผ่านเกณฑ์ 6 แห่ง (17.6%) ไม่ผ่าน 28 แห่ง (82.4%) <strong>สถานการณ์ทรงตัว</strong> ระบบส่วนใหญ่ยังไม่ผ่านเกณฑ์กว่า 80%</div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:280px"><canvas id="w68ByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> กายภาพลดลง 80.6→73.5% (−7.1), เคมีดีขึ้นเล็กน้อย 75.0→79.4% (+4.4), ชีวภาพดีขึ้นเล็กน้อย 25.0→29.4% (+4.4) <strong>ชีวภาพยังเป็นปัญหาหนักสุด</strong> พบ Coliform 70-75% ของระบบทั้งหมด</div></div>
+</div>
+
+<div class="stit"><span>🔬 รายละเอียดแยกตามด้าน</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc"><h3>ด้านกายภาพ</h3><div class="cs">สี, ความขุ่น, pH</div><div class="cw"><canvas id="w68Phy"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>73.5%</span></div><div class="pb"><div class="pf" style="width:73.5%;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div></div><div class="db di"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 29 แห่ง (80.6%) → รอบ 2 ผ่าน 25 แห่ง (73.5%) <strong>ลดลง −7.1%</strong> รอบ 2 พบปัญหาความขุ่น (Turbidity) เพิ่มขึ้น 9 แห่ง (26.5%)</div></div>
+  <div class="cc"><h3>ด้านเคมี</h3><div class="cs">TDS, Hardness, Sulfate, Chloride, Nitrate, Fluoride ฯลฯ</div><div class="cw"><canvas id="w68Chem"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>79.4%</span></div><div class="pb"><div class="pf" style="width:79.4%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 27 แห่ง (75.0%) → รอบ 2 ผ่าน 27 แห่ง (79.4%) <strong>ดีขึ้นเล็กน้อย +4.4%</strong> TDS เกิน 5 แห่ง, Hardness เกิน 6 แห่ง, พบ Fluoride เกินมาตรฐานในรอบ 2</div></div>
+  <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform Bacteria, E.coli</div><div class="cw"><canvas id="w68Bio"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>29.4%</span></div><div class="pb"><div class="pf" style="width:29.4%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 ไม่พบเชื้อ 9 แห่ง (25.0%) → รอบ 2 ไม่พบเชื้อ 10 แห่ง (29.4%) ดีขึ้นเล็กน้อย +4.4% แต่<strong>ยังเป็นปัญหาหนักสุด</strong> — Coliform เกิน 24 แห่ง (70.6%), E.coli เกิน 18 แห่ง (52.9%) ในรอบ 2</div></div>
+  <div class="cc"><h3>พารามิเตอร์ 23 รายการ & สิ่งที่เกินเกณฑ์</h3><div class="cs">ตรวจทุกจุดตามเกณฑ์กรมอนามัย 2563</div><div class="cw"><canvas id="w68Heavy"></canvas></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11.5px">
+      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะหนักพิษที่เกิน:</strong><br><span style="color:var(--t3)">As, Cd, Pb (รอบ 2 พบ Pb, Cd เกินเพิ่ม)</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ เคมี/โลหะทั่วไปที่เกิน:</strong><br><span style="color:var(--t3)">Fe, Mn, TDS, Hardness, Sulfate, Fluoride</span></div>
+    </div>
+    <div class="db" style="margin-top:8px"><strong>📌 สรุป:</strong> ตรวจ 23 พารามิเตอร์ — <strong>ปัญหาหลักคือ Coliform/E.coli</strong> เชื้อแบคทีเรียปนเปื้อน 70-75% ของระบบ ตามด้วย Fe (เหล็ก) เกิน 26.5% และ Mn (แมงกานีส) เกิน 11.8% ในรอบ 2 ส่วนโลหะหนักพิษพบ As, Cd เกินเกณฑ์ในบางจุด</div>
+  </div>
+</div>
+
+<div class="stit"><span>📍 แยกตามพื้นที่ตำบล & แหล่งน้ำ</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>จำนวนระบบประปาแยกตำบล & แหล่งน้ำดิบ</h3><div class="cs">36 ระบบประปา (รอบ 1) ใน 2 ตำบล</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:260px"><div class="cw"><canvas id="w68Loc"></canvas></div><div class="cw"><canvas id="w68Src"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> ต.เขาเจ็ดลูกมีประปามากสุด 29 แห่ง (80.6%), ต.เขาทราย 7 แห่ง (19.4%) | แหล่งน้ำดิบส่วนใหญ่เป็น<strong>น้ำบาดาล 33 แห่ง (91.7%)</strong> และน้ำผิวดิน 3 แห่ง (8.3%)</div></div>
+</div>
+
+<div class="stit"><span>✅ ระบบประปาที่ผ่านเกณฑ์</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>ผ่านเกณฑ์ รอบ 1 — 6 ระบบ (เม.ย. 2568)</h3>
+    <div class="cs">จากทั้งหมด 36 ตัวอย่าง</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px">
+      <div class="rc" style="border-left:3px solid #0284c7"><span class="rc-lb">17.</span> บ้านหนองขนาก (ซอยบ้านสำราญ) ม.7 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #0284c7"><span class="rc-lb">18.</span> ประปาโรงกรองน้ำ ม.7 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #0284c7"><span class="rc-lb">20.</span> รร.บ้านใหม่ราษฎร์ดำรง ม.8 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #0284c7"><span class="rc-lb">25.</span> บ้านใดน้ำขุ่น ม.10 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #0284c7"><span class="rc-lb">33.</span> บ้านลำประดา (ผญ.เก่า) ม.3 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+      <div class="rc" style="border-left:3px solid #0284c7"><span class="rc-lb">35.</span> วัดเกาะแก้วลำประดา (บ้านครู) ม.13 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+    </div>
+  </div>
+  <div class="cc fl">
+    <h3>ผ่านเกณฑ์ รอบ 2 — 6 ระบบ (ต.ค. 2568)</h3>
+    <div class="cs">จากทั้งหมด 34 ตัวอย่าง</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px">
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">7.</span> บ้านผู้ใหญ่เก่า (ศิวกร) ม.3 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">18.</span> ประปาโรงกรองน้ำ ม.7 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">20.</span> รร.บ้านใหม่ราษฎร์ดำรง ม.8 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">34.</span> บ้านเกาะแก้วลำประดา (ตัวใหม่) ม.3 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">35.</span> วัดเกาะแก้วลำประดา (บ้านครู) ม.13 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">37.</span> เกาะแก้วลำประดา (ตัวใหม่) ม.13 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+    </div>
+    <div class="db di" style="margin-top:10px"><strong>📌 สรุป:</strong> มีเพียง 2 ระบบที่ผ่านเกณฑ์ทั้ง 2 รอบ: <strong>#18 โรงกรองน้ำ ม.7</strong> และ <strong>#20 รร.บ้านใหม่ราษฎร์ดำรง ม.8</strong> (ต.เขาเจ็ดลูก) — ถือเป็นระบบที่มีคุณภาพน้ำดีต่อเนื่อง</div>
+  </div>
+</div>
+
+  <div class="credit">ข้อมูล: ศูนย์อนามัยที่ 3 นครสวรรค์ | รอบ 1: 21-22 เม.ย. 2568 | รอบ 2: 20-21 ต.ค. 2568</div>
 </div><!-- /w68 -->
 
 </div></div>
 
 <!-- ▓▓ WASTE ▓▓ -->
 <div class="page" id="page-waste">
-<div class="topbar"><span class="topicon">🌿</span><h1>ผลบำบัดน้ำเสีย รพ.</h1></div>
-<div class="pg-pad">
-  <div class="await-card"><span class="aw-ic">🏥</span><h3>รอเพิ่มข้อมูล</h3><p>ข้อมูลผลบำบัดน้ำเสียโรงพยาบาลอยู่ระหว่างจัดเตรียม</p></div>
-  <div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+<div class="topbar"><span class="topicon">🌿</span><h1>ผลบำบัดน้ำเสีย รพ.ทับคล้อ</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
+<div class="pg-pad" id="waste-content">
+
+<div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางการเฝ้าระวังน้ำเสีย รพ.ทับคล้อ</h3><span class="meth-arr">▾</span></div><div class="meth-b">
+<p><strong>Standard</strong> — ประกาศกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม เรื่อง กำหนดมาตรฐานและควบคุมการระบายน้ำทิ้งจากอาคาร ประเภท ก. (รพ.ขนาด 30 เตียง)</p>
+<div class="mgr">
+  <div class="mgi"><h4>🔬 พารามิเตอร์หลัก 10 รายการ</h4><ul><li>pH, BOD, คลอรีนตกค้าง</li><li>TSS, TDS, ซัลไฟด์</li><li>น้ำมันและไขมัน, TKN</li><li>Coliform, Fecal Coliform</li></ul></div>
+  <div class="mgi"><h4>🔬 พารามิเตอร์เสริม (ปีละ 1 ครั้ง)</h4><ul><li>E.coli (น้ำทิ้ง) ≤1,000 MPN</li><li>ไข่หนอนพยาธิ (น้ำทิ้ง) ไม่พบ</li><li>E.coli (กากตะกอน) ≤1,000 MPN</li><li>ไข่หนอนพยาธิ (กากตะกอน) ไม่พบ</li></ul></div>
+  <div class="mgi"><h4>📅 ความถี่ & จุดเก็บ</h4><ul><li>พารามิเตอร์หลัก: ตรวจทุกไตรมาส</li><li>ไข่หนอนพยาธิ: ปีละ 1 ครั้ง</li><li>จุดเก็บ: ก่อนบำบัด & หลังบำบัด</li><li>ห้องปฏิบัติการ: ศูนย์อนามัยที่ 3 กรมอนามัย</li></ul></div>
+  <div class="mgi"><h4>⚠️ หมายเหตุ</h4><ul><li>Q3/67: คลอรีน & TSS ไม่ได้ตรวจ</li><li>Q3/68: งบประมาณไม่พอ กรมอนามัยปิดปรับปรุง lab — มีเฉพาะค่าหลังบำบัด</li><li>บางรายการแสดง "-" = ไม่ได้ส่งตรวจในไตรมาสนั้น</li></ul></div>
+</div></div></div>
+
+<!-- ══ ALERT BOX Q1/69 ══ -->
+<div style="background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(248,113,113,.04));border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px">
+  <span style="font-size:22px;flex-shrink:0">🚨</span>
+  <div><strong style="color:#ef4444;font-size:13.5px">เตือน — ไตรมาส 1/2569 ไม่ผ่านเกณฑ์ 3 พารามิเตอร์</strong>
+    <p style="font-size:12.5px;color:var(--t3);margin-top:4px"><strong>คลอรีนตกค้าง 3.1 mg/L</strong> (เกณฑ์ ≤1) | <strong>Coliform 9,200 MPN</strong> (เกณฑ์ ≤5,000) | <strong>Fecal Coliform 9,200 MPN</strong> (เกณฑ์ ≤1,000) — ระบบฆ่าเชื้อทำงานผิดปกติ ต้องดำเนินการแก้ไขโดยเร่งด่วน</p>
+  </div>
+</div>
+
+<!-- ══ KPI CARDS ══ -->
+<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
+  <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+    <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">📅</div></div><div class="kpi-lb">ปีงบ 67 Q3</div><div class="kpi-vl" style="font-size:22px;color:var(--success)">ผ่าน</div><div class="kpi-sb">8/8 ตัวที่ตรวจผ่าน<br><small style="color:var(--t3)">Cl & TSS ไม่ได้ตรวจ</small></div></div>
+    <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">📅</div></div><div class="kpi-lb">ปีงบ 68 Q2</div><div class="kpi-vl" style="font-size:22px;color:var(--success)">ผ่านหมด</div><div class="kpi-sb">10/10 พารามิเตอร์ผ่าน</div></div>
+    <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">📅</div></div><div class="kpi-lb">ปีงบ 68 Q3</div><div class="kpi-vl" style="font-size:22px;color:var(--success)">ผ่าน</div><div class="kpi-sb">10/10 ผ่าน<br><small style="color:var(--warning)">⚠️ งบจำกัด lab ปิดปรับปรุง</small></div></div>
+    <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">📅</div></div><div class="kpi-lb">ปีงบ 69 Q1</div><div class="kpi-vl" style="font-size:22px;color:var(--danger)">ไม่ผ่าน</div><div class="kpi-sb">3/10 พารามิเตอร์ไม่ผ่าน</div></div>
+  </div>
+  <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+    <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🔬</div></div><div class="kpi-lb">พารามิเตอร์หลัก</div><div class="kpi-vl" data-count="10">0</div><div class="kpi-sb">+ ตรวจเสริมปีละครั้ง 4 รายการ</div></div>
+    <div class="kpi ka"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">แนวโน้ม</div><div class="kpi-vl" style="font-size:18px;color:var(--danger)">⚠️ เริ่มไม่ผ่าน</div><div class="kpi-sb">ผ่าน 3 ไตรมาส → Q1/69 ไม่ผ่าน</div></div>
+  </div>
+</div>
+
+<!-- ══ 1. PASS/FAIL TIMELINE ══ -->
+<div class="stit"><span>📊 แนวโน้มผ่าน/ไม่ผ่านเกณฑ์ รายไตรมาส</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>จำนวนพารามิเตอร์ผ่าน/ไม่ผ่าน (หลังบำบัด)</h3><div class="cs">เกณฑ์ประกาศกระทรวงฯ น้ำทิ้งอาคาร ประเภท ก. — 10 พารามิเตอร์หลัก</div><div class="cw" style="height:280px"><canvas id="wsTimeline"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> Q3/67 ผ่านทุกตัวที่ตรวจ (8/8 ไม่ได้ตรวจ Cl, TSS) → Q2/68 ผ่านครบ 10/10 → Q3/68 ผ่านครบ 10/10 (แม้งบจำกัด) → <strong>Q1/69 ไม่ผ่าน 3 ตัว</strong> (คลอรีน 3.1, Coliform 9,200, Fecal 9,200) — ระบบฆ่าเชื้อมีปัญหา</div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์ (%) รายไตรมาส</h3><div class="cs">เฉพาะค่าหลังบำบัด — คิดจากรายการที่ตรวจ</div><div class="cw" style="height:280px"><canvas id="wsPassRate"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ผ่าน 100% ต่อเนื่อง 3 ไตรมาส (Q3/67–Q3/68) จนกระทั่ง <strong>Q1/69 ลดลงเหลือ 70%</strong> — แนวโน้มเป็นปัญหาเฉียบพลันไม่ใช่ค่อยๆ แย่ลง แสดงว่าระบบฆ่าเชื้อเกิดขัดข้องในไตรมาสนี้</div></div>
+</div>
+
+<!-- ══ 2. BOD/TSS/TKN TREND ══ -->
+<div class="stit"><span>📈 แนวโน้ม BOD, TSS, TKN (ก่อน vs หลังบำบัด)</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>BOD — ค่าบีโอดี</h3><div class="cs">มาตรฐาน ≤ 20 mg/L (หลังบำบัด)</div><div class="cw" style="height:260px"><canvas id="wsBOD"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> BOD หลังบำบัด<strong>ผ่านเกณฑ์ทุกไตรมาส</strong> — Q3/67: 5, Q2/68: 5, Q3/68: 6.2, Q1/69: 14.1 mg/L (เกณฑ์ ≤20) ค่าก่อนบำบัดสูงขึ้นเรื่อยๆ (51→69→102) แต่ระบบยังกำจัดได้ดี ประสิทธิภาพ 86-93%</div></div>
+  <div class="cc"><h3>TSS — สารแขวนลอย</h3><div class="cs">มาตรฐาน ≤ 30 mg/L (หลังบำบัด) | Q3/67 ไม่ได้ตรวจ</div><div class="cw" style="height:260px"><canvas id="wsTSS"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> TSS หลังบำบัด<strong>ผ่านเกณฑ์ทุกไตรมาสที่ตรวจ</strong> — Q2/68: 19, Q3/68: &lt;25, Q1/69: 25 mg/L (เกณฑ์ ≤30) ค่า Q1/69 ใกล้เกณฑ์ (25/30) ควรเฝ้าระวัง</div></div>
+  <div class="cc"><h3>TKN — ไนโตรเจนรวม</h3><div class="cs">มาตรฐาน ≤ 35 mg/L (หลังบำบัด)</div><div class="cw" style="height:260px"><canvas id="wsTKN"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> TKN หลังบำบัดผ่านทุกไตรมาส — Q3/67: 7.01, Q2/68: 6.65, Q3/68: 11.2, Q1/69: 16.2 mg/L ประสิทธิภาพกำจัด 83-91% <strong>เป็นพารามิเตอร์ที่ระบบบำบัดทำงานได้ดีที่สุด</strong></div></div>
+</div>
+
+<!-- ══ 3. HEAT TABLE ══ -->
+<div class="stit"><span>🟥🟩 ตารางสรุปผลตรวจ (หลังบำบัด)</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>ผ่าน/ไม่ผ่านเกณฑ์ ทุกพารามิเตอร์ ทุกไตรมาส</h3>
+    <div class="cs">🟩 ผ่าน | 🟥 ไม่ผ่าน | ⬜ ไม่ได้ตรวจ | 🟧 งบจำกัด (lab ปิดปรับปรุง)</div>
+    <div id="wsHeatTable" style="overflow-x:auto;margin-top:12px"></div>
+    <div class="db" style="margin-top:10px"><strong>📌 สรุป:</strong> 3 ไตรมาสแรกผ่านเกณฑ์ทุกตัวที่ตรวจ → <strong>Q1/69 เกิดปัญหาระบบฆ่าเชื้อ</strong> ทำให้คลอรีน, Coliform, Fecal Coliform เกินมาตรฐานพร้อมกัน</div>
+  </div>
+</div>
+
+<!-- ══ ANNUAL SUPPLEMENTARY TESTS ══ -->
+<div class="stit"><span>🔬 ผลตรวจเสริมประจำปี (E.coli & ไข่หนอนพยาธิ)</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>ผลตรวจเสริมปีละ 1 ครั้ง</h3>
+    <div class="cs">ตามประกาศกระทรวงฯ อาคารประเภท ก. — รพ.ขนาด 30 เตียง</div>
+    <div id="wsAnnualTable" style="overflow-x:auto;margin-top:12px"></div>
+    <div class="db di" style="margin-top:10px"><strong>📌 สรุป:</strong> Q3/67 พบ<strong>ไข่หนอนพยาธิในน้ำทิ้ง 24 ฟอง/ลิตร</strong> (เกณฑ์: ไม่พบ) ❌ → Q2/68 ตรวจซ้ำ: ไม่พบ ✅ แสดงว่ามีการปรับปรุงระบบแล้ว ส่วน E.coli ผ่านเกณฑ์ทั้งน้ำทิ้ง (2 & &lt;1.8 MPN) และกากตะกอน (350 & &lt;1.8 MPN)</div>
+  </div>
+</div>
+
+<!-- ══ 4. TREATMENT EFFICIENCY ══ -->
+<div class="stit"><span>📉 ประสิทธิภาพระบบบำบัด (%การกำจัด)</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>% การกำจัดสารมลพิษ (ก่อน vs หลังบำบัด)</h3><div class="cs">ค่า % ยิ่งสูงยิ่งดี — เปรียบเทียบรายไตรมาส | Q3/68 ไม่มีค่าก่อนบำบัด</div><div class="cw" style="height:300px"><canvas id="wsEfficiency"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> ระบบบำบัดทำงานได้ดีในการกำจัด BOD (86-93%) และ TKN (83-91%) | TSS กำจัดได้ 63-65% | <strong>ปัญหาหลักไม่ใช่ประสิทธิภาพการบำบัด แต่เป็นระบบฆ่าเชื้อ</strong> (คลอรีน) ที่ทำงานผิดปกติใน Q1/69</div></div>
+  <div class="cc"><h3>Coliform & Fecal Coliform (หลังบำบัด)</h3><div class="cs">เกณฑ์: Coliform ≤5,000 | Fecal ≤1,000 MPN/100mL</div><div class="cw" style="height:300px"><canvas id="wsBacteria"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> Q3/67 ถึง Q3/68 เชื้อหลังบำบัดอยู่ในเกณฑ์ดี (11→23→490 MPN) แต่ <strong>Q1/69 พุ่งขึ้น 9,200 MPN</strong> ทั้ง Coliform และ Fecal เกินเกณฑ์ — สะท้อนปัญหาระบบฆ่าเชื้อ/คลอรีนโดยเฉพาะ</div></div>
+</div>
+
+  <div class="credit">ข้อมูล: ศูนย์อนามัยที่ 3 กรมอนามัย | ปีงบประมาณ 2567-2569 | เกณฑ์ประกาศกระทรวงฯ น้ำทิ้งอาคาร ประเภท ก.</div>
 </div></div>
 
 <!-- ▓▓ TAP ▓▓ -->
@@ -483,9 +666,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <p>ระบบนี้จัดทำขึ้นเพื่อรวบรวมและนำเสนอข้อมูลและตัวชี้วัดเกี่ยวกับงานสิ่งแวดล้อมและงานอาชีวอนามัย</p><br>
       <p><strong>⛏️ งานเหมืองทอง</strong></p>
       <p style="padding-left:20px">• ผลตรวจสุขภาพประชาชน — สารหนู (Arsenic) และไทโอไซยาเนต (Thiocyanate)</p>
-      <p style="padding-left:20px">• ประปารอบเหมืองทอง (รอเพิ่มข้อมูล)</p><br>
+      <p style="padding-left:20px">• ผลน้ำประปารอบเหมือง (รอเพิ่มข้อมูล)</p><br>
       <p><strong>🌿 งานสิ่งแวดล้อม</strong></p>
-      <p style="padding-left:20px">• ผลบำบัดน้ำเสีย รพ. (รอเพิ่มข้อมูล)</p>
+      <p style="padding-left:20px">• ผลบำบัดน้ำเสีย รพ. (ปีงบ 67-69 รายไตรมาส)</p>
       <p style="padding-left:20px">• ผลน้ำประปา รพ. (รอเพิ่มข้อมูล)</p><br>
       <p><strong>🏭 งานอาชีวอนามัย</strong> — ข้อมูลด้านอาชีวอนามัยและความปลอดภัย (รอเพิ่มข้อมูล)</p><br>
       <p>📞 <strong>ติดต่อ:</strong> Tel. 056-641131 ต่อ 227</p>
@@ -516,6 +699,7 @@ function goPage(id,el){
     const next=document.getElementById('page-'+id);next.classList.add('show');
     runCountUp(next);
     if(id==='water'&&!rW)renderWater();
+    if(id==='waste'&&!rWs)renderWaste();
     if(id==='mine'&&!r68)render68();
   },200)}
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -544,6 +728,7 @@ function swYW(y,btn){
   document.querySelectorAll('.wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   if(y===67&&!rW)renderWater();
+  if(y===68&&!rW68)renderWater68();
   runCountUp(document.getElementById('w'+y));
 }
 function togM(el){el.classList.toggle('open')}
@@ -569,8 +754,8 @@ function updateChartColors(){const c=getChartColors();Object.values(Chart.instan
   ch.options.plugins.legend.labels.color=c.t;ch.update('none')})}
 
 const cc=getChartColors();
-Chart.defaults.color=cc.t;Chart.defaults.font.family="'Sarabun','Kanit',sans-serif";Chart.defaults.font.size=11;
-Chart.defaults.plugins.legend.labels.padding=12;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.pointStyle='circle';
+Chart.defaults.color=cc.t;Chart.defaults.font.family="'Sarabun','Kanit',sans-serif";Chart.defaults.font.size=12.5;
+Chart.defaults.plugins.legend.labels.padding=14;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.pointStyle='circle';
 const P={tl:'#0f766e',t2:'#14b8a6',bl:'#0284c7',b2:'#38bdf8',rd:'#dc2626',r2:'#f87171',pu:'#7c3aed',p2:'#a78bfa',gn:'#16a34a',g2:'#4ade80',or:'#d97706',o2:'#fbbf24',pk:'#db2777',cy:'#0891b2',c2:'#22d3ee',gr:'#94a3b8',gl:'#e2e8f0'};
 const isDk=()=>document.documentElement.getAttribute('data-theme')==='dark';
 const bdr=()=>isDk()?'rgba(255,255,255,.08)':'#fff';
@@ -620,7 +805,7 @@ br('scnS68',['เกินอ้างอิง','ปกติ'],[6,24],[P.rd,P.
 br('scnN68',['เกินอ้างอิง','ปกติ'],[43,77],[P.rd,P.gn],100,' คน');
 }
 
-let rW=false;
+let rW=false;let rW68=false;let rWs=false;
 function renderWater(){if(rW)return;rW=true;
 // Overall pass/fail grouped bar
 new Chart(document.getElementById('wOvr'),{type:'bar',data:{labels:['รอบ 1 ส.ค. 67\n(N=42)','รอบ 2 พ.ย. 67\n(N=41)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,9],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[36,32],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:45,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
@@ -639,6 +824,110 @@ dn('wLoc',['ต.เขาเจ็ดลูก 30','ต.เขาทราย 7'
 // Water source
 dn('wSrc',['น้ำบาดาล 36','น้ำผิวดิน 6'],[36,6],[P.bl,P.gn],'58%');
 setTimeout(()=>runCountUp(document.getElementById('water-content')),100);
+}
+
+function renderWater68(){if(rW68)return;rW68=true;
+
+new Chart(document.getElementById('w68Ovr'),{type:'bar',data:{labels:['รอบ 1 เม.ย. 68\n(N=36)','รอบ 2 ต.ค. 68\n(N=34)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,6],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[30,28],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:35,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+new Chart(document.getElementById('w68ByDim'),{type:'bar',data:{labels:['กายภาพ','เคมี','ชีวภาพ'],datasets:[{label:'รอบ 1 (%ผ่าน)',data:[80.6,75.0,25.0],backgroundColor:'rgba(2,132,199,.7)',borderRadius:8,borderSkipped:false},{label:'รอบ 2 (%ผ่าน)',data:[73.5,79.4,29.4],backgroundColor:'rgba(22,163,74,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+br('w68Phy',['ผ่าน (ร.1)','ไม่ผ่าน (ร.1)','ผ่าน (ร.2)','ไม่ผ่าน (ร.2)'],[29,7,25,9],[P.gn,P.rd,P.g2,P.r2],35,' แห่ง');
+
+br('w68Chem',['ผ่าน (ร.1)','ไม่ผ่าน (ร.1)','ผ่าน (ร.2)','ไม่ผ่าน (ร.2)'],[27,9,27,7],[P.bl,P.rd,P.b2,P.r2],30,' แห่ง');
+
+br('w68Bio',['ไม่พบเชื้อ (ร.1)','พบเชื้อ (ร.1)','ไม่พบเชื้อ (ร.2)','พบเชื้อ (ร.2)'],[9,27,10,24],[P.pu,P.rd,P.p2,P.r2],30,' แห่ง');
+
+dn('w68Heavy',['กายภาพ 3','เคมีทั่วไป 7','โลหะหนักพิษ 7','โลหะหนักทั่วไป 4','ชีวภาพ 2'],[3,7,7,4,2],[P.cy,P.bl,P.rd,P.or,P.pu],'55%');
+
+dn('w68Loc',['ต.เขาเจ็ดลูก 29','ต.เขาทราย 7'],[29,7],[P.bl,P.or],'55%');
+
+dn('w68Src',['น้ำบาดาล 33','น้ำผิวดิน 3'],[33,3],[P.bl,P.gn],'58%');
+
+setTimeout(()=>runCountUp(document.getElementById('w68')),100);
+}
+
+function renderWaste(){if(rWs)return;rWs=true;
+const Q=['Q3/67','Q2/68','Q3/68','Q1/69'];
+
+// 1. Pass/Fail Timeline (stacked bar) — CORRECTED: Q3/67 passed all tested (8/8, 2 not tested)
+new Chart(document.getElementById('wsTimeline'),{type:'bar',data:{labels:Q,datasets:[{label:'ผ่านเกณฑ์',data:[8,10,10,7],backgroundColor:P.gn,borderRadius:6,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[0,0,0,3],backgroundColor:P.rd,borderRadius:6,borderSkipped:false},{label:'ไม่ได้ตรวจ',data:[2,0,0,0],backgroundColor:'rgba(148,163,184,.3)',borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' ตัว'}}},scales:{y:{stacked:true,beginAtZero:true,max:12,grid:{color:cc.g},ticks:{callback:v=>v+' ตัว',color:'#94a3b8'}},x:{stacked:true,grid:{display:false},ticks:{color:cc.t}}}}});
+
+// 2. Pass Rate line — CORRECTED: Q3/67 = 100% (passed all tested)
+new Chart(document.getElementById('wsPassRate'),{type:'line',data:{labels:Q,datasets:[{label:'% ผ่านเกณฑ์',data:[100,100,100,70],borderColor:'hsl(var(--hue),70%,50%)',backgroundColor:'hsla(var(--hue),70%,50%,.1)',fill:true,tension:.3,pointRadius:6,pointBackgroundColor:['#16a34a','#16a34a','#16a34a','#ef4444'],pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+'%'}}},scales:{y:{min:0,max:110,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+// 3. BOD trend — CORRECTED: Q3/67 after = 5 (NOT 471)
+new Chart(document.getElementById('wsBOD'),{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[51,69,null,102],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[5,5,6.2,14.1],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤20)',data:[20,20,20,20],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':''}}}},scales:{y:{beginAtZero:true,max:120,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+// 4. TSS trend — CORRECTED: Q3/67 not tested (null)
+new Chart(document.getElementById('wsTSS'),{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[null,55,null,67],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[null,19,null,25],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤30)',data:[30,30,30,30],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':'ไม่ได้ตรวจ'}}}},scales:{y:{beginAtZero:true,max:80,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+// 5. TKN trend (unchanged)
+new Chart(document.getElementById('wsTKN'),{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[50.9,73.73,null,95.1],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[7.01,6.65,11.2,16.2],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤35)',data:[35,35,35,35],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':''}}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+// 6. Heat Table — CORRECTED
+const htEl=document.getElementById('wsHeatTable');
+const params=[
+  {name:'pH',std:'5.5-9.0',vals:['6.2','6.3','6.6','6.2'],pass:[1,1,1,1]},
+  {name:'BOD',std:'≤20',vals:['5','5','6.2','14.1'],pass:[1,1,1,1]},
+  {name:'คลอรีนตกค้าง',std:'≤1',vals:['—','<0.02','1.0','3.1'],pass:[2,1,1,0]},
+  {name:'TSS',std:'≤30',vals:['—','19','<25','25'],pass:[2,1,1,1]},
+  {name:'TDS',std:'≤1,000',vals:['471','745','644','816'],pass:[1,1,1,1]},
+  {name:'ซัลไฟด์',std:'≤1',vals:['0.04','0.27','ND','ND'],pass:[1,1,1,1]},
+  {name:'น้ำมันและไขมัน',std:'≤20',vals:['0.5','<3.0','2.2','7.4'],pass:[1,1,1,1]},
+  {name:'TKN',std:'≤35',vals:['7.01','6.65','11.2','16.2'],pass:[1,1,1,1]},
+  {name:'Coliform',std:'≤5,000',vals:['11','23','490','9,200'],pass:[1,1,1,0]},
+  {name:'Fecal Coliform',std:'≤1,000',vals:['6.8','2','490','9,200'],pass:[1,1,1,0]}
+];
+let ht='<table style="width:100%;border-collapse:separate;border-spacing:3px;font-size:12.5px">';
+ht+='<tr style="font-weight:700;color:var(--t2)"><td style="padding:8px 10px;border-radius:8px;background:var(--bg2)">พารามิเตอร์</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">มาตรฐาน</td>';
+Q.forEach((q,i)=>{let bg=i===3?'rgba(239,68,68,.1)':'var(--bg2)';ht+='<td style="padding:8px;border-radius:8px;background:'+bg+';text-align:center">'+q+'</td>'});
+ht+='</tr>';
+params.forEach(p=>{
+  ht+='<tr><td style="padding:7px 10px;font-weight:600;color:var(--t1);border-radius:6px;background:var(--card)">'+p.name+'</td><td style="padding:7px;text-align:center;color:var(--t3);border-radius:6px;background:var(--card);font-size:11px">'+p.std+'</td>';
+  p.vals.forEach((v,i)=>{
+    let bg=p.pass[i]===1?'rgba(22,163,74,.15)':p.pass[i]===0?'rgba(239,68,68,.15)':'rgba(148,163,184,.1)';
+    let cl=p.pass[i]===1?'#16a34a':p.pass[i]===0?'#ef4444':'#94a3b8';
+    let icon=p.pass[i]===1?'✅':p.pass[i]===0?'❌':'⬜';
+    ht+='<td style="padding:7px;text-align:center;border-radius:6px;background:'+bg+';color:'+cl+';font-weight:600">'+icon+' '+v+'</td>';
+  });
+  ht+='</tr>';
+});
+ht+='<tr style="font-weight:700"><td style="padding:8px 10px;border-radius:6px;background:var(--bg2);color:var(--t1)">รวมไม่ผ่าน</td><td></td>';
+[0,0,0,3].forEach((n,i)=>{let bg=n===0?'rgba(22,163,74,.2)':'rgba(239,68,68,.2)';let cl=n===0?'#16a34a':'#ef4444';ht+='<td style="padding:8px;text-align:center;border-radius:6px;background:'+bg+';color:'+cl+';font-size:14px">'+(n===0?'✅ 0/10':'❌ '+n+'/10')+'</td>'});
+ht+='</tr></table>';
+htEl.innerHTML=ht;
+
+// 6.5 Annual supplementary tests table
+const atEl=document.getElementById('wsAnnualTable');
+const ann=[
+  {name:'E.coli (น้ำทิ้ง)',std:'≤1,000 MPN',vals:['2','<1.8'],pass:[1,1]},
+  {name:'ไข่หนอนพยาธิ (น้ำทิ้ง)',std:'ไม่พบ',vals:['24','ไม่พบ'],pass:[0,1]},
+  {name:'E.coli (กากตะกอน)',std:'≤1,000 MPN',vals:['350','<1.8'],pass:[1,1]},
+  {name:'ไข่หนอนพยาธิ (กากตะกอน)',std:'ไม่พบ',vals:['ไม่พบ','ไม่พบ'],pass:[1,1]}
+];
+let at='<table style="width:100%;border-collapse:separate;border-spacing:3px;font-size:12.5px">';
+at+='<tr style="font-weight:700;color:var(--t2)"><td style="padding:8px 10px;border-radius:8px;background:var(--bg2)">รายการ (ตรวจปีละครั้ง)</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">มาตรฐาน</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">Q3/67</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">Q2/68</td></tr>';
+ann.forEach(a=>{
+  at+='<tr><td style="padding:7px 10px;font-weight:600;color:var(--t1);border-radius:6px;background:var(--card)">'+a.name+'</td><td style="padding:7px;text-align:center;color:var(--t3);border-radius:6px;background:var(--card);font-size:11px">'+a.std+'</td>';
+  a.vals.forEach((v,i)=>{
+    let bg=a.pass[i]===1?'rgba(22,163,74,.15)':'rgba(239,68,68,.15)';
+    let cl=a.pass[i]===1?'#16a34a':'#ef4444';
+    let icon=a.pass[i]===1?'✅':'❌';
+    at+='<td style="padding:7px;text-align:center;border-radius:6px;background:'+bg+';color:'+cl+';font-weight:600">'+icon+' '+v+'</td>';
+  });
+  at+='</tr>';
+});
+at+='</table>';
+atEl.innerHTML=at;
+
+// 7. Treatment Efficiency — CORRECTED: Q3/67 BOD = (51-5)/51 = 90.2%
+new Chart(document.getElementById('wsEfficiency'),{type:'bar',data:{labels:['BOD','TSS','TKN'],datasets:[{label:'Q3/67',data:[90.2,null,86.2],backgroundColor:'rgba(124,58,237,.5)',borderRadius:6,borderSkipped:false},{label:'Q2/68',data:[92.8,65.5,91.0],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'Q1/69',data:[86.2,62.7,83.0],backgroundColor:'rgba(2,132,199,.6)',borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10.5}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+'%':'ไม่ได้ตรวจ'}}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+// 8. Bacteria chart
+new Chart(document.getElementById('wsBacteria'),{type:'bar',data:{labels:Q,datasets:[{label:'Coliform (หลังบำบัด)',data:[11,23,490,9200],backgroundColor:['rgba(22,163,74,.6)','rgba(22,163,74,.6)','rgba(250,204,21,.6)','rgba(239,68,68,.6)'],borderRadius:6,borderSkipped:false},{label:'Fecal Coliform (หลังบำบัด)',data:[6.8,2,490,9200],backgroundColor:['rgba(34,197,94,.4)','rgba(34,197,94,.4)','rgba(253,224,71,.4)','rgba(248,113,113,.4)'],borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10.5}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y.toLocaleString()+' MPN/100mL'}}},scales:{y:{type:'logarithmic',grid:{color:cc.g},ticks:{color:'#94a3b8',callback:function(v){if([1,10,100,1000,5000,10000].includes(v))return v.toLocaleString();return''}}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+
+setTimeout(()=>runCountUp(document.getElementById('waste-content')),100);
 }
 </script>
 </body>
