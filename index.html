@@ -176,6 +176,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .kpp .kpi-ic{background:var(--purple-l)}.kpp .kpi-vl{color:var(--purple)}
 .kb .kpi-ic{background:hsla(var(--hue),80%,40%,.1)}.kb .kpi-vl{color:var(--accent)}
 .kgr .kpi-ic{background:var(--success-l)}.kgr .kpi-vl{color:var(--success)}
+.ka .kpi-ic{background:var(--primary-l)}.ka .kpi-vl{color:var(--primary)}
+.trend-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;position:absolute;top:12px;right:12px}
+.rc-lb{font-weight:700;color:var(--primary);margin-right:4px;font-size:13px}
 
 /* ═══ SECTION ═══ */
 .stit{font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;margin-bottom:13px;display:flex;align-items:center;gap:10px}
@@ -211,6 +214,10 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .rr .rl{color:var(--t2)}.rr .rv{font-weight:700;color:var(--primary);font-family:'Kanit',sans-serif}
 
 .yp{display:none}.yp.sh{display:block}
+.wyp{display:none}.wyp.wsh{display:block}
+.wybtn{padding:9px 34px;border-radius:100px;border:none;cursor:pointer;font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:var(--t3);background:transparent;transition:all .3s}
+.wybtn:hover{color:var(--t2);background:var(--bg2)}
+.wybtn.active{background:var(--primary);color:#fff;box-shadow:0 3px 12px hsla(var(--hue),70%,28%,.25)}
 
 .await-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:56px 28px;text-align:center;box-shadow:var(--sh);transition:background .4s}
 .await-card .aw-ic{font-size:50px;display:block;margin-bottom:14px;opacity:.5}
@@ -357,10 +364,89 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ WATER ▓▓ -->
 <div class="page" id="page-water">
-<div class="topbar"><span class="topicon">💧</span><h1>ประปารอบเหมืองทอง</h1></div>
-<div class="pg-pad">
-  <div class="await-card"><span class="aw-ic">💧</span><h3>รอเพิ่มข้อมูล</h3><p>ข้อมูลคุณภาพน้ำประปารอบเหมืองทองอยู่ระหว่างจัดเตรียม</p></div>
+<div class="topbar"><span class="topicon">💧</span><h1>ประปารอบเหมืองทอง</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
+<div class="pg-pad" id="water-content">
+<div class="hero"><div class="hero-bg"></div><div class="hero-ct"><div class="badge">💧 Water Quality Surveillance</div><h1>การเฝ้าระวังคุณภาพน้ำประปา<br><em>รอบเหมืองแร่ทองคำ จ.พิจิตร</em></h1></div></div>
+
+<!-- Year Switcher -->
+<div class="yw"><div class="ybar"><button class="wybtn active" onclick="swYW(67,this)">พ.ศ. 2567</button><button class="wybtn" onclick="swYW(68,this)">พ.ศ. 2568</button></div></div>
+
+<!-- ═ 2567 ═ -->
+<div id="w67" class="wyp wsh">
+
+<div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางเฝ้าระวังน้ำประปา ปี 2567</h3><span class="meth-arr">▾</span></div><div class="meth-b">
+<p><strong>Standard</strong> — เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</p>
+<div class="mgr">
+  <div class="mgi"><h4>📍 ขอบเขตพื้นที่</h4><ul><li>พิจิตร: รัศมี 10 กม. — 42 แห่ง</li><li>เพชรบูรณ์: รัศมี 5 กม. — 17 แห่ง</li><li>พิษณุโลก: รัศมี 5 กม. — 6 แห่ง</li></ul></div>
+  <div class="mgi"><h4>🔬 พารามิเตอร์ 23 รายการ</h4><ul><li>กายภาพ: สี ความขุ่น pH</li><li>เคมี: TDS Hardness Sulfate Chloride Nitrate Nitrite Fluoride</li><li>โลหะหนักพิษ: Pb Cr Cd As Hg CN Ni</li><li>โลหะหนักทั่วไป: Fe Mn Cu Zn</li><li>ชีวภาพ: Coliform E.coli</li></ul></div>
+  <div class="mgi"><h4>📅 ความถี่ & จุดเก็บ</h4><ul><li>2 ครั้ง/ปี (รอบ 1: ส.ค. 67, รอบ 2: พ.ย. 67)</li><li>จุดเก็บ: น้ำออกจากระบบ/ต้นท่อ</li><li>วิธี: Standard Methods 23rd Ed.</li></ul></div>
+  <div class="mgi"><h4>🏢 หน่วยงาน</h4><ul><li>ศูนย์อนามัยที่ 3 นครสวรรค์</li><li>สสจ.พิจิตร / สสอ.ทับคล้อ</li><li>รพ.ทับคล้อ / รพ.สต.เขาเจ็ดลูก</li><li>คืนข้อมูล 8 ธ.ค. 67 ณ อบต.เขาเจ็ดลูก</li></ul></div>
+</div></div></div>
+
+<div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+  <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 1)</div><div class="kpi-vl" data-count="42">0</div><div class="kpi-sb">ส.ค. 67 | จ.พิจิตร รัศมี 10 กม.</div></div>
+  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">14.3% ของ 42 แห่ง</div></div>
+  <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="36">0</div><div class="kpi-sb">85.7% ของ 42 แห่ง</div></div>
+  <div class="kpi kb"><div class="kpi-top"><div class="kpi-ic">🔬</div></div><div class="kpi-lb">พารามิเตอร์ที่ตรวจ</div><div class="kpi-vl" data-count="23">0</div><div class="kpi-sb">21 + Ni + CN</div></div>
+  <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="41">0</div><div class="kpi-sb">พ.ย. 67 | ลดลง 1 แห่ง</div></div>
+  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">↑ +3</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="9">0</div><div class="kpi-sb">22.0% ของ 41 แห่ง</div></div>
+  <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div><div class="kpi-trend down">↓ −4</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="32">0</div><div class="kpi-sb">78.0% ของ 41 แห่ง</div></div>
+  <div class="kpi kpp"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">แนวโน้ม</div><div class="kpi-vl" style="font-size:18px;color:var(--success)">ดีขึ้น</div><div class="kpi-sb">ผ่านเกณฑ์ 14.3% → 22.0%</div></div>
+</div>
+
+<div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:280px"><canvas id="wOvr"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 (N=42) ผ่านเกณฑ์ 6 แห่ง (14.3%) ไม่ผ่าน 36 แห่ง (85.7%) → รอบ 2 (N=41) ผ่านเกณฑ์เพิ่มเป็น 9 แห่ง (22.0%) ไม่ผ่าน 32 แห่ง (78.0%) <strong>แนวโน้มดีขึ้น +7.7%</strong></div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:280px"><canvas id="wByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ทุกด้านมีแนวโน้มดีขึ้น — กายภาพ 66.7→75.6% (+8.9), เคมี 45.2→61.0% (+15.8), ชีวภาพ 21.4→31.7% (+10.3) แต่<strong>ชีวภาพยังเป็นปัญหามากที่สุด</strong> พบเชื้อ Coliform/E.coli สูงถึง 68-79%</div></div>
+</div>
+
+<div class="stit"><span>🔬 รายละเอียดแยกตามด้าน</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc"><h3>ด้านกายภาพ</h3><div class="cs">สี, ความขุ่น, pH</div><div class="cw"><canvas id="wPhy"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>75.6%</span></div><div class="pb"><div class="pf" style="width:75.6%;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 28 แห่ง (66.7%) ไม่ผ่าน 14 แห่ง → รอบ 2 ผ่าน 31 แห่ง (75.6%) ไม่ผ่าน 10 แห่ง พารามิเตอร์ที่เกิน: <strong>สี (Color), ความขุ่น (Turbidity), pH</strong></div></div>
+  <div class="cc"><h3>ด้านเคมี</h3><div class="cs">TDS, Hardness, Sulfate, Chloride, Nitrate, Fluoride ฯลฯ</div><div class="cw"><canvas id="wChem"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>61.0%</span></div><div class="pb"><div class="pf" style="width:61%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div><div class="db di"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 19 แห่ง (45.2%) ไม่ผ่าน 23 แห่ง → รอบ 2 ผ่าน 25 แห่ง (61.0%) ไม่ผ่าน 16 แห่ง ดีขึ้น +15.8% พารามิเตอร์ที่เกิน: <strong>TDS, Hardness, Sulfate, Chloride</strong></div></div>
+  <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform Bacteria, E.coli</div><div class="cw"><canvas id="wBio"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>31.7%</span></div><div class="pb"><div class="pf" style="width:31.7%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 ไม่พบเชื้อ 9 แห่ง (21.4%) พบเชื้อ 33 แห่ง (78.6%) → รอบ 2 ไม่พบเชื้อ 13 แห่ง (31.7%) พบเชื้อ 28 แห่ง (68.3%) <strong>เป็นด้านที่มีปัญหามากที่สุด</strong> (&lt;1.1 MPN/100ml)</div></div>
+  <div class="cc"><h3>พารามิเตอร์ 23 รายการ & สิ่งที่เกินเกณฑ์</h3><div class="cs">ตรวจทุกจุดตามเกณฑ์กรมอนามัย 2563</div><div class="cw"><canvas id="wHeavy"></canvas></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11.5px">
+      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะหนักพิษที่เกิน:</strong><br><span style="color:var(--t3)">Pb, Cd, As, CN, Fe, Mn</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ เคมีทั่วไปที่เกิน:</strong><br><span style="color:var(--t3)">TDS, Hardness, Sulfate, Cl⁻</span></div>
+    </div>
+    <div class="db" style="margin-top:8px"><strong>📌 สรุป:</strong> ตรวจ 23 พารามิเตอร์ แบ่งเป็น กายภาพ 3, เคมีทั่วไป 7, โลหะหนักพิษ 7 (Pb Cr Cd As Hg CN Ni), โลหะหนักทั่วไป 4 (Fe Mn Cu Zn), ชีวภาพ 2 — ระบบประปาส่วนใหญ่ไม่ผ่านเกณฑ์เรื่อง<strong>โลหะหนักพิษและเชื้อแบคทีเรียเป็นหลัก</strong></div>
+  </div>
+</div>
+
+<div class="stit"><span>📍 แยกตามพื้นที่ตำบล</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>จำนวนระบบประปาแยกตำบล & แหล่งน้ำดิบ</h3><div class="cs">42 ระบบประปา ใน 4 ตำบล</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:260px"><div class="cw"><canvas id="wLoc"></canvas></div><div class="cw"><canvas id="wSrc"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> ต.เขาเจ็ดลูกมีประปามากสุด 30 แห่ง (71.4%), ต.เขาทราย 7 แห่ง, ต.หนองพระ 4 แห่ง, ต.วังทรายพูน 1 แห่ง | แหล่งน้ำดิบส่วนใหญ่เป็น<strong>น้ำบาดาล 36 แห่ง (85.7%)</strong> และน้ำผิวดิน 6 แห่ง (14.3%)</div></div>
+</div>
+
+<div class="stit"><span>✅ ระบบประปาที่ผ่านเกณฑ์รอบ 2</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>รายชื่อ 9 ระบบประปาที่ผ่านเกณฑ์ (รอบ 2/2567)</h3>
+    <div class="cs">จากทั้งหมด 41 ตัวอย่าง</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px">
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">8.</span> ประปาบ้านจิตเสือเต้น ม.4 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">10.</span> ประปาบ้านบ่อคอย ม.4 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">14.</span> ประปา อบต.เขาเจ็ดลูก ม.7 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">21.</span> ประปาบ้านนิคม (ผญ.อ๊อด) ม.8 <small style="color:var(--t3)">ต.เขาเจ็ดลูก</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">31.</span> ประปาบ้านลำประดา (ผญ.เดชบดี) ม.3 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">35.</span> ประปาวัดเกาะแก้วฯ (บ้านครู) ม.13 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">37.</span> ประปาเกาะแก้วฯ (ตัวใหม่) ม.13 <small style="color:var(--t3)">ต.เขาทราย</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">41.</span> ประปา รร.บ้านดงคันแทว ม.9 <small style="color:var(--t3)">ต.หนองพระ</small></div>
+      <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">42.</span> ประปาวัดไดน้ำขุ่น ม.10 <small style="color:var(--t3)">ต.หนองพระ</small></div>
+    </div>
+  </div>
+</div>
+
+  <div class="credit">ข้อมูล: ศูนย์อนามัยที่ 3 นครสวรรค์ | คืนข้อมูล 8 ธ.ค. 2567 ณ อบต.เขาเจ็ดลูก</div>
+</div><!-- /w67 -->
+
+<!-- ═ 2568 ═ -->
+<div id="w68" class="wyp">
+  <div class="await-card"><span class="aw-ic">💧</span><h3>รอเพิ่มข้อมูล ปี 2568</h3><p>ข้อมูลเฝ้าระวังคุณภาพน้ำประปารอบเหมืองทอง ปี 2568 อยู่ระหว่างจัดเตรียม</p></div>
   <div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+</div><!-- /w68 -->
+
 </div></div>
 
 <!-- ▓▓ WASTE ▓▓ -->
@@ -429,6 +515,8 @@ function goPage(id,el){
   if(cur){cur.classList.add('out');setTimeout(()=>{cur.classList.remove('show','out')
     const next=document.getElementById('page-'+id);next.classList.add('show');
     runCountUp(next);
+    if(id==='water'&&!rW)renderWater();
+    if(id==='mine'&&!r68)render68();
   },200)}
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelectorAll('.nav-sub a').forEach(a=>a.classList.remove('active'));
@@ -449,6 +537,14 @@ function swY(y,btn){
   btn.classList.add('active');
   if(y===68&&!r68)render68();
   runCountUp(document.getElementById('y'+y));
+}
+function swYW(y,btn){
+  document.querySelectorAll('.wyp').forEach(p=>p.classList.remove('wsh'));
+  document.getElementById('w'+y).classList.add('wsh');
+  document.querySelectorAll('.wybtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(y===67&&!rW)renderWater();
+  runCountUp(document.getElementById('w'+y));
 }
 function togM(el){el.classList.toggle('open')}
 
@@ -522,6 +618,27 @@ dn('farm68',['ปลูก 74%','ไม่ปลูก 26%'],[74,26],[P.bl,P.or]
 br('scn68',['สูบบุหรี่','ไม่สูบบุหรี่'],[30,120],[P.rd,P.gn],140,' คน');
 br('scnS68',['เกินอ้างอิง','ปกติ'],[6,24],[P.rd,P.gn],30,' คน');
 br('scnN68',['เกินอ้างอิง','ปกติ'],[43,77],[P.rd,P.gn],100,' คน');
+}
+
+let rW=false;
+function renderWater(){if(rW)return;rW=true;
+// Overall pass/fail grouped bar
+new Chart(document.getElementById('wOvr'),{type:'bar',data:{labels:['รอบ 1 ส.ค. 67\n(N=42)','รอบ 2 พ.ย. 67\n(N=41)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,9],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[36,32],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:45,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+// Pass rate by dimension
+new Chart(document.getElementById('wByDim'),{type:'bar',data:{labels:['กายภาพ','เคมี','ชีวภาพ'],datasets:[{label:'รอบ 1 (%ผ่าน)',data:[66.7,45.2,21.4],backgroundColor:'rgba(2,132,199,.7)',borderRadius:8,borderSkipped:false},{label:'รอบ 2 (%ผ่าน)',data:[75.6,61.0,31.7],backgroundColor:'rgba(22,163,74,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+// Physical
+br('wPhy',['ผ่าน (ร.1)','ไม่ผ่าน (ร.1)','ผ่าน (ร.2)','ไม่ผ่าน (ร.2)'],[28,14,31,10],[P.gn,P.rd,P.g2,P.r2],40,' แห่ง');
+// Chemical
+br('wChem',['ผ่าน (ร.1)','ไม่ผ่าน (ร.1)','ผ่าน (ร.2)','ไม่ผ่าน (ร.2)'],[19,23,25,16],[P.bl,P.rd,P.b2,P.r2],30,' แห่ง');
+// Biological
+br('wBio',['ไม่พบเชื้อ (ร.1)','พบเชื้อ (ร.1)','ไม่พบเชื้อ (ร.2)','พบเชื้อ (ร.2)'],[9,33,13,28],[P.pu,P.rd,P.p2,P.r2],40,' แห่ง');
+// Parameters overview - 23 params by category
+dn('wHeavy',['กายภาพ 3','เคมีทั่วไป 7','โลหะหนักพิษ 7','โลหะหนักทั่วไป 4','ชีวภาพ 2'],[3,7,7,4,2],[P.cy,P.bl,P.rd,P.or,P.pu],'55%');
+// Location by tambon
+dn('wLoc',['ต.เขาเจ็ดลูก 30','ต.เขาทราย 7','ต.วังทรายพูน 1','ต.หนองพระ 4'],[30,7,1,4],[P.bl,P.or,P.pu,P.cy],'55%');
+// Water source
+dn('wSrc',['น้ำบาดาล 36','น้ำผิวดิน 6'],[36,6],[P.bl,P.gn],'58%');
+setTimeout(()=>runCountUp(document.getElementById('water-content')),100);
 }
 </script>
 </body>
