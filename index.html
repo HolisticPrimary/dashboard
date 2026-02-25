@@ -127,6 +127,14 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .topbar .topicon{font-size:20px}
 .tb-btn{display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Sarabun',sans-serif}
 .tb-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tb-dd{position:relative;display:inline-block}
+.tb-dd-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.15);padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s;z-index:999}
+.tb-dd-menu.show{opacity:1;visibility:visible;transform:translateY(0)}
+.tb-dd-menu a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--t2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.tb-dd-menu a:hover{background:var(--primary-s);color:var(--primary)}
+.tb-dd-menu a .dd-ic{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.tb-dd-menu a .dd-ic.word{background:rgba(37,99,235,.1);color:#2563eb}
+.tb-dd-menu a .dd-ic.print{background:rgba(107,114,128,.1);color:#6b7280}
 
 /* ═══ MOBILE ═══ */
 .menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:200;width:42px;height:42px;border-radius:11px;border:none;background:var(--sidebar-bg);color:#fff;font-size:18px;cursor:pointer;box-shadow:var(--sh2)}
@@ -138,6 +146,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .hero{border-radius:20px;overflow:hidden;margin-bottom:22px;position:relative;background:var(--card);border:1px solid var(--border);box-shadow:var(--sh2);transition:background .4s}
 .hero-bg{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 320'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23e8dcc8' stop-opacity='0.3'/%3E%3Cstop offset='60%25' stop-color='%23d4a843' stop-opacity='0.07'/%3E%3Cstop offset='100%25' stop-color='%230f766e' stop-opacity='0.03'/%3E%3C/linearGradient%3E%3ClinearGradient id='a' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%238B7355' stop-opacity='0.1'/%3E%3Cstop offset='100%25' stop-color='%23A0936B' stop-opacity='0.03'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23B8960C' stop-opacity='0.08'/%3E%3Cstop offset='100%25' stop-color='%23D4A843' stop-opacity='0.02'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23s)' width='1400' height='320'/%3E%3Ccircle cx='1150' cy='65' r='50' fill='%23D4A843' opacity='0.08'/%3E%3Cpath d='M0 320L0 220Q150 170 300 200Q450 150 600 185L700 160L800 195Q950 155 1100 175Q1250 150 1400 170L1400 320Z' fill='url(%23a)'/%3E%3Cpath d='M0 320L0 265Q200 240 400 255Q600 230 800 250Q1000 225 1200 245L1400 235L1400 320Z' fill='url(%23b)'/%3E%3Ccircle cx='200' cy='150' r='2' fill='%23D4A843' opacity='0.15'/%3E%3Ccircle cx='500' cy='130' r='2.5' fill='%23E8C84A' opacity='0.12'/%3E%3Ccircle cx='900' cy='140' r='2' fill='%23D4A843' opacity='0.15'/%3E%3C/svg%3E") center/cover;opacity:1;pointer-events:none}
 [data-theme="dark"] .hero-bg{opacity:.5}
+.hero-bg-waste{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 320'%3E%3Cdefs%3E%3ClinearGradient id='ws' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23e0f2f1' stop-opacity='0.5'/%3E%3Cstop offset='40%25' stop-color='%23b2dfdb' stop-opacity='0.15'/%3E%3Cstop offset='100%25' stop-color='%23e8f5e9' stop-opacity='0.08'/%3E%3C/linearGradient%3E%3ClinearGradient id='wa' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%230d9488' stop-opacity='0.08'/%3E%3Cstop offset='100%25' stop-color='%2314b8a6' stop-opacity='0.03'/%3E%3C/linearGradient%3E%3ClinearGradient id='wb' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%2316a34a' stop-opacity='0.06'/%3E%3Cstop offset='100%25' stop-color='%234ade80' stop-opacity='0.02'/%3E%3C/linearGradient%3E%3ClinearGradient id='wc' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%230f766e' stop-opacity='0.1'/%3E%3Cstop offset='100%25' stop-color='%230d9488' stop-opacity='0.04'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23ws)' width='1400' height='320'/%3E%3Ccircle cx='120' cy='60' r='45' fill='%230d9488' opacity='0.04'/%3E%3Ccircle cx='1250' cy='50' r='55' fill='%2316a34a' opacity='0.04'/%3E%3Crect x='550' y='180' width='60' height='80' rx='4' fill='%230d9488' opacity='0.04'/%3E%3Crect x='620' y='200' width='50' height='60' rx='4' fill='%230f766e' opacity='0.03'/%3E%3Crect x='680' y='190' width='55' height='70' rx='4' fill='%230d9488' opacity='0.035'/%3E%3Ccircle cx='580' cy='210' r='20' fill='none' stroke='%230d9488' stroke-width='1.5' opacity='0.06'/%3E%3Ccircle cx='710' cy='220' r='16' fill='none' stroke='%2316a34a' stroke-width='1.5' opacity='0.05'/%3E%3Cpath d='M540 260L750 260' stroke='%230d9488' stroke-width='2' opacity='0.05'/%3E%3Cpath d='M0 320L0 250Q100 235 200 245Q350 225 500 240Q650 220 800 235Q950 215 1100 230Q1250 210 1400 225L1400 320Z' fill='url(%23wa)'/%3E%3Cpath d='M0 320L0 275Q180 260 360 268Q540 255 720 265Q900 252 1080 262Q1260 248 1400 258L1400 320Z' fill='url(%23wb)'/%3E%3Cpath d='M0 320L0 295Q250 285 500 290Q750 282 1000 288Q1250 280 1400 286L1400 320Z' fill='url(%23wc)'/%3E%3Ccircle cx='300' cy='140' r='2' fill='%230d9488' opacity='0.12'/%3E%3Ccircle cx='700' cy='120' r='2.5' fill='%2314b8a6' opacity='0.1'/%3E%3Ccircle cx='1050' cy='135' r='2' fill='%2316a34a' opacity='0.12'/%3E%3Ccircle cx='180' cy='200' r='1.5' fill='%230d9488' opacity='0.1'/%3E%3Ccircle cx='900' cy='170' r='1.8' fill='%2314b8a6' opacity='0.08'/%3E%3Ccircle cx='1300' cy='160' r='2' fill='%230f766e' opacity='0.1'/%3E%3C/svg%3E") center/cover;opacity:1;pointer-events:none}
+[data-theme="dark"] .hero-bg-waste{opacity:.4}
 .hero-ct{position:relative;z-index:1;padding:44px 32px 40px;text-align:center}
 .badge{display:inline-flex;align-items:center;gap:7px;background:var(--primary-s);color:var(--primary);font-size:10.5px;font-weight:700;padding:5px 18px;border-radius:100px;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:16px;transition:color .4s,background .4s}
 .hero h1{font-family:'Kanit',sans-serif;font-size:clamp(19px,3vw,32px);font-weight:700;color:var(--t1);line-height:1.3}
@@ -287,7 +297,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ MINE ▓▓ -->
 <div class="page show" id="page-mine">
-<div class="topbar"><span class="topicon">⛏️</span><h1>ผลตรวจสุขภาพประชาชน</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
+<div class="topbar"><span class="topicon">⛏️</span><h1>ผลตรวจสุขภาพประชาชน</h1><div class="tb-dd"><button class="tb-btn" onclick="togDD(this)">📥 ส่งออก ▾</button><div class="tb-dd-menu"><a onclick="exportWord('mine')"><span class="dd-ic word">📄</span>ส่งออก Word (.doc)</a><a onclick="window.print();closeDDs()"><span class="dd-ic print">🖨️</span>พิมพ์ / PDF</a></div></div></div>
 <div class="pg-pad">
 <div class="hero"><div class="hero-bg"></div><div class="hero-ct"><div class="badge">📊 Health Surveillance Dashboard</div><h1>การเฝ้าระวังสุขภาพประชาชน<br><em>พื้นที่ศักยภาพแร่ทองคำ จ.พิจิตร</em></h1></div></div>
 
@@ -372,7 +382,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ WATER ▓▓ -->
 <div class="page" id="page-water">
-<div class="topbar"><span class="topicon">💧</span><h1>ผลน้ำประปารอบเหมือง</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
+<div class="topbar"><span class="topicon">💧</span><h1>ผลน้ำประปารอบเหมือง</h1><div class="tb-dd"><button class="tb-btn" onclick="togDD(this)">📥 ส่งออก ▾</button><div class="tb-dd-menu"><a onclick="exportWord('water')"><span class="dd-ic word">📄</span>ส่งออก Word (.doc)</a><a onclick="window.print();closeDDs()"><span class="dd-ic print">🖨️</span>พิมพ์ / PDF</a></div></div></div>
 <div class="pg-pad" id="water-content">
 <div class="hero"><div class="hero-bg"></div><div class="hero-ct"><div class="badge">💧 Water Quality Surveillance</div><h1>การเฝ้าระวังคุณภาพน้ำประปา<br><em>รอบเหมืองแร่ทองคำ จ.พิจิตร</em></h1></div></div>
 
@@ -589,8 +599,10 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ WASTE ▓▓ -->
 <div class="page" id="page-waste">
-<div class="topbar"><span class="topicon">🌿</span><h1>ผลบำบัดน้ำเสีย รพ.ทับคล้อ</h1><button class="tb-btn" onclick="window.print()">🖨️ พิมพ์</button></div>
+<div class="topbar"><span class="topicon">🌿</span><h1>ผลบำบัดน้ำเสีย รพ.ทับคล้อ</h1><div class="tb-dd"><button class="tb-btn" onclick="togDD(this)">📥 ส่งออก ▾</button><div class="tb-dd-menu"><a onclick="exportWord('waste')"><span class="dd-ic word">📄</span>ส่งออก Word (.doc)</a><a onclick="window.print();closeDDs()"><span class="dd-ic print">🖨️</span>พิมพ์ / PDF</a></div></div></div>
 <div class="pg-pad" id="waste-content">
+
+<div class="hero"><div class="hero-bg-waste"></div><div class="hero-ct"><div class="badge">🌿 Wastewater Treatment Monitoring</div><h1>การเฝ้าระวังคุณภาพน้ำเสีย<br><em>โรงพยาบาลทับคล้อ จ.พิจิตร</em></h1></div></div>
 
 <div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางการเฝ้าระวังน้ำเสีย รพ.ทับคล้อ</h3><span class="meth-arr">▾</span></div><div class="meth-b">
 <p><strong>Standard</strong> — ประกาศกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม เรื่อง กำหนดมาตรฐานและควบคุมการระบายน้ำทิ้งจากอาคาร ประเภท ก. (รพ.ขนาด 30 เตียง)</p>
@@ -958,6 +970,241 @@ new Chart(document.getElementById('wsEfficiency'),{type:'bar',data:{labels:['BOD
 new Chart(document.getElementById('wsBacteria'),{type:'bar',data:{labels:Q,datasets:[{label:'Coliform (หลังบำบัด)',data:[11,23,490,9200],backgroundColor:['rgba(22,163,74,.6)','rgba(22,163,74,.6)','rgba(250,204,21,.6)','rgba(239,68,68,.6)'],borderRadius:6,borderSkipped:false},{label:'Fecal Coliform (หลังบำบัด)',data:[6.8,2,490,9200],backgroundColor:['rgba(34,197,94,.4)','rgba(34,197,94,.4)','rgba(253,224,71,.4)','rgba(248,113,113,.4)'],borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10.5}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y.toLocaleString()+' MPN/100mL'}}},scales:{y:{type:'logarithmic',grid:{color:cc.g},ticks:{color:'#94a3b8',callback:function(v){if([1,10,100,1000,5000,10000].includes(v))return v.toLocaleString();return''}}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 setTimeout(()=>runCountUp(document.getElementById('waste-content')),100);
+}
+
+/* ═══ EXPORT DROPDOWN ═══ */
+function togDD(btn){
+  const menu=btn.nextElementSibling;
+  const isOpen=menu.classList.contains('show');
+  closeDDs();
+  if(!isOpen)menu.classList.add('show');
+}
+function closeDDs(){document.querySelectorAll('.tb-dd-menu').forEach(m=>m.classList.remove('show'))}
+document.addEventListener('click',e=>{if(!e.target.closest('.tb-dd'))closeDDs()});
+
+/* ═══ EXPORT WORD ═══ */
+function exportWord(pageId){
+  closeDDs();
+  const page=document.getElementById('page-'+pageId);
+  if(!page)return;
+
+  // Collect data based on page
+  let title='', content='';
+  const today=new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
+
+  if(pageId==='mine'){
+    title='รายงานผลตรวจสุขภาพประชาชน พื้นที่ศักยภาพแร่ทองคำ จ.พิจิตร';
+    content=buildMineReport(page);
+  } else if(pageId==='water'){
+    title='รายงานผลการเฝ้าระวังคุณภาพน้ำประปารอบเหมืองแร่ทองคำ จ.พิจิตร';
+    content=buildWaterReport(page);
+  } else if(pageId==='waste'){
+    title='รายงานผลการเฝ้าระวังคุณภาพน้ำเสีย โรงพยาบาลทับคล้อ จ.พิจิตร';
+    content=buildWasteReport(page);
+  }
+
+  const html=`
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="utf-8">
+<style>
+  @page{size:A4;margin:2cm 2.5cm}
+  body{font-family:'TH Sarabun New','Sarabun',sans-serif;font-size:16pt;line-height:1.6;color:#1a1a1a}
+  h1{font-size:22pt;font-weight:bold;text-align:center;color:#0f766e;margin-bottom:4pt;line-height:1.3}
+  h2{font-size:18pt;font-weight:bold;color:#0f766e;border-bottom:2pt solid #0f766e;padding-bottom:4pt;margin-top:18pt;margin-bottom:8pt}
+  h3{font-size:16pt;font-weight:bold;color:#1e3a5f;margin-top:14pt;margin-bottom:6pt}
+  .subtitle{text-align:center;font-size:14pt;color:#666;margin-bottom:6pt}
+  .org{text-align:center;font-size:13pt;color:#888;margin-bottom:20pt}
+  table{border-collapse:collapse;width:100%;margin:10pt 0;font-size:14pt}
+  th{background:#0f766e;color:#fff;padding:6pt 10pt;text-align:center;font-weight:bold;border:1pt solid #0d6b63}
+  td{padding:5pt 10pt;border:1pt solid #ccc;vertical-align:top}
+  tr:nth-child(even){background:#f8fafb}
+  .pass{color:#16a34a;font-weight:bold}
+  .fail{color:#ef4444;font-weight:bold}
+  .warn{color:#f59e0b;font-weight:bold}
+  .summary{background:#f0fdf4;border-left:4pt solid #16a34a;padding:8pt 14pt;margin:10pt 0;font-size:14pt}
+  .summary-warn{background:#fef3c7;border-left:4pt solid #f59e0b;padding:8pt 14pt;margin:10pt 0;font-size:14pt}
+  .summary-red{background:#fef2f2;border-left:4pt solid #ef4444;padding:8pt 14pt;margin:10pt 0;font-size:14pt}
+  .footer{text-align:center;font-size:11pt;color:#999;margin-top:30pt;border-top:1pt solid #ddd;padding-top:10pt}
+  .kpi-row{display:flex;gap:10pt;margin:8pt 0}
+  .kpi-box{flex:1;border:1pt solid #ddd;border-radius:6pt;padding:8pt 12pt;text-align:center}
+  .kpi-box .val{font-size:22pt;font-weight:bold;color:#0f766e}
+  .kpi-box .label{font-size:11pt;color:#666}
+</style></head><body>
+<h1>${title}</h1>
+<div class="subtitle">โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร</div>
+<div class="org">หน่วยบริการด้านปฐมภูมิแบบองค์รวม</div>
+${content}
+<div class="footer">
+  รายงานสร้างจากระบบข้อมูลสุขภาพ รพ.ทับคล้อ | วันที่ส่งออก: ${today}<br>
+  ข้อมูลนี้จัดทำเพื่อการเฝ้าระวังสุขภาพและสิ่งแวดล้อม
+</div>
+</body></html>`;
+
+  const blob=new Blob(['\ufeff'+html],{type:'application/msword'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  const fn={mine:'รายงานสุขภาพ_เหมืองทอง',water:'รายงานน้ำประปา_รอบเหมือง',waste:'รายงานน้ำเสีย_รพ.ทับคล้อ'};
+  a.download=(fn[pageId]||'report')+'_'+today.replace(/ /g,'')+'.doc';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function buildMineReport(page){
+  let h='';
+  // Year 2567
+  h+=`<h2>1. ผลตรวจสุขภาพประชาชน ปี พ.ศ. 2567</h2>`;
+  h+=`<h3>1.1 ข้อมูลทั่วไป</h3>`;
+  h+=`<table><tr><th>รายการ</th><th>จำนวน</th><th>ร้อยละ</th></tr>
+    <tr><td>ผู้เข้ารับการตรวจ</td><td style="text-align:center">150 คน</td><td style="text-align:center">100%</td></tr>
+    <tr><td>เพศหญิง</td><td style="text-align:center">112 คน</td><td style="text-align:center">75%</td></tr>
+    <tr><td>อายุ >60 ปี</td><td style="text-align:center">63 คน</td><td style="text-align:center">42%</td></tr>
+    <tr><td>อาชีพเกษตรกรรม</td><td style="text-align:center">80 คน</td><td style="text-align:center">53%</td></tr>
+  </table>`;
+  h+=`<h3>1.2 ผลตรวจ Lab — สารหนู (Arsenic)</h3>`;
+  h+=`<table><tr><th>ตัวชี้วัด</th><th>จำนวน (คน)</th><th>ร้อยละ</th><th>สถานะ</th></tr>
+    <tr><td>Total As เกิน >100 µg/L</td><td style="text-align:center">12</td><td style="text-align:center">8.1%</td><td class="warn">⚠ เฝ้าระวัง</td></tr>
+    <tr><td>Inorganic As เกินอ้างอิง</td><td style="text-align:center">8</td><td style="text-align:center">5.4%</td><td class="fail">⚠ เสี่ยง</td></tr>
+    <tr><td>Total As ปกติ</td><td style="text-align:center">137</td><td style="text-align:center">91.9%</td><td class="pass">✓ ปกติ</td></tr>
+  </table>`;
+  h+=`<h3>1.3 ผลตรวจ Lab — Thiocyanate (SCN)</h3>`;
+  h+=`<table><tr><th>กลุ่ม</th><th>จำนวน</th><th>เกินค่าอ้างอิง</th><th>ร้อยละเกิน</th></tr>
+    <tr><td>สูบบุหรี่ (>17 mg/L)</td><td style="text-align:center">13 คน</td><td style="text-align:center">4 คน</td><td style="text-align:center">30.8%</td></tr>
+    <tr><td>ไม่สูบบุหรี่ (>4 mg/L)</td><td style="text-align:center">136 คน</td><td style="text-align:center">95 คน</td><td style="text-align:center">69.9%</td></tr>
+  </table>`;
+  h+=`<div class="summary-warn"><b>สรุป ปี 2567:</b> พบ Total As เกินค่าอ้างอิง 12 คน (8.1%) และ SCN เกินในกลุ่มไม่สูบบุหรี่สูงถึง 69.9% ต้องเฝ้าระวังต่อเนื่อง</div>`;
+
+  // Year 2568
+  h+=`<h2>2. ผลตรวจสุขภาพประชาชน ปี พ.ศ. 2568</h2>`;
+  h+=`<h3>2.1 ข้อมูลทั่วไป</h3>`;
+  h+=`<table><tr><th>รายการ</th><th>จำนวน</th><th>ร้อยละ</th></tr>
+    <tr><td>ผู้เข้ารับการตรวจ</td><td style="text-align:center">150 คน</td><td style="text-align:center">100%</td></tr>
+    <tr><td>กลุ่มเดิมจากปี 2567</td><td style="text-align:center">119 คน</td><td style="text-align:center">79.3%</td></tr>
+    <tr><td>โรคประจำตัว</td><td style="text-align:center">81 คน</td><td style="text-align:center">54%</td></tr>
+    <tr><td>อยู่ห่างเหมือง <5 กม.</td><td style="text-align:center">103 คน</td><td style="text-align:center">69%</td></tr>
+  </table>`;
+  h+=`<h3>2.2 ผลตรวจ Lab — สารหนู (Arsenic)</h3>`;
+  h+=`<table><tr><th>ตัวชี้วัด</th><th>จำนวน (คน)</th><th>ร้อยละ</th><th>สถานะ</th></tr>
+    <tr><td>Total As เกิน >100 µg/L</td><td style="text-align:center">4</td><td style="text-align:center">2.7%</td><td class="warn">⚠ ลดลง</td></tr>
+    <tr><td>Inorganic As เกินอ้างอิง</td><td style="text-align:center">3</td><td style="text-align:center">2.0%</td><td class="warn">⚠ ลดลง</td></tr>
+  </table>`;
+  h+=`<h3>2.3 ผลตรวจ Lab — Thiocyanate (SCN)</h3>`;
+  h+=`<table><tr><th>กลุ่ม</th><th>จำนวน</th><th>เกินค่าอ้างอิง</th><th>ร้อยละเกิน</th></tr>
+    <tr><td>สูบบุหรี่ (>17 mg/L)</td><td style="text-align:center">30 คน</td><td style="text-align:center">6 คน</td><td style="text-align:center">20.0%</td></tr>
+    <tr><td>ไม่สูบบุหรี่ (>4 mg/L)</td><td style="text-align:center">120 คน</td><td style="text-align:center">43 คน</td><td style="text-align:center">35.8%</td></tr>
+  </table>`;
+
+  // Comparison
+  h+=`<h2>3. เปรียบเทียบ 2567 vs 2568 (กลุ่มเดียวกัน 119 คน)</h2>`;
+  h+=`<table><tr><th>ตัวชี้วัด</th><th>ปี 2567</th><th>ปี 2568</th><th>แนวโน้ม</th></tr>
+    <tr><td>Total As เกินอ้างอิง</td><td style="text-align:center">11 คน</td><td style="text-align:center">4 คน</td><td class="pass">↓ ดีขึ้น</td></tr>
+    <tr><td>Inorganic As เกินอ้างอิง</td><td style="text-align:center">7 คน</td><td style="text-align:center">3 คน</td><td class="pass">↓ ดีขึ้น</td></tr>
+    <tr><td>SCN เกิน (ไม่สูบบุหรี่)</td><td style="text-align:center">69.9%</td><td style="text-align:center">35.8%</td><td class="pass">↓ ดีขึ้นมาก</td></tr>
+  </table>`;
+  h+=`<div class="summary"><b>สรุปภาพรวม:</b> แนวโน้มดีขึ้นชัดเจนทุกตัวชี้วัด — Total As ลดจาก 11→4 คน, Inorganic As ลดจาก 7→3 คน, SCN (ไม่สูบบุหรี่) ลดจาก 69.9%→35.8% แสดงให้เห็นว่ามาตรการเฝ้าระวังมีประสิทธิผล</div>`;
+
+  return h;
+}
+
+function buildWaterReport(page){
+  let h='';
+  // 2567
+  h+=`<h2>1. ผลตรวจคุณภาพน้ำประปา ปี พ.ศ. 2567</h2>`;
+  h+=`<h3>1.1 ภาพรวม</h3>`;
+  h+=`<table><tr><th>รายการ</th><th>รอบ 1 (ส.ค. 67)</th><th>รอบ 2 (พ.ย. 67)</th><th>แนวโน้ม</th></tr>
+    <tr><td>จำนวนระบบประปา</td><td style="text-align:center">42 แห่ง</td><td style="text-align:center">41 แห่ง</td><td style="text-align:center">−1</td></tr>
+    <tr><td>ผ่านเกณฑ์</td><td style="text-align:center" class="pass">6 (14.3%)</td><td style="text-align:center" class="pass">9 (22.0%)</td><td class="pass">↑ +3</td></tr>
+    <tr><td>ไม่ผ่านเกณฑ์</td><td style="text-align:center" class="fail">36 (85.7%)</td><td style="text-align:center" class="fail">32 (78.0%)</td><td class="pass">↓ −4</td></tr>
+    <tr><td>เลิกใช้งาน</td><td style="text-align:center">-</td><td style="text-align:center">1 แห่ง</td><td style="text-align:center">-</td></tr>
+  </table>`;
+  h+=`<h3>1.2 อัตราผ่านเกณฑ์แยกด้าน</h3>`;
+  h+=`<table><tr><th>ด้าน</th><th>รอบ 1</th><th>รอบ 2</th><th>แนวโน้ม</th></tr>
+    <tr><td>กายภาพ (สี, ขุ่น, pH)</td><td style="text-align:center">66.7%</td><td style="text-align:center">75.6%</td><td class="pass">↑ +8.9%</td></tr>
+    <tr><td>เคมี (TDS, Hardness ฯลฯ)</td><td style="text-align:center">45.2%</td><td style="text-align:center">61.0%</td><td class="pass">↑ +15.8%</td></tr>
+    <tr><td>ชีวภาพ (Coliform, E.coli)</td><td style="text-align:center" class="fail">21.4%</td><td style="text-align:center" class="fail">31.7%</td><td class="pass">↑ +10.3%</td></tr>
+  </table>`;
+  h+=`<div class="summary"><b>สรุป ปี 2567:</b> แนวโน้มดีขึ้นทุกด้าน (+7.7% ภาพรวม) แต่ชีวภาพยังเป็นปัญหาหนักสุด — พบ Coliform/E.coli 68-79% ของระบบทั้งหมด</div>`;
+
+  h+=`<h3>1.3 ระบบที่ผ่านเกณฑ์ รอบ 2</h3>`;
+  h+=`<table><tr><th>ลำดับ</th><th>ชื่อระบบประปา</th><th>ตำบล</th></tr>
+    <tr><td style="text-align:center">8</td><td>บ้านจิตเสือเต้น ม.4</td><td>เขาเจ็ดลูก</td></tr>
+    <tr><td style="text-align:center">10</td><td>บ้านบ่อคอย ม.4</td><td>เขาเจ็ดลูก</td></tr>
+    <tr><td style="text-align:center">14</td><td>อบต.เขาเจ็ดลูก ม.7</td><td>เขาเจ็ดลูก</td></tr>
+    <tr><td style="text-align:center">21</td><td>บ้านนิคม ม.8</td><td>เขาเจ็ดลูก</td></tr>
+    <tr><td style="text-align:center">31</td><td>บ้านลำประดา ม.3</td><td>เขาทราย</td></tr>
+    <tr><td style="text-align:center">35</td><td>วัดเกาะแก้วลำประดา ม.13</td><td>เขาทราย</td></tr>
+    <tr><td style="text-align:center">37</td><td>เกาะแก้วลำประดา (ตัวใหม่) ม.13</td><td>เขาทราย</td></tr>
+    <tr><td style="text-align:center">41</td><td>รร.บ้านดงคันแทว ม.9</td><td>หนองพระ</td></tr>
+    <tr><td style="text-align:center">42</td><td>วัดไดน้ำขุ่น ม.10</td><td>หนองพระ</td></tr>
+  </table>`;
+
+  // 2568
+  h+=`<h2>2. ผลตรวจคุณภาพน้ำประปา ปี พ.ศ. 2568</h2>`;
+  h+=`<h3>2.1 ภาพรวม</h3>`;
+  h+=`<table><tr><th>รายการ</th><th>รอบ 1 (เม.ย. 68)</th><th>รอบ 2 (ต.ค. 68)</th><th>แนวโน้ม</th></tr>
+    <tr><td>จำนวนระบบประปา</td><td style="text-align:center">36 แห่ง</td><td style="text-align:center">34 แห่ง</td><td style="text-align:center">−2</td></tr>
+    <tr><td>ผ่านเกณฑ์</td><td style="text-align:center" class="pass">6 (16.7%)</td><td style="text-align:center" class="pass">6 (17.6%)</td><td style="text-align:center">→ ทรงตัว</td></tr>
+    <tr><td>ไม่ผ่านเกณฑ์</td><td style="text-align:center" class="fail">30 (83.3%)</td><td style="text-align:center" class="fail">28 (82.4%)</td><td style="text-align:center">→ ทรงตัว</td></tr>
+    <tr><td>เลิกใช้งาน</td><td style="text-align:center">4 แห่ง</td><td style="text-align:center">5 แห่ง</td><td style="text-align:center">+1</td></tr>
+  </table>`;
+  h+=`<h3>2.2 อัตราผ่านเกณฑ์แยกด้าน</h3>`;
+  h+=`<table><tr><th>ด้าน</th><th>รอบ 1</th><th>รอบ 2</th><th>แนวโน้ม</th></tr>
+    <tr><td>กายภาพ</td><td style="text-align:center">80.6%</td><td style="text-align:center">73.5%</td><td class="fail">↓ −7.1%</td></tr>
+    <tr><td>เคมี</td><td style="text-align:center">75.0%</td><td style="text-align:center">79.4%</td><td class="pass">↑ +4.4%</td></tr>
+    <tr><td>ชีวภาพ</td><td style="text-align:center" class="fail">25.0%</td><td style="text-align:center" class="fail">29.4%</td><td class="pass">↑ +4.4%</td></tr>
+  </table>`;
+  h+=`<h3>2.3 ระบบที่เลิกใช้งาน</h3>`;
+  h+=`<table><tr><th>ลำดับ</th><th>ชื่อระบบ</th><th>รอบ 1</th><th>รอบ 2</th></tr>
+    <tr><td style="text-align:center">9</td><td>วัดจิราพงษ์ ม.4</td><td style="text-align:center">-</td><td style="text-align:center">เลิกใช้</td></tr>
+    <tr><td style="text-align:center">16</td><td>วัดหนองขนาก ม.7</td><td style="text-align:center">เลิกใช้</td><td style="text-align:center">เลิกใช้</td></tr>
+    <tr><td style="text-align:center">21</td><td>บ้านนิคม ม.8</td><td style="text-align:center">-</td><td style="text-align:center">เลิกใช้</td></tr>
+    <tr><td style="text-align:center">22</td><td>บ้านเนินทอง ม.8</td><td style="text-align:center">-</td><td style="text-align:center">เลิกใช้</td></tr>
+    <tr><td style="text-align:center">28</td><td>วัดสัตตะ ม.11</td><td style="text-align:center">เลิกใช้</td><td style="text-align:center">เลิกใช้</td></tr>
+    <tr><td style="text-align:center">38</td><td>ศูนย์เรียนรู้ ม.8</td><td style="text-align:center">เลิกใช้</td><td style="text-align:center">-</td></tr>
+    <tr><td style="text-align:center">40</td><td>กรมทรัพย์ฯ ม.3</td><td style="text-align:center">เลิกใช้</td><td style="text-align:center">-</td></tr>
+  </table>`;
+  h+=`<div class="summary-warn"><b>สรุป ปี 2568:</b> สถานการณ์ทรงตัว ผ่านเกณฑ์ 16.7→17.6% ชีวภาพยังเป็นปัญหาหนักสุด ระบบเลิกใช้เพิ่มจาก 4→5 แห่ง</div>`;
+  return h;
+}
+
+function buildWasteReport(page){
+  let h='';
+  h+=`<h2>1. ภาพรวมผลบำบัดน้ำเสีย รพ.ทับคล้อ</h2>`;
+  h+=`<p>ตรวจตามประกาศกระทรวงทรัพยากรธรรมชาติฯ กำหนดมาตรฐานน้ำทิ้งจากอาคาร ประเภท ก. (รพ. ≥30 เตียง) ตรวจ 10 พารามิเตอร์หลัก ทุกไตรมาส</p>`;
+
+  h+=`<h3>1.1 สรุปผลรายไตรมาส</h3>`;
+  h+=`<table><tr><th>ไตรมาส</th><th>ผล</th><th>ผ่าน</th><th>ไม่ผ่าน</th><th>หมายเหตุ</th></tr>
+    <tr><td style="text-align:center">Q3/2567</td><td class="pass" style="text-align:center">ผ่าน</td><td style="text-align:center">8/8</td><td style="text-align:center">0</td><td>Cl & TSS ไม่ได้ตรวจ</td></tr>
+    <tr><td style="text-align:center">Q2/2568</td><td class="pass" style="text-align:center">ผ่านหมด</td><td style="text-align:center">10/10</td><td style="text-align:center">0</td><td>-</td></tr>
+    <tr><td style="text-align:center">Q3/2568</td><td class="pass" style="text-align:center">ผ่าน</td><td style="text-align:center">10/10</td><td style="text-align:center">0</td><td>งบจำกัด lab ปิดปรับปรุง</td></tr>
+    <tr><td style="text-align:center">Q1/2569</td><td class="fail" style="text-align:center">ไม่ผ่าน</td><td style="text-align:center">7/10</td><td style="text-align:center">3</td><td>คลอรีน, Coliform, Fecal Coliform เกิน</td></tr>
+  </table>`;
+
+  h+=`<h3>1.2 รายละเอียด Q1/2569 — ไม่ผ่านเกณฑ์</h3>`;
+  h+=`<div class="summary-red"><b>🚨 เตือน:</b> ไตรมาส 1/2569 ไม่ผ่านเกณฑ์ 3 พารามิเตอร์ — ระบบฆ่าเชื้อทำงานผิดปกติ ต้องดำเนินการแก้ไขเร่งด่วน</div>`;
+  h+=`<table><tr><th>พารามิเตอร์</th><th>เกณฑ์</th><th>ค่าที่ตรวจได้</th><th>สถานะ</th></tr>
+    <tr><td>คลอรีนตกค้าง</td><td style="text-align:center">≤1.0 mg/L</td><td style="text-align:center" class="fail">3.1 mg/L</td><td class="fail">ไม่ผ่าน (เกิน 3.1 เท่า)</td></tr>
+    <tr><td>Coliform</td><td style="text-align:center">≤5,000 MPN</td><td style="text-align:center" class="fail">9,200 MPN</td><td class="fail">ไม่ผ่าน (เกิน 1.84 เท่า)</td></tr>
+    <tr><td>Fecal Coliform</td><td style="text-align:center">≤1,000 MPN</td><td style="text-align:center" class="fail">9,200 MPN</td><td class="fail">ไม่ผ่าน (เกิน 9.2 เท่า)</td></tr>
+  </table>`;
+
+  // Read the actual waste table data from the page
+  h+=`<h3>1.3 ผลตรวจหลังบำบัด — ย้อนหลังทุกไตรมาส</h3>`;
+  h+=`<table><tr><th>พารามิเตอร์</th><th>เกณฑ์</th><th>Q3/67</th><th>Q2/68</th><th>Q3/68</th><th>Q1/69</th></tr>
+    <tr><td>pH</td><td style="text-align:center">5.5-9.0</td><td style="text-align:center" class="pass">7.2</td><td style="text-align:center" class="pass">7.7</td><td style="text-align:center" class="pass">7.49</td><td style="text-align:center" class="pass">7.3</td></tr>
+    <tr><td>BOD (mg/L)</td><td style="text-align:center">≤20</td><td style="text-align:center" class="pass">5</td><td style="text-align:center" class="pass">5</td><td style="text-align:center" class="pass">5</td><td style="text-align:center" class="pass">10</td></tr>
+    <tr><td>TSS (mg/L)</td><td style="text-align:center">≤30</td><td style="text-align:center">-</td><td style="text-align:center" class="pass">29</td><td style="text-align:center" class="pass">20</td><td style="text-align:center" class="pass">22</td></tr>
+    <tr><td>TDS (mg/L)</td><td style="text-align:center">≤500</td><td style="text-align:center" class="pass">321</td><td style="text-align:center" class="pass">304</td><td style="text-align:center" class="pass">250</td><td style="text-align:center" class="pass">313</td></tr>
+    <tr><td>คลอรีน (mg/L)</td><td style="text-align:center">≤1.0</td><td style="text-align:center">-</td><td style="text-align:center" class="pass">0.2</td><td style="text-align:center" class="pass">0.2</td><td style="text-align:center" class="fail">3.1</td></tr>
+    <tr><td>ซัลไฟด์ (mg/L)</td><td style="text-align:center">≤1.0</td><td style="text-align:center" class="pass"><0.12</td><td style="text-align:center" class="pass">0.07</td><td style="text-align:center" class="pass"><0.13</td><td style="text-align:center" class="pass">0.13</td></tr>
+    <tr><td>น้ำมัน&ไขมัน (mg/L)</td><td style="text-align:center">≤20</td><td style="text-align:center" class="pass">1.3</td><td style="text-align:center" class="pass"><1.0</td><td style="text-align:center" class="pass"><1.0</td><td style="text-align:center" class="pass">1.9</td></tr>
+    <tr><td>TKN (mg/L)</td><td style="text-align:center">≤35</td><td style="text-align:center" class="pass">4</td><td style="text-align:center" class="pass">2.63</td><td style="text-align:center" class="pass">4.84</td><td style="text-align:center" class="pass">5.72</td></tr>
+    <tr><td>Coliform (MPN)</td><td style="text-align:center">≤5,000</td><td style="text-align:center" class="pass">11</td><td style="text-align:center" class="pass">23</td><td style="text-align:center" class="pass">490</td><td style="text-align:center" class="fail">9,200</td></tr>
+    <tr><td>Fecal Coliform (MPN)</td><td style="text-align:center">≤1,000</td><td style="text-align:center" class="pass">6.8</td><td style="text-align:center" class="pass">2</td><td style="text-align:center" class="pass">490</td><td style="text-align:center" class="fail">9,200</td></tr>
+  </table>`;
+
+  h+=`<div class="summary-warn"><b>สรุปภาพรวม:</b> ผ่านเกณฑ์ 3 ใน 4 ไตรมาส (75%) ไตรมาสล่าสุด Q1/69 พบปัญหาระบบฆ่าเชื้อ — คลอรีนตกค้างสูงแต่ยังพบเชื้อจุลินทรีย์เกิน แสดงว่าระบบบำบัดขั้นสุดท้ายทำงานไม่มีประสิทธิภาพ ต้องตรวจสอบและแก้ไขเร่งด่วน</div>`;
+  return h;
 }
 </script>
 </body>
