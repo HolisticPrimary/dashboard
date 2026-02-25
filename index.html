@@ -183,6 +183,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .kb .kpi-ic{background:hsla(var(--hue),80%,40%,.1)}.kb .kpi-vl{color:var(--accent)}
 .kgr .kpi-ic{background:var(--success-l)}.kgr .kpi-vl{color:var(--success)}
 .ka .kpi-ic{background:var(--primary-l)}.ka .kpi-vl{color:var(--primary)}
+.kgy .kpi-ic{background:rgba(148,163,184,.12)}.kgy .kpi-vl{color:#94a3b8}.kgy{opacity:.85}
 .trend-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;position:absolute;top:12px;right:12px}
 .rc-lb{font-weight:700;color:var(--primary);margin-right:4px;font-size:13px}
 
@@ -407,6 +408,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="41">0</div><div class="kpi-sb">ลดลง 1 แห่งจากรอบ 1</div></div>
       <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">↑ +3</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="9">0</div><div class="kpi-sb">22.0% ของ 41 แห่ง</div></div>
       <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div><div class="kpi-trend down">↓ −4</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="32">0</div><div class="kpi-sb">78.0% ของ 41 แห่ง</div></div>
+      <div class="kpi kgy"><div class="kpi-top"><div class="kpi-ic">🚫</div></div><div class="kpi-lb">เลิกใช้งาน (รอบ 2)</div><div class="kpi-vl" data-count="1">0</div><div class="kpi-sb">ลดจากรอบ 1 → ไม่มีน้ำออก</div></div>
     </div>
   </div>
   <!-- Summary row -->
@@ -482,6 +484,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 1)</div><div class="kpi-vl" data-count="36">0</div><div class="kpi-sb">เม.ย. 68 | จ.พิจิตร รัศมี 10 กม.</div></div>
       <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">16.7% ของ 36 แห่ง</div></div>
       <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="30">0</div><div class="kpi-sb">83.3% ของ 36 แห่ง</div></div>
+      <div class="kpi kgy"><div class="kpi-top"><div class="kpi-ic">🚫</div></div><div class="kpi-lb">เลิกใช้งาน (รอบ 1)</div><div class="kpi-vl" data-count="4">0</div><div class="kpi-sb">#16, #28, #38, #40</div></div>
     </div>
   </div>
   <div style="background:linear-gradient(135deg,rgba(22,163,74,.06),rgba(74,222,128,.03));border:1px solid rgba(22,163,74,.12);border-radius:16px;padding:16px 14px 10px">
@@ -490,6 +493,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="34">0</div><div class="kpi-sb">ลดลง 2 แห่งจากรอบ 1</div></div>
       <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">→ 0</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">17.6% ของ 34 แห่ง</div></div>
       <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div><div class="kpi-trend down">↓ −2</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="28">0</div><div class="kpi-sb">82.4% ของ 34 แห่ง</div></div>
+      <div class="kpi kgy"><div class="kpi-top"><div class="kpi-ic">🚫</div></div><div class="kpi-lb">เลิกใช้งาน (รอบ 2)</div><div class="kpi-vl" data-count="5">0</div><div class="kpi-sb">#9, #16, #21, #22, #28</div></div>
     </div>
   </div>
   <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:0">
@@ -549,6 +553,32 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <div class="rc" style="border-left:3px solid #16a34a"><span class="rc-lb">37.</span> เกาะแก้วลำประดา (ตัวใหม่) ม.13 <small style="color:var(--t3)">ต.เขาทราย</small></div>
     </div>
     <div class="db di" style="margin-top:10px"><strong>📌 สรุป:</strong> มีเพียง 2 ระบบที่ผ่านเกณฑ์ทั้ง 2 รอบ: <strong>#18 โรงกรองน้ำ ม.7</strong> และ <strong>#20 รร.บ้านใหม่ราษฎร์ดำรง ม.8</strong> (ต.เขาเจ็ดลูก) — ถือเป็นระบบที่มีคุณภาพน้ำดีต่อเนื่อง</div>
+  </div>
+</div>
+
+<div class="stit"><span>🚫 ระบบประปาที่เลิกใช้งาน</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>เลิกใช้งาน รอบ 1 — 4 ระบบ (เม.ย. 2568)</h3>
+    <div class="cs">ไม่มีข้อมูลน้ำออก / ยกเลิกระบบ</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px">
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">16.</span> วัดหนองขนาก (ข้างโบถส์) ม.7 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">28.</span> วัดสัตตะ บ้านเนินพลวง ม.11 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">38.</span> ประปาศูนย์เรียนรู้ ม.8 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีน้ำออก</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">40.</span> บ้านหนองระมาน (กรมทรัพย์ฯ) ม.3 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — เลิกใช้</small></div>
+    </div>
+  </div>
+  <div class="cc fl">
+    <h3>เลิกใช้งาน รอบ 2 — 5 ระบบ (ต.ค. 2568)</h3>
+    <div class="cs">ไม่มีข้อมูลน้ำออก / ยกเลิกระบบ</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px">
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">9.</span> วัดจิราพงษ์ ม.4 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">16.</span> วัดหนองขนาก (ข้างโบถส์) ม.7 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">21.</span> บ้านนิคม (ผญ.อ๊อด) ม.8 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">22.</span> บ้านเนินทอง ม.8 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+      <div class="rc" style="border-left:3px solid #94a3b8;opacity:.75"><span class="rc-lb">28.</span> วัดสัตตะ บ้านเนินพลวง ม.11 <small style="color:var(--t3)">ต.เขาเจ็ดลูก — ไม่มีข้อมูล</small></div>
+    </div>
+    <div class="db" style="margin-top:10px;opacity:.8"><strong>📌 สรุป:</strong> ระบบเลิกใช้เพิ่มจาก 4→5 แห่ง ระหว่างรอบ 1 กับรอบ 2 — <strong>#9 วัดจิราพงษ์, #21 บ้านนิคม, #22 บ้านเนินทอง</strong> หยุดใช้งานเพิ่มในรอบ 2 ส่วน #16 และ #28 เลิกใช้ต่อเนื่องจากรอบ 1</div>
   </div>
 </div>
 
