@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ระบบข้อมูลสุขภาพ — โรงพยาบาลทับคล้อ</title>
+<title>ระบบข้อมูลสุขภาพ — กลุ่มงานบริการด้านปฐมภูมิฯ รพ.ทับคล้อ</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<script defer src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
 <style>
 /* ═══ THEME VARIABLES ═══ */
 :root {
@@ -52,7 +53,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 /* Brand */
 .side-brand{padding:34px 22px 28px;border-bottom:none;position:relative}
 .side-brand::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
-.side-brand .brand-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;position:relative}
+.side-brand .brand-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;position:relative;cursor:pointer;transition:opacity .2s}
+.side-brand .brand-top:hover{opacity:.85}
+.side-brand .brand-top:active .logo-img{transform:scale(.96)}
 /* Ambient glow behind logo */
 .side-brand .brand-top::before{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,hsla(var(--hue),70%,50%,.12) 0%,transparent 70%);pointer-events:none;animation:ambientPulse 4s ease-in-out infinite;z-index:0}
 @keyframes ambientPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
@@ -149,9 +152,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .main::before{content:'';position:fixed;top:0;left:300px;right:0;bottom:0;background:radial-gradient(ellipse at 20% 0%,hsla(var(--hue),40%,50%,.04),transparent 50%),radial-gradient(ellipse at 80% 100%,hsla(var(--hue),40%,50%,.03),transparent 50%);pointer-events:none;z-index:0;transition:background .4s}
 
 /* Page transitions */
-.page{display:none;position:relative;z-index:1;opacity:0;transform:translateY(8px);transition:opacity .35s cubic-bezier(.25,.46,.45,.94),transform .35s cubic-bezier(.25,.46,.45,.94)}
+.page{display:none;position:relative;z-index:1;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease}
 .page.show{display:block;opacity:1;transform:translateY(0)}
-.page.out{opacity:0;transform:translateY(-6px);transition:opacity .2s ease-in,transform .2s ease-in}
+.page.out{opacity:0;transform:translateY(-6px);transition:opacity .15s ease-in,transform .15s ease-in}
 
 /* ═══ TOPBAR ═══ */
 .topbar{position:sticky;top:0;z-index:50;background:var(--topbar-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:14px;transition:background .4s}
@@ -208,7 +211,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 /* ═══ KPI ═══ */
 .kpig{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px;margin-bottom:24px}
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--sh);transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s,border-color .35s,background .4s;position:relative;overflow:hidden}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--sh);transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s,border-color .35s,background .4s;position:relative;overflow:hidden;contain:layout style}
 .kpi:hover{transform:translateY(-3px);box-shadow:var(--sh2),0 0 0 1px hsla(var(--hue),60%,50%,.08);border-color:hsla(var(--hue),60%,50%,.15)}
 .kpi::after{content:'';position:absolute;inset:0;border-radius:16px;opacity:0;transition:opacity .35s;background:radial-gradient(circle at 50% 0%,hsla(var(--hue),70%,55%,.06),transparent 70%);pointer-events:none}
 .kpi:hover::after{opacity:1}
@@ -232,17 +235,17 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .rc-lb{font-weight:700;color:var(--primary);margin-right:4px;font-size:13px}
 
 /* ═══ SECTION ═══ */
-.stit{font-family:'Kanit',sans-serif;font-size:16px;font-weight:600;margin-bottom:13px;display:flex;align-items:center;gap:10px}
+.stit{font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .stit .ln{flex:1;height:1px;background:var(--border)}
 
 /* ═══ CHART ═══ */
-.cgr{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-bottom:24px}
+.cgr{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
 @media(max-width:900px){.cgr{grid-template-columns:1fr}}
-.cc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--sh);transition:box-shadow .35s,border-color .35s,background .4s;position:relative;overflow:hidden}
+.cc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--sh);transition:box-shadow .35s,border-color .35s,background .4s;position:relative;overflow:hidden;contain:layout style}
 .cc:hover{box-shadow:var(--sh2),0 0 0 1px hsla(var(--hue),60%,50%,.06);border-color:hsla(var(--hue),60%,50%,.12)}
-.cc h3{font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;margin-bottom:1px}
-.cc .cs{font-size:12.5px;color:var(--t3);margin-bottom:14px}
-.cw{position:relative;width:100%;height:260px}.cw canvas{width:100%!important;height:100%!important}
+.cc h3{font-family:'Kanit',sans-serif;font-size:14.5px;font-weight:600;margin-bottom:1px}
+.cc .cs{font-size:12px;color:var(--t3);margin-bottom:10px}
+.cw{position:relative;width:100%;height:230px}.cw canvas{width:100%!important;height:100%!important}
 .fl{grid-column:1/-1}
 .pw{margin-top:9px}.pl{display:flex;justify-content:space-between;font-size:12.5px;color:var(--t2);margin-bottom:3px}
 .pb{height:6px;background:var(--bg2);border-radius:100px;overflow:hidden;transition:background .4s}
@@ -281,7 +284,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 [data-theme="dark"] .topbar.scrolled{box-shadow:0 4px 20px rgba(0,0,0,.3)}
 
 /* ═══ DESC ═══ */
-.db{border-radius:11px;padding:12px 15px;margin-top:11px;font-size:13px;color:var(--t2);line-height:1.8}
+.db{border-radius:10px;padding:10px 13px;margin-top:9px;font-size:12.5px;color:var(--t2);line-height:1.7}
 .db strong{font-weight:700}
 .db.dg{background:var(--warn-l);border:1px solid hsla(45,90%,50%,.1)}.db.dg strong{color:var(--warn)}
 .db.di{background:hsla(var(--hue),80%,40%,.08);border:1px solid hsla(var(--hue),80%,40%,.1)}.db.di strong{color:var(--accent)}
@@ -379,7 +382,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <!-- ═══ SIDEBAR ═══ -->
 <nav class="sidebar" id="sidebar">
   <div class="side-brand">
-    <div class="brand-top">
+    <div class="brand-top" onclick="goPage('home',document.querySelector('.nav-item'))" style="cursor:pointer" title="กลับหน้าหลัก">
       <div class="logo-img">
         <svg viewBox="0 0 36 40" width="40" height="44" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <!-- ══ Filing Cabinet — คลังข้อมูล 3 ลิ้นชัก ══ -->
@@ -426,7 +429,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       </div>
       <div class="brand-text">
         <h2>ระบบข้อมูลสุขภาพ</h2>
-        <p>โรงพยาบาลทับคล้อ จ.พิจิตร</p>
+        <p>กลุ่มงานปฐมภูมิฯ รพ.ทับคล้อ</p>
       </div>
       <div class="brand-tag"><span class="dot"></span> ระบบพร้อมใช้งาน</div>
     </div>
@@ -469,7 +472,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       </div>
     </div>
   </div>
-  <div class="side-ft">หน่วยบริการด้านปฐมภูมิแบบองค์รวม<br>โรงพยาบาลทับคล้อ</div>
+  <div class="side-ft">กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม<br>โรงพยาบาลทับคล้อ</div>
 </nav>
 
 <!-- ═══ MAIN ═══ -->
@@ -477,12 +480,12 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ HOME ▓▓ -->
 <div class="page show" id="page-home">
-<div class="topbar"><span class="topicon">🏠</span><h1>ภาพรวมระบบข้อมูลสุขภาพ</h1></div>
+<div class="topbar"><span class="topicon">🏠</span><h1>ภาพรวมระบบ</h1></div>
 <div class="pg-pad" id="home-content">
 
 <div class="home-hero">
-  <h1>🏥 ระบบข้อมูลสุขภาพ โรงพยาบาลทับคล้อ</h1>
-  <p>ศูนย์กลางข้อมูลเฝ้าระวังสุขภาพและสิ่งแวดล้อม อ.ทับคล้อ จ.พิจิตร</p>
+  <h1>🏥 ระบบข้อมูลสุขภาพ</h1>
+  <p>กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร</p>
   <div class="h-date"><span class="blink"></span> <span id="homeDate"></span></div>
 </div>
 
@@ -551,7 +554,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   <div class="timeline-card" style="grid-column:1/-1">
     <h3>แนวโน้มตัวชี้วัดสุขภาพ 2567 vs 2568</h3>
     <div class="tc-sub">เปรียบเทียบกลุ่มเดียวกัน 119 คน</div>
-    <div class="cw" style="height:280px"><canvas id="tlHealth"></canvas></div>
+    <div class="cw" style="height:250px"><canvas id="tlHealth"></canvas></div>
   </div>
   <div class="timeline-card">
     <h3>อัตราผ่านเกณฑ์น้ำประปา</h3>
@@ -594,7 +597,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   </div>
 </div>
 
-<div class="credit">ระบบข้อมูลสุขภาพ หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+<div class="credit">ระบบข้อมูลสุขภาพ กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร</div>
 </div></div>
 
 <!-- ▓▓ MINE ▓▓ -->
@@ -679,7 +682,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div class="stit"><span>📏 ค่าอ้างอิง</span><span class="ln"></span></div>
 <div class="rg"><div class="rc"><h4>⚗️ สารหนู</h4><div class="rr"><span class="rl">Total As</span><span class="rv">> 100 µg/L</span></div><div class="rr"><span class="rl">Inorganic As</span><span class="rv">> 10 µg/g creat.</span></div><div class="rr"><span class="rl">อ้างอิง</span><span style="font-size:11px;color:var(--t3)">ATSDR/CDC, Casarett & Doull's</span></div></div><div class="rc"><h4>🧪 ไทโอไซยาเนต</h4><div class="rr"><span class="rl">สูบบุหรี่</span><span class="rv">> 17 mg/L</span></div><div class="rr"><span class="rl">ไม่สูบ</span><span class="rv">> 4 mg/L</span></div><div class="rr"><span class="rl">หมายเหตุ</span><span style="font-size:11px;color:var(--t3)">เฉพาะผู้ใหญ่ (นอร์เวย์)</span></div></div></div>
 </div><!-- y68 -->
-<div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+<div class="credit">กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
 </div></div><!-- mine -->
 
 <!-- ▓▓ WATER ▓▓ -->
@@ -732,8 +735,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:280px"><canvas id="wOvr"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 (N=42) ผ่านเกณฑ์ 6 แห่ง (14.3%) ไม่ผ่าน 36 แห่ง (85.7%) → รอบ 2 (N=41) ผ่านเกณฑ์เพิ่มเป็น 9 แห่ง (22.0%) ไม่ผ่าน 32 แห่ง (78.0%) <strong>แนวโน้มดีขึ้น +7.7%</strong></div></div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:280px"><canvas id="wByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ทุกด้านมีแนวโน้มดีขึ้น — กายภาพ 66.7→75.6% (+8.9), เคมี 45.2→61.0% (+15.8), ชีวภาพ 21.4→31.7% (+10.3) แต่<strong>ชีวภาพยังเป็นปัญหามากที่สุด</strong> พบเชื้อ Coliform/E.coli สูงถึง 68-79%</div></div>
+  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:250px"><canvas id="wOvr"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 (N=42) ผ่านเกณฑ์ 6 แห่ง (14.3%) ไม่ผ่าน 36 แห่ง (85.7%) → รอบ 2 (N=41) ผ่านเกณฑ์เพิ่มเป็น 9 แห่ง (22.0%) ไม่ผ่าน 32 แห่ง (78.0%) <strong>แนวโน้มดีขึ้น +7.7%</strong></div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:250px"><canvas id="wByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ทุกด้านมีแนวโน้มดีขึ้น — กายภาพ 66.7→75.6% (+8.9), เคมี 45.2→61.0% (+15.8), ชีวภาพ 21.4→31.7% (+10.3) แต่<strong>ชีวภาพยังเป็นปัญหามากที่สุด</strong> พบเชื้อ Coliform/E.coli สูงถึง 68-79%</div></div>
 </div>
 
 <div class="stit"><span>🔬 รายละเอียดแยกตามด้าน</span><span class="ln"></span></div>
@@ -816,8 +819,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:280px"><canvas id="w68Ovr"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 (N=36) ผ่านเกณฑ์ 6 แห่ง (16.7%) ไม่ผ่าน 30 แห่ง (83.3%) → รอบ 2 (N=34) ผ่านเกณฑ์ 6 แห่ง (17.6%) ไม่ผ่าน 28 แห่ง (82.4%) <strong>สถานการณ์ทรงตัว</strong> ระบบส่วนใหญ่ยังไม่ผ่านเกณฑ์กว่า 80%</div></div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:280px"><canvas id="w68ByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> กายภาพลดลง 80.6→73.5% (−7.1), เคมีดีขึ้นเล็กน้อย 75.0→79.4% (+4.4), ชีวภาพดีขึ้นเล็กน้อย 25.0→29.4% (+4.4) <strong>ชีวภาพยังเป็นปัญหาหนักสุด</strong> พบ Coliform 70-75% ของระบบทั้งหมด</div></div>
+  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:250px"><canvas id="w68Ovr"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 (N=36) ผ่านเกณฑ์ 6 แห่ง (16.7%) ไม่ผ่าน 30 แห่ง (83.3%) → รอบ 2 (N=34) ผ่านเกณฑ์ 6 แห่ง (17.6%) ไม่ผ่าน 28 แห่ง (82.4%) <strong>สถานการณ์ทรงตัว</strong> ระบบส่วนใหญ่ยังไม่ผ่านเกณฑ์กว่า 80%</div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:250px"><canvas id="w68ByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> กายภาพลดลง 80.6→73.5% (−7.1), เคมีดีขึ้นเล็กน้อย 75.0→79.4% (+4.4), ชีวภาพดีขึ้นเล็กน้อย 25.0→29.4% (+4.4) <strong>ชีวภาพยังเป็นปัญหาหนักสุด</strong> พบ Coliform 70-75% ของระบบทั้งหมด</div></div>
 </div>
 
 <div class="stit"><span>🔬 รายละเอียดแยกตามด้าน</span><span class="ln"></span></div>
@@ -1020,8 +1023,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <!-- ══ 1. PASS/FAIL TIMELINE ══ -->
 <div class="stit"><span>📊 แนวโน้มผ่าน/ไม่ผ่านเกณฑ์ รายไตรมาส</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>จำนวนพารามิเตอร์ผ่าน/ไม่ผ่าน (หลังบำบัด)</h3><div class="cs">เกณฑ์ประกาศกระทรวงฯ น้ำทิ้งอาคาร ประเภท ก. — 10 พารามิเตอร์หลัก</div><div class="cw" style="height:280px"><canvas id="wsTimeline"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> Q3/67 ผ่านทุกตัวที่ตรวจ (8/8 ไม่ได้ตรวจ Cl, TSS) → Q2/68 ผ่านครบ 10/10 → Q3/68 ผ่านครบ 10/10 (แม้งบจำกัด) → <strong>Q1/69 ไม่ผ่าน 3 ตัว</strong> (คลอรีน 3.1, Coliform 9,200, Fecal 9,200) — ระบบฆ่าเชื้อมีปัญหา</div></div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์ (%) รายไตรมาส</h3><div class="cs">เฉพาะค่าหลังบำบัด — คิดจากรายการที่ตรวจ</div><div class="cw" style="height:280px"><canvas id="wsPassRate"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ผ่าน 100% ต่อเนื่อง 3 ไตรมาส (Q3/67–Q3/68) จนกระทั่ง <strong>Q1/69 ลดลงเหลือ 70%</strong> — แนวโน้มเป็นปัญหาเฉียบพลันไม่ใช่ค่อยๆ แย่ลง แสดงว่าระบบฆ่าเชื้อเกิดขัดข้องในไตรมาสนี้</div></div>
+  <div class="cc fl"><h3>จำนวนพารามิเตอร์ผ่าน/ไม่ผ่าน (หลังบำบัด)</h3><div class="cs">เกณฑ์ประกาศกระทรวงฯ น้ำทิ้งอาคาร ประเภท ก. — 10 พารามิเตอร์หลัก</div><div class="cw" style="height:250px"><canvas id="wsTimeline"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> Q3/67 ผ่านทุกตัวที่ตรวจ (8/8 ไม่ได้ตรวจ Cl, TSS) → Q2/68 ผ่านครบ 10/10 → Q3/68 ผ่านครบ 10/10 (แม้งบจำกัด) → <strong>Q1/69 ไม่ผ่าน 3 ตัว</strong> (คลอรีน 3.1, Coliform 9,200, Fecal 9,200) — ระบบฆ่าเชื้อมีปัญหา</div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์ (%) รายไตรมาส</h3><div class="cs">เฉพาะค่าหลังบำบัด — คิดจากรายการที่ตรวจ</div><div class="cw" style="height:250px"><canvas id="wsPassRate"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ผ่าน 100% ต่อเนื่อง 3 ไตรมาส (Q3/67–Q3/68) จนกระทั่ง <strong>Q1/69 ลดลงเหลือ 70%</strong> — แนวโน้มเป็นปัญหาเฉียบพลันไม่ใช่ค่อยๆ แย่ลง แสดงว่าระบบฆ่าเชื้อเกิดขัดข้องในไตรมาสนี้</div></div>
 </div>
 
 <!-- ══ 2. BOD/TSS/TKN TREND ══ -->
@@ -1055,10 +1058,28 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 </div>
 
 <!-- ══ 4. TREATMENT EFFICIENCY ══ -->
-<div class="stit"><span>📉 ประสิทธิภาพระบบบำบัด (%การกำจัด)</span><span class="ln"></span></div>
+<div class="stit"><span>📉 ประสิทธิภาพระบบบำบัด</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>% การกำจัดสารมลพิษ (ก่อน vs หลังบำบัด)</h3><div class="cs">ค่า % ยิ่งสูงยิ่งดี — เปรียบเทียบรายไตรมาส | Q3/68 ไม่มีค่าก่อนบำบัด</div><div class="cw" style="height:300px"><canvas id="wsEfficiency"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> ระบบบำบัดทำงานได้ดีในการกำจัด BOD (86-93%) และ TKN (83-91%) | TSS กำจัดได้ 63-65% | <strong>ปัญหาหลักไม่ใช่ประสิทธิภาพการบำบัด แต่เป็นระบบฆ่าเชื้อ</strong> (คลอรีน) ที่ทำงานผิดปกติใน Q1/69</div></div>
-  <div class="cc"><h3>Coliform & Fecal Coliform (หลังบำบัด)</h3><div class="cs">เกณฑ์: Coliform ≤5,000 | Fecal ≤1,000 MPN/100mL</div><div class="cw" style="height:300px"><canvas id="wsBacteria"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> Q3/67 ถึง Q3/68 เชื้อหลังบำบัดอยู่ในเกณฑ์ดี (11→23→490 MPN) แต่ <strong>Q1/69 พุ่งขึ้น 9,200 MPN</strong> ทั้ง Coliform และ Fecal เกินเกณฑ์ — สะท้อนปัญหาระบบฆ่าเชื้อ/คลอรีนโดยเฉพาะ</div></div>
+  <div class="cc fl"><h3>ค่าก่อนบำบัด vs หลังบำบัด (mg/L) — ล่าสุด Q1/69</h3><div class="cs">แท่งแดง = ก่อนบำบัด (ค่าสูง) | แท่งเขียว = หลังบำบัด (ค่าต่ำ = ดี) | เส้นประ = เกณฑ์มาตรฐาน</div><div class="cw" style="height:260px"><canvas id="wsBeforeAfter"></canvas></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+    <div style="flex:1;min-width:100px;padding:10px 14px;border-radius:10px;background:rgba(22,163,74,.08);text-align:center">
+      <div style="font-size:11px;color:var(--t3)">BOD กำจัดได้</div>
+      <div style="font-size:20px;font-weight:800;color:#16a34a;font-family:'Kanit'">86.2%</div>
+      <div style="font-size:10px;color:var(--t3)">102→14.1 mg/L</div>
+    </div>
+    <div style="flex:1;min-width:100px;padding:10px 14px;border-radius:10px;background:rgba(2,132,199,.08);text-align:center">
+      <div style="font-size:11px;color:var(--t3)">TSS กำจัดได้</div>
+      <div style="font-size:20px;font-weight:800;color:#0284c7;font-family:'Kanit'">62.7%</div>
+      <div style="font-size:10px;color:var(--t3)">67→25 mg/L</div>
+    </div>
+    <div style="flex:1;min-width:100px;padding:10px 14px;border-radius:10px;background:rgba(124,58,237,.08);text-align:center">
+      <div style="font-size:11px;color:var(--t3)">TKN กำจัดได้</div>
+      <div style="font-size:20px;font-weight:800;color:#7c3aed;font-family:'Kanit'">83.0%</div>
+      <div style="font-size:10px;color:var(--t3)">95.1→16.2 mg/L</div>
+    </div>
+  </div>
+  <div class="db dg"><strong>📌 สรุป:</strong> ระบบบำบัดกำจัดสารได้ดี — BOD 86%, TKN 83%, TSS 63% | <strong>ปัญหาหลักไม่ใช่ประสิทธิภาพการบำบัด แต่เป็นระบบฆ่าเชื้อ</strong> (คลอรีน) ที่ทำงานผิดปกติใน Q1/69</div></div>
+  <div class="cc"><h3>Coliform & Fecal Coliform (หลังบำบัด)</h3><div class="cs">เกณฑ์: Coliform ≤5,000 | Fecal ≤1,000 MPN/100mL</div><div class="cw" style="height:260px"><canvas id="wsBacteria"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> Q3/67 ถึง Q3/68 เชื้อหลังบำบัดอยู่ในเกณฑ์ดี (11→23→490 MPN) แต่ <strong>Q1/69 พุ่งขึ้น 9,200 MPN</strong> ทั้ง Coliform และ Fecal เกินเกณฑ์ — สะท้อนปัญหาระบบฆ่าเชื้อ/คลอรีนโดยเฉพาะ</div></div>
 </div>
 
   <div class="credit">ข้อมูล: ศูนย์อนามัยที่ 3 กรมอนามัย | ปีงบประมาณ 2567-2569 | เกณฑ์ประกาศกระทรวงฯ น้ำทิ้งอาคาร ประเภท ก.</div>
@@ -1091,10 +1112,10 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <!-- ═══ Overall Pass/Fail Chart ═══ -->
 <div class="stit"><span>📊 ภาพรวมผ่าน/ไม่ผ่านเกณฑ์ทุกรอบ</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc"><h3>ผ่าน/ไม่ผ่าน — แยกตามจุดเก็บ (8 ตัวอย่าง)</h3><div class="cs">เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:280px"><canvas id="tapOvr"></canvas></div>
+  <div class="cc"><h3>ผ่าน/ไม่ผ่าน — แยกตามจุดเก็บ (8 ตัวอย่าง)</h3><div class="cs">เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:250px"><canvas id="tapOvr"></canvas></div>
     <div class="db di"><strong>📌 สรุป:</strong> น้ำ<strong>หลังเข้าระบบ</strong>กรอง (IPD/OPD/แผนไทย) ผ่านเกณฑ์ <strong>100% ทุกรอบ ทุกพารามิเตอร์</strong> — น้ำ<strong>ก่อนเข้าระบบ</strong>ไม่ผ่านเพียงรอบ 2/67 จากปัญหา Coliform/E.coli</div>
   </div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เฉลี่ยทุกรอบทุกจุด (8 ตัวอย่าง)</div><div class="cw" style="height:280px"><canvas id="tapDim"></canvas></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เฉลี่ยทุกรอบทุกจุด (8 ตัวอย่าง)</div><div class="cw" style="height:250px"><canvas id="tapDim"></canvas></div>
     <div class="db dg"><strong>📌 สรุป:</strong> ด้านกายภาพ & เคมี & โลหะหนัก ผ่าน <strong>100%</strong> ทุกตัวอย่าง ทุกรอบ — ด้านชีวภาพ ผ่าน <strong>87.5%</strong> (7/8) พบปัญหา Coliform เฉพาะน้ำก่อนเข้าระบบ รอบ 2/67</div>
   </div>
 </div>
@@ -1102,7 +1123,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <!-- ═══ Timeline Chart ═══ -->
 <div class="stit"><span>📈 แนวโน้มผ่านเกณฑ์รายรอบ</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>จำนวนพารามิเตอร์ที่ผ่านเกณฑ์ (จาก 21 ตัว) — แยกจุดเก็บ</h3><div class="cs">น้ำก่อนเข้าระบบ vs น้ำหลังเข้าระบบ</div><div class="cw" style="height:300px"><canvas id="tapTimeline"></canvas></div>
+  <div class="cc fl"><h3>จำนวนพารามิเตอร์ที่ผ่านเกณฑ์ (จาก 21 ตัว) — แยกจุดเก็บ</h3><div class="cs">น้ำก่อนเข้าระบบ vs น้ำหลังเข้าระบบ</div><div class="cw" style="height:260px"><canvas id="tapTimeline"></canvas></div>
     <div class="db di"><strong>📌 แนวโน้ม:</strong> รอบ 2/67 น้ำก่อนเข้าระบบมีปัญหา Coliform/E.coli ทำให้ผ่านเพียง 19/21 → หลังจากนั้นทุกรอบ (รอบ 1/68, รอบ 2/68) <strong>กลับมาผ่านครบ 21/21</strong> ทั้งสองจุด แสดงว่ามีการแก้ไขปัญหาได้ผลดี</div>
   </div>
 </div>
@@ -1210,7 +1231,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   </div>
 </div>
 
-<div class="credit">ข้อมูล: กองท้องปฏิบัติการสาธารณสุข กรมอนามัย & ศูนย์อนามัยที่ 2 พิษณุโลก | หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+<div class="credit">ข้อมูล: กองท้องปฏิบัติการสาธารณสุข กรมอนามัย & ศูนย์อนามัยที่ 2 พิษณุโลก | กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
 </div></div>
 
 <!-- ▓▓ OCC ▓▓ -->
@@ -1218,7 +1239,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div class="topbar"><span class="topicon">🏭</span><h1>งานอาชีวอนามัย</h1></div>
 <div class="pg-pad">
   <div class="await-card"><span class="aw-ic">🏭</span><h3>รอเพิ่มข้อมูล</h3><p>ข้อมูลงานอาชีวอนามัยอยู่ระหว่างจัดเตรียม</p></div>
-  <div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+  <div class="credit">กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
 </div></div>
 
 <!-- ▓▓ ABOUT ▓▓ -->
@@ -1226,25 +1247,46 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div class="topbar"><span class="topicon">ℹ️</span><h1>เกี่ยวกับระบบ</h1></div>
 <div class="pg-pad">
   <div class="cc" style="margin-bottom:18px">
-    <h3 style="font-size:15px;margin-bottom:10px">ℹ️ เกี่ยวกับระบบ</h3>
-    <div style="color:var(--t2);font-size:13.5px;line-height:2">
-      <p>ระบบนี้จัดทำขึ้นเพื่อรวบรวมและนำเสนอข้อมูลและตัวชี้วัดเกี่ยวกับงานสิ่งแวดล้อมและงานอาชีวอนามัย</p><br>
-      <p><strong>⛏️ งานเหมืองทอง</strong></p>
-      <p style="padding-left:20px">• ผลตรวจสุขภาพประชาชน — สารหนู (Arsenic) และไทโอไซยาเนต (Thiocyanate)</p>
-      <p style="padding-left:20px">• ผลน้ำประปารอบเหมือง (รอเพิ่มข้อมูล)</p><br>
-      <p><strong>🌿 งานสิ่งแวดล้อม</strong></p>
-      <p style="padding-left:20px">• ผลบำบัดน้ำเสีย รพ. (ปีงบ 67-69 รายไตรมาส)</p>
-      <p style="padding-left:20px">• ผลน้ำประปา รพ. (ปี 67-68 — 4 รอบ × 2 จุดเก็บ)</p><br>
-      <p><strong>🏭 งานอาชีวอนามัย</strong> — ข้อมูลด้านอาชีวอนามัยและความปลอดภัย (รอเพิ่มข้อมูล)</p><br>
-      <p>📞 <strong>ติดต่อ:</strong> Tel. 056-641131 ต่อ 227</p>
+    <h3 style="font-size:15px;margin-bottom:12px">ℹ️ เกี่ยวกับระบบ</h3>
+    <div style="color:var(--t2);font-size:13.5px;line-height:1.9">
+      <p>แดชบอร์ดรวบรวมข้อมูลเฝ้าระวังสุขภาพและสิ่งแวดล้อม จัดทำโดย <strong>กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</strong></p>
     </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+      <div style="padding:12px 16px;border-radius:12px;background:var(--card2);border:1px solid var(--border)">
+        <div style="font-weight:700;font-size:13.5px;margin-bottom:6px">⛏️ งานเหมืองทอง</div>
+        <div style="font-size:12.5px;color:var(--t3);line-height:1.7">ผลตรวจ As, SCN ประชาชน<br>น้ำประปารอบเหมือง 42 ระบบ</div>
+      </div>
+      <div style="padding:12px 16px;border-radius:12px;background:var(--card2);border:1px solid var(--border)">
+        <div style="font-weight:700;font-size:13.5px;margin-bottom:6px">🌿 งานสิ่งแวดล้อม</div>
+        <div style="font-size:12.5px;color:var(--t3);line-height:1.7">บำบัดน้ำเสีย รพ. รายไตรมาส<br>น้ำประปา รพ. 21 พารามิเตอร์</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:10px 16px;border-radius:10px;background:var(--bg2);font-size:12.5px;color:var(--t3)">📞 ติดต่อ: <strong>056-641131 ต่อ 227</strong></div>
   </div>
-  <div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+  <div class="credit">กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร</div>
 </div></div>
 
 </div><!-- main -->
 
 <script>
+/* ═══ SAFE CHART HELPERS ═══ */
+function safeChart(id,config){
+  try{
+    const el=document.getElementById(id);
+    if(!el||el.tagName!=='CANVAS')return null;
+    // Destroy existing chart on same canvas to prevent reuse error
+    const existing=Chart.getChart(el);
+    if(existing)existing.destroy();
+    return new Chart(el,config);
+  }catch(e){console.warn('Chart error ['+id+']:',e);return null}
+}
+function resizeChartsIn(container){
+  if(!container)return;
+  container.querySelectorAll('canvas').forEach(cv=>{
+    try{const c=Chart.getChart(cv);if(c)c.resize();}catch(e){}
+  });
+}
+
 /* ═══ THEME ═══ */
 function toggleTheme(){
   const d=document.documentElement;const dk=d.getAttribute('data-theme')==='dark';
@@ -1262,19 +1304,28 @@ function goPage(id,el){
   const cur=document.querySelector('.page.show');
   const next=document.getElementById('page-'+id);
   if(!next||cur===next)return;
-  if(cur){cur.classList.add('out');setTimeout(()=>{cur.classList.remove('show','out');
+  function activate(){
     next.classList.add('show');
-    // Use rAF to ensure browser has reflowed (display:block applied) before rendering charts
-    requestAnimationFrame(()=>{requestAnimationFrame(()=>{
-      runCountUp(next);
-      if(id==='home')renderHomeCharts();
-      if(id==='mine'){if(!r67)renderMine67();}
-      if(id==='water'&&!rW)renderWater();
-      if(id==='waste'&&!rWs)renderWaste();
-      if(id==='tap'&&!rTap)renderTap();
-    })});
-    next.scrollTo&&window.scrollTo({top:0,behavior:'smooth'});
-  },200)}else{next.classList.add('show');requestAnimationFrame(()=>{requestAnimationFrame(()=>{runCountUp(next)})})}
+    // Force reflow so browser computes layout before chart rendering
+    void next.offsetHeight;
+    setTimeout(()=>{
+      try{
+        runCountUp(next);
+        if(id==='home')renderHomeCharts();
+        else if(id==='mine'){if(!r67)renderMine67();if(!r68)render68();}
+        else if(id==='water'){if(!rW)renderWater();if(!rW68)renderWater68();}
+        else if(id==='waste'){if(!rWs)renderWaste();}
+        else if(id==='tap'){if(!rTap)renderTap();}
+        resizeChartsIn(next);
+      }catch(e){console.warn('Page render error:',e)}
+    },220);
+    window.scrollTo({top:0});
+  }
+  if(cur){
+    cur.classList.add('out');
+    setTimeout(()=>{cur.classList.remove('show','out');activate()},160);
+  }else{activate()}
+  // Update active nav
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelectorAll('.nav-sub a').forEach(a=>a.classList.remove('active'));
   if(el&&el.closest('.nav-sub')){el.classList.add('active');el.closest('.nav-sub').previousElementSibling.classList.add('active')}
@@ -1282,58 +1333,61 @@ function goPage(id,el){
   if(window.innerWidth<769)toggleSidebar();
 }
 function highlightNav(target){
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.querySelectorAll('.nav-sub a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('.nav-item,.nav-sub a').forEach(n=>n.classList.remove('active'));
   const map={mine:'ผลตรวจสุขภาพประชาชน',water:'ประปารอบเหมืองทอง',waste:'ผลบำบัดน้ำเสีย',tap:'ผลน้ำประปา',occ:'งานอาชีวอนามัย',about:'เกี่ยวกับระบบ'};
-  document.querySelectorAll('.nav-sub a').forEach(a=>{if(map[target]&&a.textContent.includes(map[target])){a.classList.add('active');const parent=a.closest('.nav-sub');if(parent&&parent.previousElementSibling)parent.previousElementSibling.classList.add('active')}});
+  document.querySelectorAll('.nav-sub a').forEach(a=>{if(map[target]&&a.textContent.includes(map[target])){a.classList.add('active');const p=a.closest('.nav-sub');if(p&&p.previousElementSibling)p.previousElementSibling.classList.add('active')}});
 }
-function togSub(el,subId){
-  const sub=document.getElementById(subId);
-  sub.classList.toggle('open');
-  el.classList.toggle('expanded');
-}
+function togSub(el,subId){document.getElementById(subId).classList.toggle('open');el.classList.toggle('expanded')}
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+
+/* ═══ TAB SWITCHERS ═══ */
 function swY(y,btn){
   document.querySelectorAll('.yp').forEach(p=>p.classList.remove('sh'));
   document.getElementById('y'+y).classList.add('sh');
   document.querySelectorAll('.ybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
-    if(y===67&&!r67)renderMine67();
-    if(y===68&&!r68)render68();
-    runCountUp(document.getElementById('y'+y));
-    // Resize any existing charts in the now-visible panel
-    document.getElementById('y'+y).querySelectorAll('canvas').forEach(cv=>{
-      const c=Chart.getChart(cv);if(c)c.resize();
-    });
-  })});
+  setTimeout(()=>{
+    try{
+      const cc=getChartColors();
+      if(y===67&&!r67)renderMine67();
+      if(y===68&&!r68)render68();
+      const panel=document.getElementById('y'+y);
+      void panel.offsetHeight;
+      runCountUp(panel);
+      resizeChartsIn(panel);
+    }catch(e){console.warn('swY error:',e)}
+  },150);
 }
 function swYW(y,btn){
   document.querySelectorAll('.wyp').forEach(p=>p.classList.remove('wsh'));
   document.getElementById('w'+y).classList.add('wsh');
-  document.querySelectorAll('.wybtn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#page-water .wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
-    if(y===67&&!rW)renderWater();
-    if(y===68&&!rW68)renderWater68();
-    runCountUp(document.getElementById('w'+y));
-    document.getElementById('w'+y).querySelectorAll('canvas').forEach(cv=>{
-      const c=Chart.getChart(cv);if(c)c.resize();
-    });
-  })});
+  setTimeout(()=>{
+    try{
+      if(y===67&&!rW)renderWater();
+      if(y===68&&!rW68)renderWater68();
+      const panel=document.getElementById('w'+y);
+      void panel.offsetHeight;
+      runCountUp(panel);
+      resizeChartsIn(panel);
+    }catch(e){console.warn('swYW error:',e)}
+  },150);
 }
 function swYT(y,btn){
   document.querySelectorAll('#page-tap .wyp').forEach(p=>p.classList.remove('wsh'));
   document.getElementById('t'+y).classList.add('wsh');
   document.querySelectorAll('#page-tap .wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
-    if(!rTap)renderTap();
-    runCountUp(document.getElementById('t'+y));
-    document.getElementById('t'+y).querySelectorAll('canvas').forEach(cv=>{
-      const c=Chart.getChart(cv);if(c)c.resize();
-    });
-  })});
+  setTimeout(()=>{
+    try{
+      if(!rTap)renderTap();
+      const panel=document.getElementById('t'+y);
+      void panel.offsetHeight;
+      runCountUp(panel);
+      resizeChartsIn(panel);
+    }catch(e){console.warn('swYT error:',e)}
+  },150);
 }
 function togM(el){el.classList.toggle('open')}
 
@@ -1349,33 +1403,23 @@ function runCountUp(container){
       el.textContent=(isFloat?current.toFixed(1):Math.floor(current))+suffix;},25);
   });
 }
-// y67 countUp handled inside renderMine67()
 
 /* ═══ HOME PAGE INIT ═══ */
 (function initHome(){
-  // Date display
   const hd=document.getElementById('homeDate');
   if(hd){
     const now=new Date();
     hd.textContent='อัปเดตล่าสุด: '+now.toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
   }
-  // Run countup on home
   setTimeout(()=>runCountUp(document.getElementById('home-content')),400);
-
-  // Sparkline mini charts
   const spkOpt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}},elements:{point:{radius:0},line:{tension:.4,borderWidth:2.5}},animation:{duration:1000,easing:'easeOutQuart'}};
-
   function mkSpk(id,data,color,fillColor){
     const ctx=document.getElementById(id);if(!ctx)return;
-    new Chart(ctx,{type:'line',data:{labels:data.map((_,i)=>i),datasets:[{data:data,borderColor:color,fill:true,backgroundColor:fillColor}]},options:spkOpt});
+    try{new Chart(ctx,{type:'line',data:{labels:data.map((_,i)=>i),datasets:[{data:data,borderColor:color,fill:true,backgroundColor:fillColor}]},options:spkOpt})}catch(e){}
   }
-  // Total As trend: 2565→2566→2567→2568
   mkSpk('spkAs',[15,14,11,4],'#16a34a','rgba(22,163,74,.08)');
-  // SCN trend: ไม่สูบบุหรี่ %
   mkSpk('spkSCN',[75,72,69.9,35.8],'#16a34a','rgba(22,163,74,.08)');
-  // Water pass rate: R1/67, R2/67, R1/68, R2/68
   mkSpk('spkWater',[14.3,22.0,16.7,17.6],'#f59e0b','rgba(245,158,11,.08)');
-  // Waste: quarterly pass rate (1=pass, 0=fail)
   mkSpk('spkWaste',[100,100,100,0],'#ef4444','rgba(239,68,68,.08)');
 })();
 
@@ -1386,7 +1430,7 @@ function renderHomeCharts(){
   const cc=getChartColors();
 
   // 1. Health Timeline - multi-line
-  new Chart(document.getElementById('tlHealth'),{
+  safeChart('tlHealth',{
     type:'line',
     data:{
       labels:['ปี 2567','ปี 2568'],
@@ -1405,7 +1449,7 @@ function renderHomeCharts(){
   });
 
   // 2. Water pass rate timeline
-  new Chart(document.getElementById('tlWater'),{
+  safeChart('tlWater',{
     type:'line',
     data:{
       labels:['R1 ส.ค.67\n(N=42)','R2 พ.ย.67\n(N=41)','R1 เม.ย.68\n(N=36)','R2 ต.ค.68\n(N=34)'],
@@ -1423,7 +1467,7 @@ function renderHomeCharts(){
   });
 
   // 3. Waste Coliform timeline (log scale)
-  new Chart(document.getElementById('tlWaste'),{
+  safeChart('tlWaste',{
     type:'bar',
     data:{
       labels:['Q3/67','Q2/68','Q3/68','Q1/69'],
@@ -1443,23 +1487,29 @@ function renderHomeCharts(){
 // Render immediately since home is visible
 setTimeout(renderHomeCharts,500);
 
-/* ═══ CHART ═══ */
+/* ═══ CHART GLOBALS ═══ */
 function getChartColors(){const d=document.documentElement.getAttribute('data-theme');return d==='dark'?{t:'#94a3b8',g:'rgba(255,255,255,.04)'}:{t:'#475569',g:'rgba(0,0,0,.04)'}}
-function updateChartColors(){const c=getChartColors();Object.values(Chart.instances).forEach(ch=>{
-  if(ch.options.scales?.r){ch.options.scales.r.grid.color=c.g}
-  if(ch.options.scales?.x){ch.options.scales.x.ticks.color=c.t;ch.options.scales.x.grid.color='transparent'}
-  if(ch.options.scales?.y){ch.options.scales.y.ticks.color='#94a3b8';ch.options.scales.y.grid.color=c.g}
-  ch.options.plugins.legend.labels.color=c.t;ch.update('none')})}
+function updateChartColors(){try{const c=getChartColors();Object.values(Chart.instances).forEach(ch=>{
+  try{
+    if(ch.options.scales?.r)ch.options.scales.r.grid.color=c.g;
+    if(ch.options.scales?.x){ch.options.scales.x.ticks.color=c.t;ch.options.scales.x.grid.color='transparent'}
+    if(ch.options.scales?.y){ch.options.scales.y.ticks.color='#94a3b8';ch.options.scales.y.grid.color=c.g}
+    if(ch.options.plugins?.legend?.labels)ch.options.plugins.legend.labels.color=c.t;
+    ch.update('none');
+  }catch(e){}
+})}catch(e){}}
 
-const cc=getChartColors();
-Chart.defaults.color=cc.t;Chart.defaults.font.family="'Sarabun','Kanit',sans-serif";Chart.defaults.font.size=12.5;
-Chart.defaults.plugins.legend.labels.padding=14;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.pointStyle='circle';
+function CC(){return getChartColors()} // always-fresh helper
 
-// ── Chart.js Global Animation Defaults ──
+Chart.defaults.color=getChartColors().t;
+Chart.defaults.font.family="'Sarabun','Kanit',sans-serif";
+Chart.defaults.font.size=12.5;
+Chart.defaults.plugins.legend.labels.padding=14;
+Chart.defaults.plugins.legend.labels.usePointStyle=true;
+Chart.defaults.plugins.legend.labels.pointStyle='circle';
 Chart.defaults.animation={duration:800,easing:'easeOutQuart'};
 Chart.defaults.transitions={active:{animation:{duration:200}},resize:{animation:{duration:0}}};
 
-// ── Per-type animation presets ──
 const animBar={animation:{duration:800,easing:'easeOutQuart'}};
 const animDoughnut={animation:{animateRotate:true,animateScale:true,duration:900,easing:'easeOutCirc'}};
 const animLine={animation:{duration:1000,easing:'easeOutQuart'}};
@@ -1468,15 +1518,39 @@ const animPolar={animation:{animateRotate:true,animateScale:true,duration:1000,e
 const P={tl:'#0f766e',t2:'#14b8a6',bl:'#0284c7',b2:'#38bdf8',rd:'#dc2626',r2:'#f87171',pu:'#7c3aed',p2:'#a78bfa',gn:'#16a34a',g2:'#4ade80',or:'#d97706',o2:'#fbbf24',pk:'#db2777',cy:'#0891b2',c2:'#22d3ee',gr:'#94a3b8',gl:'#e2e8f0'};
 const isDk=()=>document.documentElement.getAttribute('data-theme')==='dark';
 const bdr=()=>isDk()?'rgba(255,255,255,.08)':'#fff';
-function dn(id,l,d,c,co){return new Chart(document.getElementById(id),{type:'doughnut',data:{labels:l,datasets:[{data:d,backgroundColor:c,borderWidth:2,borderColor:bdr(),hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:co||'62%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},...animDoughnut}})}
-function br(id,l,d,c,mx,u){return new Chart(document.getElementById(id),{type:'bar',data:{labels:l,datasets:[{data:d,backgroundColor:c,borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+(u||'')}}},scales:{y:{beginAtZero:true,max:mx,grid:{color:cc.g},ticks:{callback:v=>v+(u||''),color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}},...animBar}})}
+
+function dn(id,l,d,c,co){
+  return safeChart(id,{type:'doughnut',data:{labels:l,datasets:[{data:d,backgroundColor:c,borderWidth:2,borderColor:bdr(),hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:co||'62%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},...animDoughnut}});
+}
+function br(id,l,d,c,mx,u){
+  const cc=CC();
+  return safeChart(id,{type:'bar',data:{labels:l,datasets:[{data:d,backgroundColor:c,borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+(u||'')}}},scales:{y:{beginAtZero:true,max:mx,grid:{color:cc.g},ticks:{callback:v=>v+(u||''),color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}},...animBar}});
+}
+
+/* ═══ WINDOW RESIZE ═══ */
+let resizeTimer;
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(()=>{
+    try{
+      const visiblePage=document.querySelector('.page.show');
+      if(visiblePage)resizeChartsIn(visiblePage);
+    }catch(e){}
+  },300);
+});
+
+/* ═══ GLOBAL ERROR GUARD ═══ */
+window.addEventListener('error',e=>{
+  if(e.message&&(e.message.includes('Chart')||e.message.includes('canvas')))e.preventDefault();
+});
 
 let r67=false;
 function renderMine67(){if(r67)return;r67=true;
+const cc=getChartColors();
 dn('g67',['หญิง 75%','ชาย 25%'],[75,25],[P.pk,P.bl]);
 br('a67',['<15','15-30','31-45','46-60','>60'],[3,5,17,33,42],[P.c2,P.g2,P.o2,P.or,P.rd],50,'%');
 dn('o67',['เกษตร 53%','นักเรียน 23%','รับจ้าง 14%','ธุรกิจ 8%','ราชการ 1%','เหมือง 1%'],[53,23,14,8,1,1],[P.gn,P.bl,P.or,P.pu,P.cy,P.tl],'52%');
-new Chart(document.getElementById('e67'),{type:'polarArea',data:{labels:['ประถม 49%','มัธยม 32%','ไม่ได้เรียน 8%','อนุปริญญา 8%','ป.ตรี+ 3%'],datasets:[{data:[49,32,8,8,3],backgroundColor:['rgba(217,119,6,.5)','rgba(2,132,199,.5)','rgba(220,38,38,.5)','rgba(124,58,237,.5)','rgba(8,145,178,.5)'],borderWidth:2,borderColor:bdr()}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{r:{grid:{color:cc.g},ticks:{display:false}}},...animPolar}});
+safeChart('e67',{type:'polarArea',data:{labels:['ประถม 49%','มัธยม 32%','ไม่ได้เรียน 8%','อนุปริญญา 8%','ป.ตรี+ 3%'],datasets:[{data:[49,32,8,8,3],backgroundColor:['rgba(217,119,6,.5)','rgba(2,132,199,.5)','rgba(220,38,38,.5)','rgba(124,58,237,.5)','rgba(8,145,178,.5)'],borderWidth:2,borderColor:bdr()}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{r:{grid:{color:cc.g},ticks:{display:false}}},...animPolar}});
 br('as67',['เกินอ้างอิง','ปกติ'],[12,137],[P.rd,P.gn],155,' คน');
 br('ia67',['เกินอ้างอิง','ปกติ'],[8,4],[P.pu,P.gn],10,' คน');
 dn('cn67',['เกิน (95)','ปกติ (41)'],[95,41],[P.bl,P.gl]);
@@ -1488,6 +1562,7 @@ runCountUp(document.getElementById('y67'));
 
 let r68=false;
 function render68(){r68=true;
+const cc=getChartColors();
 dn('g68',['หญิง 73%','ชาย 27%'],[73,27],[P.pk,P.bl]);
 br('a68',['<15','15-30','31-45','46-60','>60'],[4,5,21,52,68],[P.c2,P.g2,P.t2,P.or,P.gr],80,' คน');
 dn('o68',['เกษตร 53%','นักเรียน 23%','รับจ้าง 14%','ธุรกิจ 8%','ราชการ 1%','เหมือง 1%'],[53,23,14,8,1,1],[P.gn,P.bl,P.or,P.pu,P.cy,P.tl],'52%');
@@ -1499,9 +1574,9 @@ dn('me68',['ไม่เคย 86%','เคย 14%'],[86,14],[P.gn,P.bl],'58%');
 br('as68',['เกินอ้างอิง','ปกติ'],[4,146],[P.rd,P.gn],160,' คน');
 dn('ia68',['เกิน 3 (75%)','ปกติ 1 (25%)'],[3,1],[P.rd,P.gn]);
 
-new Chart(document.getElementById('cp1'),{type:'bar',data:{labels:['ปี 2567','ปี 2568'],datasets:[{data:[11,4],backgroundColor:[P.b2,P.t2],borderRadius:9,borderSkipped:false,barThickness:52}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+' คน'}}},scales:{y:{beginAtZero:true,max:14,grid:{color:cc.g},ticks:{callback:v=>v+' คน',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
-new Chart(document.getElementById('cp2'),{type:'bar',data:{labels:['ปี 2567','ปี 2568'],datasets:[{data:[7,3],backgroundColor:[P.b2,P.t2],borderRadius:9,borderSkipped:false,barThickness:52}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+' คน'}}},scales:{y:{beginAtZero:true,max:10,grid:{color:cc.g},ticks:{callback:v=>v+' คน',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
-new Chart(document.getElementById('cp3'),{type:'bar',data:{labels:['สูบ ปี67','สูบ ปี68','ไม่สูบ ปี67','ไม่สูบ ปี68'],datasets:[{label:'เกินอ้างอิง',data:[5,6,67,33],backgroundColor:[P.rd,P.or,P.bl,P.cy],borderRadius:9,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+' คน'}}},scales:{y:{beginAtZero:true,max:80,grid:{color:cc.g},ticks:{callback:v=>v+' คน',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('cp1',{type:'bar',data:{labels:['ปี 2567','ปี 2568'],datasets:[{data:[11,4],backgroundColor:[P.b2,P.t2],borderRadius:9,borderSkipped:false,barThickness:52}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+' คน'}}},scales:{y:{beginAtZero:true,max:14,grid:{color:cc.g},ticks:{callback:v=>v+' คน',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('cp2',{type:'bar',data:{labels:['ปี 2567','ปี 2568'],datasets:[{data:[7,3],backgroundColor:[P.b2,P.t2],borderRadius:9,borderSkipped:false,barThickness:52}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+' คน'}}},scales:{y:{beginAtZero:true,max:10,grid:{color:cc.g},ticks:{callback:v=>v+' คน',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('cp3',{type:'bar',data:{labels:['สูบ ปี67','สูบ ปี68','ไม่สูบ ปี67','ไม่สูบ ปี68'],datasets:[{label:'เกินอ้างอิง',data:[5,6,67,33],backgroundColor:[P.rd,P.or,P.bl,P.cy],borderRadius:9,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+' คน'}}},scales:{y:{beginAtZero:true,max:80,grid:{color:cc.g},ticks:{callback:v=>v+' คน',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 setTimeout(()=>runCountUp(document.getElementById('y68')),100);
 // New demographic charts for 2568
 dn('ind68',['เคย 23%','ไม่เคย 77%'],[23,77],[P.bl,P.or],'58%');
@@ -1520,10 +1595,11 @@ br('scnN68',['เกินอ้างอิง','ปกติ'],[43,77],[P.rd,P
 
 let rW=false;let rW68=false;let rWs=false;
 function renderWater(){if(rW)return;rW=true;
+const cc=getChartColors();
 // Overall pass/fail grouped bar
-new Chart(document.getElementById('wOvr'),{type:'bar',data:{labels:['รอบ 1 ส.ค. 67\n(N=42)','รอบ 2 พ.ย. 67\n(N=41)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,9],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[36,32],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:45,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wOvr',{type:'bar',data:{labels:['รอบ 1 ส.ค. 67\n(N=42)','รอบ 2 พ.ย. 67\n(N=41)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,9],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[36,32],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:45,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 // Pass rate by dimension
-new Chart(document.getElementById('wByDim'),{type:'bar',data:{labels:['กายภาพ','เคมี','ชีวภาพ'],datasets:[{label:'รอบ 1 (%ผ่าน)',data:[66.7,45.2,21.4],backgroundColor:'rgba(2,132,199,.7)',borderRadius:8,borderSkipped:false},{label:'รอบ 2 (%ผ่าน)',data:[75.6,61.0,31.7],backgroundColor:'rgba(22,163,74,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wByDim',{type:'bar',data:{labels:['กายภาพ','เคมี','ชีวภาพ'],datasets:[{label:'รอบ 1 (%ผ่าน)',data:[66.7,45.2,21.4],backgroundColor:'rgba(2,132,199,.7)',borderRadius:8,borderSkipped:false},{label:'รอบ 2 (%ผ่าน)',data:[75.6,61.0,31.7],backgroundColor:'rgba(22,163,74,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 // Physical
 br('wPhy',['ผ่าน (ร.1)','ไม่ผ่าน (ร.1)','ผ่าน (ร.2)','ไม่ผ่าน (ร.2)'],[28,14,31,10],[P.gn,P.rd,P.g2,P.r2],40,' แห่ง');
 // Chemical
@@ -1540,10 +1616,11 @@ setTimeout(()=>runCountUp(document.getElementById('water-content')),100);
 }
 
 function renderWater68(){if(rW68)return;rW68=true;
+const cc=getChartColors();
 
-new Chart(document.getElementById('w68Ovr'),{type:'bar',data:{labels:['รอบ 1 เม.ย. 68\n(N=36)','รอบ 2 ต.ค. 68\n(N=34)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,6],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[30,28],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:35,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('w68Ovr',{type:'bar',data:{labels:['รอบ 1 เม.ย. 68\n(N=36)','รอบ 2 ต.ค. 68\n(N=34)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,6],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[30,28],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:35,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
-new Chart(document.getElementById('w68ByDim'),{type:'bar',data:{labels:['กายภาพ','เคมี','ชีวภาพ'],datasets:[{label:'รอบ 1 (%ผ่าน)',data:[80.6,75.0,25.0],backgroundColor:'rgba(2,132,199,.7)',borderRadius:8,borderSkipped:false},{label:'รอบ 2 (%ผ่าน)',data:[73.5,79.4,29.4],backgroundColor:'rgba(22,163,74,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('w68ByDim',{type:'bar',data:{labels:['กายภาพ','เคมี','ชีวภาพ'],datasets:[{label:'รอบ 1 (%ผ่าน)',data:[80.6,75.0,25.0],backgroundColor:'rgba(2,132,199,.7)',borderRadius:8,borderSkipped:false},{label:'รอบ 2 (%ผ่าน)',data:[73.5,79.4,29.4],backgroundColor:'rgba(22,163,74,.7)',borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 br('w68Phy',['ผ่าน (ร.1)','ไม่ผ่าน (ร.1)','ผ่าน (ร.2)','ไม่ผ่าน (ร.2)'],[29,7,25,9],[P.gn,P.rd,P.g2,P.r2],35,' แห่ง');
 
@@ -1561,22 +1638,23 @@ setTimeout(()=>runCountUp(document.getElementById('w68')),100);
 }
 
 function renderWaste(){if(rWs)return;rWs=true;
+const cc=getChartColors();
 const Q=['Q3/67','Q2/68','Q3/68','Q1/69'];
 
 // 1. Pass/Fail Timeline (stacked bar) — CORRECTED: Q3/67 passed all tested (8/8, 2 not tested)
-new Chart(document.getElementById('wsTimeline'),{type:'bar',data:{labels:Q,datasets:[{label:'ผ่านเกณฑ์',data:[8,10,10,7],backgroundColor:P.gn,borderRadius:6,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[0,0,0,3],backgroundColor:P.rd,borderRadius:6,borderSkipped:false},{label:'ไม่ได้ตรวจ',data:[2,0,0,0],backgroundColor:'rgba(148,163,184,.3)',borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' ตัว'}}},scales:{y:{stacked:true,beginAtZero:true,max:12,grid:{color:cc.g},ticks:{callback:v=>v+' ตัว',color:'#94a3b8'}},x:{stacked:true,grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wsTimeline',{type:'bar',data:{labels:Q,datasets:[{label:'ผ่านเกณฑ์',data:[8,10,10,7],backgroundColor:P.gn,borderRadius:6,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[0,0,0,3],backgroundColor:P.rd,borderRadius:6,borderSkipped:false},{label:'ไม่ได้ตรวจ',data:[2,0,0,0],backgroundColor:'rgba(148,163,184,.3)',borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' ตัว'}}},scales:{y:{stacked:true,beginAtZero:true,max:12,grid:{color:cc.g},ticks:{callback:v=>v+' ตัว',color:'#94a3b8'}},x:{stacked:true,grid:{display:false},ticks:{color:cc.t}}}}});
 
 // 2. Pass Rate line — CORRECTED: Q3/67 = 100% (passed all tested)
-new Chart(document.getElementById('wsPassRate'),{type:'line',data:{labels:Q,datasets:[{label:'% ผ่านเกณฑ์',data:[100,100,100,70],borderColor:'hsl(var(--hue),70%,50%)',backgroundColor:'hsla(var(--hue),70%,50%,.1)',fill:true,tension:.3,pointRadius:6,pointBackgroundColor:['#16a34a','#16a34a','#16a34a','#ef4444'],pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+'%'}}},scales:{y:{min:0,max:110,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wsPassRate',{type:'line',data:{labels:Q,datasets:[{label:'% ผ่านเกณฑ์',data:[100,100,100,70],borderColor:'hsl(var(--hue),70%,50%)',backgroundColor:'hsla(var(--hue),70%,50%,.1)',fill:true,tension:.3,pointRadius:6,pointBackgroundColor:['#16a34a','#16a34a','#16a34a','#ef4444'],pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+'%'}}},scales:{y:{min:0,max:110,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 // 3. BOD trend — CORRECTED: Q3/67 after = 5 (NOT 471)
-new Chart(document.getElementById('wsBOD'),{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[51,69,null,102],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[5,5,6.2,14.1],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤20)',data:[20,20,20,20],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':''}}}},scales:{y:{beginAtZero:true,max:120,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wsBOD',{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[51,69,null,102],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[5,5,6.2,14.1],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤20)',data:[20,20,20,20],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':''}}}},scales:{y:{beginAtZero:true,max:120,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 // 4. TSS trend — CORRECTED: Q3/67 not tested (null)
-new Chart(document.getElementById('wsTSS'),{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[null,55,null,67],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[null,19,null,25],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤30)',data:[30,30,30,30],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':'ไม่ได้ตรวจ'}}}},scales:{y:{beginAtZero:true,max:80,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wsTSS',{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[null,55,null,67],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[null,19,null,25],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤30)',data:[30,30,30,30],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':'ไม่ได้ตรวจ'}}}},scales:{y:{beginAtZero:true,max:80,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 // 5. TKN trend (unchanged)
-new Chart(document.getElementById('wsTKN'),{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[50.9,73.73,null,95.1],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[7.01,6.65,11.2,16.2],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤35)',data:[35,35,35,35],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':''}}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wsTKN',{type:'bar',data:{labels:Q,datasets:[{label:'ก่อนบำบัด',data:[50.9,73.73,null,95.1],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false},{label:'หลังบำบัด',data:[7.01,6.65,11.2,16.2],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'เกณฑ์ (≤35)',data:[35,35,35,35],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+' mg/L':''}}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 // 6. Heat Table — CORRECTED
 const htEl=document.getElementById('wsHeatTable');
@@ -1634,11 +1712,17 @@ ann.forEach(a=>{
 at+='</table>';
 atEl.innerHTML=at;
 
-// 7. Treatment Efficiency — CORRECTED: Q3/67 BOD = (51-5)/51 = 90.2%
-new Chart(document.getElementById('wsEfficiency'),{type:'bar',data:{labels:['BOD','TSS','TKN'],datasets:[{label:'Q3/67',data:[90.2,null,86.2],backgroundColor:'rgba(124,58,237,.5)',borderRadius:6,borderSkipped:false},{label:'Q2/68',data:[92.8,65.5,91.0],backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},{label:'Q1/69',data:[86.2,62.7,83.0],backgroundColor:'rgba(2,132,199,.6)',borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10.5}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return v!=null?x.dataset.label+': '+v+'%':'ไม่ได้ตรวจ'}}}},scales:{y:{beginAtZero:true,max:100,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+// 7. Before vs After Treatment — Q1/69 (latest quarter) paired bars
+safeChart('wsBeforeAfter',{type:'bar',data:{
+  labels:['BOD\n(เกณฑ์ ≤20)','TSS\n(เกณฑ์ ≤30)','TKN\n(เกณฑ์ ≤35)'],
+  datasets:[
+    {label:'ก่อนบำบัด',data:[102,67,95.1],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6,borderSkipped:false,barPercentage:0.7},
+    {label:'หลังบำบัด',data:[14.1,25,16.2],backgroundColor:'rgba(22,163,74,.7)',borderRadius:6,borderSkipped:false,barPercentage:0.7},
+    {label:'เกณฑ์มาตรฐาน',data:[20,30,35],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#facc15',pointBorderColor:'#fff',pointBorderWidth:2,fill:false}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},usePointStyle:true,pointStyle:'circle',padding:14}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;if(v==null)return'';return x.dataset.label+': '+v+(x.datasetIndex<2?' mg/L':'')}}}},scales:{y:{beginAtZero:true,max:110,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'},title:{display:true,text:'mg/L',font:{size:11},color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:11}}}}}});
 
 // 8. Bacteria chart
-new Chart(document.getElementById('wsBacteria'),{type:'bar',data:{labels:Q,datasets:[{label:'Coliform (หลังบำบัด)',data:[11,23,490,9200],backgroundColor:['rgba(22,163,74,.6)','rgba(22,163,74,.6)','rgba(250,204,21,.6)','rgba(239,68,68,.6)'],borderRadius:6,borderSkipped:false},{label:'Fecal Coliform (หลังบำบัด)',data:[6.8,2,490,9200],backgroundColor:['rgba(34,197,94,.4)','rgba(34,197,94,.4)','rgba(253,224,71,.4)','rgba(248,113,113,.4)'],borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10.5}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y.toLocaleString()+' MPN/100mL'}}},scales:{y:{type:'logarithmic',grid:{color:cc.g},ticks:{color:'#94a3b8',callback:function(v){if([1,10,100,1000,5000,10000].includes(v))return v.toLocaleString();return''}}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
+safeChart('wsBacteria',{type:'bar',data:{labels:Q,datasets:[{label:'Coliform (หลังบำบัด)',data:[11,23,490,9200],backgroundColor:['rgba(22,163,74,.6)','rgba(22,163,74,.6)','rgba(250,204,21,.6)','rgba(239,68,68,.6)'],borderRadius:6,borderSkipped:false},{label:'Fecal Coliform (หลังบำบัด)',data:[6.8,2,490,9200],backgroundColor:['rgba(34,197,94,.4)','rgba(34,197,94,.4)','rgba(253,224,71,.4)','rgba(248,113,113,.4)'],borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10.5}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y.toLocaleString()+' MPN/100mL'}}},scales:{y:{type:'logarithmic',grid:{color:cc.g},ticks:{color:'#94a3b8',callback:function(v){if([1,10,100,1000,5000,10000].includes(v))return v.toLocaleString();return''}}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
 
 setTimeout(()=>runCountUp(document.getElementById('waste-content')),100);
 }
@@ -1660,22 +1744,22 @@ function renderTap(){if(rTap)return;rTap=true;
 const cc=getChartColors();
 
 // 1. Overall Pass/Fail bar
-new Chart(document.getElementById('tapOvr'),{type:'bar',data:{labels:['รอบ 1/67\nก่อนเข้าระบบ','รอบ 1/67\nหลังเข้าระบบ','รอบ 2/67\nก่อนเข้าระบบ','รอบ 2/67\nหลังเข้าระบบ','รอบ 1/68\nก่อนเข้าระบบ','รอบ 1/68\nหลังเข้าระบบ','รอบ 2/68\nก่อนเข้าระบบ','รอบ 2/68\nหลังเข้าระบบ'],datasets:[{label:'ผ่านเกณฑ์',data:[21,21,19,21,21,21,21,21],backgroundColor:['#16a34a','#16a34a','#ef4444','#16a34a','#16a34a','#16a34a','#16a34a','#16a34a'],borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.x+'/21 พารามิเตอร์'+(x.parsed.x<21?' ❌':' ✅')}}},scales:{x:{beginAtZero:true,max:21,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},y:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}}}});
+safeChart('tapOvr',{type:'bar',data:{labels:['รอบ 1/67\nก่อนเข้าระบบ','รอบ 1/67\nหลังเข้าระบบ','รอบ 2/67\nก่อนเข้าระบบ','รอบ 2/67\nหลังเข้าระบบ','รอบ 1/68\nก่อนเข้าระบบ','รอบ 1/68\nหลังเข้าระบบ','รอบ 2/68\nก่อนเข้าระบบ','รอบ 2/68\nหลังเข้าระบบ'],datasets:[{label:'ผ่านเกณฑ์',data:[21,21,19,21,21,21,21,21],backgroundColor:['#16a34a','#16a34a','#ef4444','#16a34a','#16a34a','#16a34a','#16a34a','#16a34a'],borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.x+'/21 พารามิเตอร์'+(x.parsed.x<21?' ❌':' ✅')}}},scales:{x:{beginAtZero:true,max:21,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},y:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}}}});
 
 // 2. Pass by dimension
-new Chart(document.getElementById('tapDim'),{type:'bar',data:{labels:['กายภาพ\n(สี ขุ่น pH)','เคมี\n(TDS,Hardness ฯ)','โลหะหนัก\n(9 ตัว)','ชีวภาพ\n(Coliform,E.coli)'],datasets:[{label:'% ผ่านเกณฑ์',data:[100,100,100,87.5],backgroundColor:[P.gn,P.bl,P.pu,'rgba(245,158,11,.7)'],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:110,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}}}});
+safeChart('tapDim',{type:'bar',data:{labels:['กายภาพ\n(สี ขุ่น pH)','เคมี\n(TDS,Hardness ฯ)','โลหะหนัก\n(9 ตัว)','ชีวภาพ\n(Coliform,E.coli)'],datasets:[{label:'% ผ่านเกณฑ์',data:[100,100,100,87.5],backgroundColor:[P.gn,P.bl,P.pu,'rgba(245,158,11,.7)'],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:110,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}}}});
 
 // 3. Timeline — pass count per round
-new Chart(document.getElementById('tapTimeline'),{type:'line',data:{labels:['รอบ 1/67\n(ม.ค.67)','รอบ 2/67\n(ส.ค.67)','รอบ 1/68\n(มี.ค.68)','รอบ 2/68\n(ส.ค.68)'],datasets:[{label:'น้ำก่อนเข้าระบบ',data:[21,19,21,21],borderColor:'#0284c7',backgroundColor:'rgba(2,132,199,.08)',fill:true,tension:.3,pointRadius:7,pointHoverRadius:10,borderWidth:3,pointBackgroundColor:['#16a34a','#ef4444','#16a34a','#16a34a'],pointBorderColor:'#fff',pointBorderWidth:2},{label:'น้ำหลังเข้าระบบ',data:[21,21,21,21],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,.06)',fill:true,tension:.3,pointRadius:7,pointHoverRadius:10,borderWidth:3,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:12},usePointStyle:true,pointStyle:'circle',padding:16}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'/21'+(x.parsed.y<21?' ❌':' ✅')}}},scales:{y:{min:17,max:22,grid:{color:cc.g},ticks:{stepSize:1,color:'#94a3b8',callback:v=>v+'/21'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}},animation:{duration:1200,easing:'easeOutQuart'}}});
+safeChart('tapTimeline',{type:'line',data:{labels:['รอบ 1/67\n(ม.ค.67)','รอบ 2/67\n(ส.ค.67)','รอบ 1/68\n(มี.ค.68)','รอบ 2/68\n(ส.ค.68)'],datasets:[{label:'น้ำก่อนเข้าระบบ',data:[21,19,21,21],borderColor:'#0284c7',backgroundColor:'rgba(2,132,199,.08)',fill:true,tension:.3,pointRadius:7,pointHoverRadius:10,borderWidth:3,pointBackgroundColor:['#16a34a','#ef4444','#16a34a','#16a34a'],pointBorderColor:'#fff',pointBorderWidth:2},{label:'น้ำหลังเข้าระบบ',data:[21,21,21,21],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,.06)',fill:true,tension:.3,pointRadius:7,pointHoverRadius:10,borderWidth:3,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:12},usePointStyle:true,pointStyle:'circle',padding:16}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'/21'+(x.parsed.y<21?' ❌':' ✅')}}},scales:{y:{min:17,max:22,grid:{color:cc.g},ticks:{stepSize:1,color:'#94a3b8',callback:v=>v+'/21'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}},animation:{duration:1200,easing:'easeOutQuart'}}});
 
 // 4. TDS comparison (2568)
-new Chart(document.getElementById('tapTDS'),{type:'bar',data:{labels:['รอบ 1 ก่อนเข้าระบบ','รอบ 1 หลังเข้าระบบ\n(OPD)','รอบ 2 ก่อนเข้าระบบ','รอบ 2 หลังเข้าระบบ\n(IPD)'],datasets:[{label:'TDS (mg/L)',data:[104,114,120,154],backgroundColor:[P.bl,P.t2,P.bl,P.t2],borderRadius:8,borderSkipped:false},{label:'เกณฑ์ (≤500)',data:[500,500,500,500],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return x.dataset.label+': '+v+' mg/L'}}}},scales:{y:{beginAtZero:true,max:550,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
+safeChart('tapTDS',{type:'bar',data:{labels:['รอบ 1 ก่อนเข้าระบบ','รอบ 1 หลังเข้าระบบ\n(OPD)','รอบ 2 ก่อนเข้าระบบ','รอบ 2 หลังเข้าระบบ\n(IPD)'],datasets:[{label:'TDS (mg/L)',data:[104,114,120,154],backgroundColor:[P.bl,P.t2,P.bl,P.t2],borderRadius:8,borderSkipped:false},{label:'เกณฑ์ (≤500)',data:[500,500,500,500],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return x.dataset.label+': '+v+' mg/L'}}}},scales:{y:{beginAtZero:true,max:550,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
 
 // 5. Hardness comparison (2568)
-new Chart(document.getElementById('tapHard'),{type:'bar',data:{labels:['รอบ 1 ก่อนเข้าระบบ','รอบ 1 หลังเข้าระบบ\n(OPD)','รอบ 2 ก่อนเข้าระบบ','รอบ 2 หลังเข้าระบบ\n(IPD)'],datasets:[{label:'Hardness (mg/L)',data:[68.6,5.7,64.4,36.2],backgroundColor:[P.or,P.o2,P.or,P.o2],borderRadius:8,borderSkipped:false},{label:'เกณฑ์ (≤300)',data:[300,300,300,300],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return x.dataset.label+': '+v+' mg/L'}}}},scales:{y:{beginAtZero:true,max:350,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
+safeChart('tapHard',{type:'bar',data:{labels:['รอบ 1 ก่อนเข้าระบบ','รอบ 1 หลังเข้าระบบ\n(OPD)','รอบ 2 ก่อนเข้าระบบ','รอบ 2 หลังเข้าระบบ\n(IPD)'],datasets:[{label:'Hardness (mg/L)',data:[68.6,5.7,64.4,36.2],backgroundColor:[P.or,P.o2,P.or,P.o2],borderRadius:8,borderSkipped:false},{label:'เกณฑ์ (≤300)',data:[300,300,300,300],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return x.dataset.label+': '+v+' mg/L'}}}},scales:{y:{beginAtZero:true,max:350,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
 
 // 6. pH comparison (2568) - horizontal line chart style
-new Chart(document.getElementById('tapPH'),{type:'bar',data:{labels:['รอบ 1 ก่อน','รอบ 1 หลัง(OPD)','รอบ 2 ก่อน','รอบ 2 หลัง(IPD)'],datasets:[{label:'pH',data:[8.0,7.8,7.92,7.78],backgroundColor:[P.cy,P.c2,P.cy,P.c2],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>'pH: '+x.parsed.y}},annotation:{annotations:{min:{type:'line',yMin:6.5,yMax:6.5,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[4,3]},max:{type:'line',yMin:8.5,yMax:8.5,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[4,3]}}}},scales:{y:{min:5.5,max:9.5,grid:{color:cc.g},ticks:{color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
+safeChart('tapPH',{type:'bar',data:{labels:['รอบ 1 ก่อน','รอบ 1 หลัง(OPD)','รอบ 2 ก่อน','รอบ 2 หลัง(IPD)'],datasets:[{label:'pH',data:[8.0,7.8,7.92,7.78],backgroundColor:[P.cy,P.c2,P.cy,P.c2],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>'pH: '+x.parsed.y}},annotation:{annotations:{min:{type:'line',yMin:6.5,yMax:6.5,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[4,3]},max:{type:'line',yMin:8.5,yMax:8.5,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[4,3]}}}},scales:{y:{min:5.5,max:9.5,grid:{color:cc.g},ticks:{color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
 
 // 7. Doughnut — pass by dimension (2568)
 dn('tapPassDn',['กายภาพ 100%','เคมี 100%','โลหะหนัก 100%','ชีวภาพ 100%'],[3,8,8,2],[P.gn,P.bl,P.pu,P.cy],'52%');
@@ -1819,7 +1903,7 @@ function exportWord(pageId){
     t('ระบบข้อมูลสุขภาพ โรงพยาบาลทับคล้อ',{align:D.AlignmentType.CENTER,size:22,color:GRAY,before:200}),
     new D.Paragraph({children:[new D.TextRun({text:line1,font:'TH Sarabun New',size:44,bold:true,color:PRIMARY})],alignment:D.AlignmentType.CENTER,spacing:{before:80,after:40}}),
     new D.Paragraph({children:[new D.TextRun({text:line2,font:'TH Sarabun New',size:36,bold:true,color:ACCENT})],alignment:D.AlignmentType.CENTER,spacing:{after:40}}),
-    t('หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร',{align:D.AlignmentType.CENTER,size:24,color:GRAY}),
+    t('กลุ่มงานบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร',{align:D.AlignmentType.CENTER,size:24,color:GRAY}),
     t('วันที่ส่งออก: '+today,{align:D.AlignmentType.CENTER,size:22,color:GRAY,after:200}),
     spacer()
   ]}
