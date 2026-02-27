@@ -43,27 +43,38 @@ html{scroll-behavior:smooth}
 body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.7;display:flex;transition:background .4s,color .4s;font-size:15px}
 
 /* ═══ SIDEBAR ═══ */
-.sidebar{position:fixed;top:0;left:0;bottom:0;width:300px;background:linear-gradient(180deg,hsl(var(--hue),65%,18%) 0%,hsl(var(--hue),50%,12%) 40%,#0a0f1a 100%);color:#fff;z-index:100;display:flex;flex-direction:column;transition:transform .3s,background .5s;overflow-y:auto}
-.sidebar::-webkit-scrollbar{width:4px}
-.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
-.sidebar::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='300' height='900' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='g1' cx='80%25' cy='10%25' r='60%25'%3E%3Cstop offset='0%25' stop-color='white' stop-opacity='0.04'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='g2' cx='20%25' cy='80%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='white' stop-opacity='0.03'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23g1)' width='300' height='900'/%3E%3Crect fill='url(%23g2)' width='300' height='900'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:300px;background:linear-gradient(180deg,hsl(var(--hue),55%,16%) 0%,hsl(var(--hue),45%,10%) 35%,#060a14 100%);color:#fff;z-index:100;display:flex;flex-direction:column;transition:transform .3s,background .5s;overflow-y:auto}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:4px}
+.sidebar::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='300' height='900' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='g1' cx='70%25' cy='5%25' r='55%25'%3E%3Cstop offset='0%25' stop-color='white' stop-opacity='0.05'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='g2' cx='30%25' cy='85%25' r='40%25'%3E%3Cstop offset='0%25' stop-color='white' stop-opacity='0.02'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23g1)' width='300' height='900'/%3E%3Crect fill='url(%23g2)' width='300' height='900'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 .sidebar>*{position:relative;z-index:1}
 
 /* Brand */
-.side-brand{padding:30px 22px 26px;border-bottom:none;position:relative}
-.side-brand::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
-.side-brand .brand-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
-.side-brand .logo-img{width:68px;height:68px;border-radius:18px;background:linear-gradient(135deg,hsla(var(--hue),70%,45%,.4),hsla(var(--hue),60%,30%,.2));backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 4px hsla(var(--hue),70%,40%,.1);margin-bottom:14px;transition:all .4s}
-.side-brand .logo-img:hover{transform:scale(1.05);box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 6px hsla(var(--hue),70%,40%,.15)}
-.side-brand .brand-text h2{font-family:'Kanit',sans-serif;font-size:18px;font-weight:800;line-height:1.25;letter-spacing:.3px;background:linear-gradient(135deg,#fff,rgba(255,255,255,.75));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.side-brand .brand-text p{font-size:12px;color:rgba(255,255,255,.35);margin-top:3px;font-weight:500;letter-spacing:.3px}
-.side-brand .brand-tag{display:inline-flex;align-items:center;gap:5px;margin-top:12px;padding:4px 14px;border-radius:100px;background:hsla(var(--hue),70%,40%,.15);border:1px solid hsla(var(--hue),70%,50%,.12);font-size:10px;font-weight:700;color:hsl(var(--hue),60%,65%);letter-spacing:1.5px;text-transform:uppercase}
-.side-brand .brand-tag .dot{width:6px;height:6px;border-radius:50%;background:hsl(var(--hue),70%,55%);box-shadow:0 0 6px hsl(var(--hue),70%,50%);animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.side-brand{padding:34px 22px 28px;border-bottom:none;position:relative}
+.side-brand::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.side-brand .brand-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;position:relative}
+/* Ambient glow behind logo */
+.side-brand .brand-top::before{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,hsla(var(--hue),70%,50%,.12) 0%,transparent 70%);pointer-events:none;animation:ambientPulse 4s ease-in-out infinite;z-index:0}
+@keyframes ambientPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+/* Logo — multi-layer glass */
+.side-brand .logo-img{position:relative;z-index:1;width:74px;height:74px;border-radius:22px;background:linear-gradient(145deg,hsla(var(--hue),60%,42%,.5),hsla(var(--hue),50%,25%,.3));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;box-shadow:0 12px 40px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.04),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(0,0,0,.1);margin-bottom:18px;transition:all .5s cubic-bezier(.25,.46,.45,.94)}
+.side-brand .logo-img:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 16px 48px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.06),0 0 30px hsla(var(--hue),70%,50%,.08),inset 0 1px 0 rgba(255,255,255,.15),inset 0 -1px 0 rgba(0,0,0,.1)}
+/* Glass shine top half */
+.side-brand .logo-img::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;border-radius:22px 22px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,transparent 100%);pointer-events:none}
+/* Subtle outer ring */
+.side-brand .logo-img::after{content:'';position:absolute;inset:-5px;border-radius:27px;border:1px solid hsla(var(--hue),60%,50%,.06);pointer-events:none}
+/* Title */
+.side-brand .brand-text{position:relative;z-index:1}
+.side-brand .brand-text h2{font-family:'Kanit',sans-serif;font-size:19px;font-weight:700;line-height:1.3;letter-spacing:.2px;background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.side-brand .brand-text p{font-size:11.5px;color:rgba(255,255,255,.28);margin-top:5px;font-weight:500;letter-spacing:.6px}
+/* Status badge — frosted pill */
+.side-brand .brand-tag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:5px 16px;border-radius:100px;background:hsla(var(--hue),60%,40%,.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid hsla(var(--hue),60%,50%,.1);font-size:9.5px;font-weight:700;color:hsl(var(--hue),55%,65%);letter-spacing:1.2px;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.04)}
+.side-brand .brand-tag .dot{width:6px;height:6px;border-radius:50%;background:hsl(var(--hue),70%,55%);box-shadow:0 0 8px hsl(var(--hue),70%,50%),0 0 16px hsla(var(--hue),70%,50%,.3);animation:pulse-dot 2.5s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 8px hsl(var(--hue),70%,50%),0 0 16px hsla(var(--hue),70%,50%,.3)}50%{opacity:.5;box-shadow:0 0 4px hsl(var(--hue),70%,50%)}}
 
 /* Section */
-.side-sec{padding:22px 22px 10px;font-size:10.5px;font-weight:800;color:rgba(255,255,255,.25);letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.side-sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.08),transparent)}
+.side-sec{padding:24px 22px 12px;font-size:10px;font-weight:800;color:rgba(255,255,255,.2);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.side-sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.06),transparent)}
 
 /* Nav */
 .side-nav{padding:0 14px;flex:1}
@@ -250,8 +261,11 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .obs-left.visible{opacity:1;transform:translateX(0)}
 .obs-scale{opacity:0;transform:scale(.96);will-change:opacity,transform;transition:opacity .4s cubic-bezier(.25,.46,.45,.94),transform .4s cubic-bezier(.25,.46,.45,.94)}
 .obs-scale.visible{opacity:1;transform:scale(1)}
+/* Chart containers — opacity only, NO transform (protects Chart.js canvas sizing) */
+.obs-fade{opacity:0;will-change:opacity;transition:opacity .5s cubic-bezier(.25,.46,.45,.94)}
+.obs-fade.visible{opacity:1}
 @media(prefers-reduced-motion:reduce){
-  .obs,.obs-left,.obs-scale{opacity:1!important;transform:none!important;transition:none!important}
+  .obs,.obs-left,.obs-scale,.obs-fade{opacity:1!important;transform:none!important;transition:none!important}
   .kpi-vl.counted{animation:none!important}
   .nav-ripple{animation:none!important}
   .pf{transition:none!important}
@@ -366,7 +380,50 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <nav class="sidebar" id="sidebar">
   <div class="side-brand">
     <div class="brand-top">
-      <div class="logo-img"><svg viewBox="0 0 24 24" width="32" height="32" stroke="rgba(255,255,255,.9)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg></div>
+      <div class="logo-img">
+        <svg viewBox="0 0 36 40" width="40" height="44" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- ══ Filing Cabinet — คลังข้อมูล 3 ลิ้นชัก ══ -->
+          
+          <!-- ── Cabinet body (outer frame) ── -->
+          <rect x="5" y="3" width="26" height="32" rx="2.5" 
+                stroke="rgba(255,255,255,.85)" stroke-width="1.4" fill="rgba(255,255,255,.03)"/>
+          
+          <!-- ── Drawer 1 (top) ── -->
+          <line x1="5" y1="13.5" x2="31" y2="13.5" stroke="rgba(255,255,255,.25)" stroke-width=".5"/>
+          <!-- Handle frame — open/transparent -->
+          <rect x="12" y="6.5" width="12" height="3.5" rx="1.5" 
+                stroke="rgba(255,255,255,.6)" stroke-width=".9" fill="none"/>
+          <!-- Accent light dot -->
+          <circle cx="18" cy="8.25" r="1.2" fill="hsla(var(--hue),75%,55%,.7)"/>
+          <circle cx="18" cy="8.25" r="2.2" fill="hsla(var(--hue),70%,55%,.08)"/>
+          
+          <!-- ── Drawer 2 (middle) ── -->
+          <line x1="5" y1="24" x2="31" y2="24" stroke="rgba(255,255,255,.2)" stroke-width=".5"/>
+          <!-- Handle frame — open/transparent -->
+          <rect x="12" y="17" width="12" height="3.5" rx="1.5" 
+                stroke="rgba(255,255,255,.5)" stroke-width=".8" fill="none"/>
+          <!-- Accent light dot -->
+          <circle cx="18" cy="18.75" r="1.2" fill="hsla(var(--hue),75%,55%,.55)"/>
+          <circle cx="18" cy="18.75" r="2.2" fill="hsla(var(--hue),70%,55%,.06)"/>
+          
+          <!-- ── Drawer 3 (bottom) ── -->
+          <!-- Handle frame — open/transparent -->
+          <rect x="12" y="27.5" width="12" height="3.5" rx="1.5" 
+                stroke="rgba(255,255,255,.4)" stroke-width=".7" fill="none"/>
+          <!-- Accent light dot -->
+          <circle cx="18" cy="29.25" r="1.2" fill="hsla(var(--hue),75%,55%,.4)"/>
+          <circle cx="18" cy="29.25" r="2.2" fill="hsla(var(--hue),70%,55%,.04)"/>
+          
+          <!-- ── Cabinet feet ── -->
+          <rect x="8" y="35" width="3" height="2" rx=".8" fill="rgba(255,255,255,.15)"/>
+          <rect x="25" y="35" width="3" height="2" rx=".8" fill="rgba(255,255,255,.15)"/>
+          
+          <!-- ── Label slots (small detail lines) ── -->
+          <line x1="14" y1="11.5" x2="22" y2="11.5" stroke="rgba(255,255,255,.12)" stroke-width=".4"/>
+          <line x1="14" y1="22" x2="22" y2="22" stroke="rgba(255,255,255,.1)" stroke-width=".4"/>
+          <line x1="14" y1="32.5" x2="22" y2="32.5" stroke="rgba(255,255,255,.08)" stroke-width=".4"/>
+        </svg>
+      </div>
       <div class="brand-text">
         <h2>ระบบข้อมูลสุขภาพ</h2>
         <p>โรงพยาบาลทับคล้อ จ.พิจิตร</p>
@@ -376,19 +433,28 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   </div>
   <div class="side-sec">เมนูหลัก</div>
   <div class="side-nav">
-    <a class="nav-item active" data-tip="ภาพรวมทุกระบบ" onclick="goPage('home',this)"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span>หน้าหลัก</span></a>
-    <a class="nav-item expanded" data-tip="เหมืองแร่ทองคำ จ.พิจิตร" onclick="togSub(this,'sub-mine')"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span>งานเหมืองทอง</span><span class="nav-arrow"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="6 9 12 15 18 9"/></svg></span></a>
+    <!-- หน้าหลัก — Bento Grid -->
+    <a class="nav-item active" data-tip="ภาพรวมทุกระบบ" onclick="goPage('home',this)"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg></span><span>หน้าหลัก</span></a>
+
+    <!-- งานเหมืองทอง — Mountain + Sun -->
+    <a class="nav-item expanded" data-tip="เหมืองแร่ทองคำ จ.พิจิตร" onclick="togSub(this,'sub-mine')"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M2 20L9 6l5 8 4-4 4 10H2z"/><circle cx="18" cy="5" r="3"/></svg></span><span>งานเหมืองทอง</span><span class="nav-arrow"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="6 9 12 15 18 9"/></svg></span></a>
     <div class="nav-sub open" id="sub-mine">
       <a class="active" onclick="goPage('mine',this)">ผลตรวจสุขภาพประชาชน</a>
       <a onclick="goPage('water',this)">ผลน้ำประปารอบเหมือง</a>
     </div>
-    <a class="nav-item" data-tip="น้ำเสีย & น้ำประปา รพ." onclick="togSub(this,'sub-env')"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span>งานสิ่งแวดล้อม</span><span class="nav-arrow"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="6 9 12 15 18 9"/></svg></span></a>
+
+    <!-- งานสิ่งแวดล้อม — Droplet + Wave -->
+    <a class="nav-item" data-tip="น้ำเสีย & น้ำประปา รพ." onclick="togSub(this,'sub-env')"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/><path d="M9.1 16.5a3 3 0 0 0 5.8 0"/></svg></span><span>งานสิ่งแวดล้อม</span><span class="nav-arrow"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="6 9 12 15 18 9"/></svg></span></a>
     <div class="nav-sub" id="sub-env">
       <a onclick="goPage('waste',this)">ผลบำบัดน้ำเสีย รพ.</a>
       <a onclick="goPage('tap',this)">ผลน้ำประปา รพ.</a>
     </div>
-    <a class="nav-item" data-tip="ความปลอดภัยในการทำงาน" onclick="goPage('occ',this)"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span>งานอาชีวอนามัย</span></a>
-    <a class="nav-item" data-tip="ข้อมูลระบบ & ติดต่อ" onclick="goPage('about',this)"><span class="nav-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span>เกี่ยวกับระบบ</span></a>
+
+    <!-- งานอาชีวอนามัย — ShieldCheck -->
+    <a class="nav-item" data-tip="ความปลอดภัยในการทำงาน" onclick="goPage('occ',this)"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><span>งานอาชีวอนามัย</span></a>
+
+    <!-- เกี่ยวกับระบบ — Info Circle -->
+    <a class="nav-item" data-tip="ข้อมูลระบบ & ติดต่อ" onclick="goPage('about',this)"><span class="nav-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span>เกี่ยวกับระบบ</span></a>
   </div>
   <!-- Controls -->
   <div class="side-ctrl">
@@ -440,7 +506,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   </div>
   <div class="alert-item a-warn">
     <div class="a-icon">🚰</div>
-    <div class="a-body"><div class="a-title">น้ำประปารอบเหมือง ผ่านเกณฑ์เพียง 17.6%</div><div class="a-desc">ปี 68 รอบ 2: ผ่าน 6/34 แห่ง | ชีวภาพ Coliform ยังเป็นปัญหาหนักสุด 70%</div></div>
+    <div class="a-body"><div class="a-title">น้ำประปารอบเหมือง ผ่านเกณฑ์เพียง 17.6%</div><div class="a-desc">ปี 68 รอบ 2: ผ่าน 6/34 แห่ง | พบ Cd (แคดเมียม) เกินมาตรฐาน 7 แห่ง ⚠️</div></div>
     <div class="a-time">ต.ค. 2568</div>
   </div>
   <div class="alert-item a-info">
@@ -719,13 +785,13 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div class="mgr">
   <div class="mgi"><h4>📍 ขอบเขตพื้นที่</h4><ul><li>จ.พิจิตร อ.ทับคล้อ รัศมี 10 กม.</li><li>รอบ 1: 36 ระบบ / รอบ 2: 34 ระบบ</li><li>2 ตำบล: เขาเจ็ดลูก & เขาทราย</li></ul></div>
   <div class="mgi"><h4>🔬 พารามิเตอร์ 23 รายการ</h4><ul><li>กายภาพ: สี ความขุ่น pH</li><li>เคมี: TDS Hardness Sulfate Chloride Nitrate Nitrite Fluoride</li><li>โลหะหนักพิษ: Pb Cr Cd As Hg CN Ni</li><li>โลหะหนักทั่วไป: Fe Mn Cu Zn</li><li>ชีวภาพ: Coliform E.coli</li></ul></div>
-  <div class="mgi"><h4>📅 ความถี่ & จุดเก็บ</h4><ul><li>2 ครั้ง/ปี (รอบ 1: เม.ย. 68, รอบ 2: ต.ค. 68)</li><li>จุดเก็บ: น้ำออกจากระบบ/ต้นท่อ</li><li>วิธี: Standard Methods 23rd Ed.</li></ul></div>
-  <div class="mgi"><h4>🏢 หน่วยงาน</h4><ul><li>ศูนย์อนามัยที่ 3 นครสวรรค์</li><li>สสจ.พิจิตร / สสอ.ทับคล้อ</li><li>รพ.ทับคล้อ / รพ.สต.เขาเจ็ดลูก</li><li>รายงานผล: 6 มิ.ย. 68 & 3 พ.ย. 68</li></ul></div>
+  <div class="mgi"><h4>📅 ความถี่ & จุดเก็บ</h4><ul><li>2 ครั้ง/ปี (รอบ 1: 21-22 เม.ย. 68, รอบ 2: 20-21 ต.ค. 68)</li><li>จุดเก็บ: น้ำเข้า + น้ำออกจากระบบ</li><li>วิธี: Standard Methods 23rd Ed.</li></ul></div>
+  <div class="mgi"><h4>🏢 หน่วยงาน</h4><ul><li>ศูนย์อนามัยที่ 3 นครสวรรค์</li><li>สสจ.พิจิตร / สสอ.ทับคล้อ</li><li>รพ.ทับคล้อ / รพ.สต.เขาเจ็ดลูก</li><li>ออกใบรายงาน: 6 มิ.ย. 68 & 3 พ.ย. 68</li></ul></div>
 </div></div></div>
 
 <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
   <div style="background:linear-gradient(135deg,rgba(2,132,199,.06),rgba(14,165,233,.03));border:1px solid rgba(2,132,199,.12);border-radius:16px;padding:16px 14px 10px">
-    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#0284c7;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 1 — เม.ย. 2568 (N=36)</div>
+    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#0284c7;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 1 — 21-22 เม.ย. 2568 (N=36)</div>
     <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:0">
       <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 1)</div><div class="kpi-vl" data-count="36">0</div><div class="kpi-sb">เม.ย. 68 | จ.พิจิตร รัศมี 10 กม.</div></div>
       <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 1)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">16.7% ของ 36 แห่ง</div></div>
@@ -734,7 +800,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
     </div>
   </div>
   <div style="background:linear-gradient(135deg,rgba(22,163,74,.06),rgba(74,222,128,.03));border:1px solid rgba(22,163,74,.12);border-radius:16px;padding:16px 14px 10px">
-    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 2 — ต.ค. 2568 (N=34)</div>
+    <div style="font-family:'Kanit',sans-serif;font-size:12px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:6px">📋 รอบที่ 2 — 20-21 ต.ค. 2568 (N=34)</div>
     <div class="kpig" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:0">
       <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🏗️</div></div><div class="kpi-lb">ระบบประปา (รอบ 2)</div><div class="kpi-vl" data-count="34">0</div><div class="kpi-sb">ลดลง 2 แห่งจากรอบ 1</div></div>
       <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div><div class="kpi-trend down">→ 0</div></div><div class="kpi-lb">ผ่านเกณฑ์ (รอบ 2)</div><div class="kpi-vl" data-count="6">0</div><div class="kpi-sb">17.6% ของ 34 แห่ง</div></div>
@@ -761,10 +827,90 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform Bacteria, E.coli</div><div class="cw"><canvas id="w68Bio"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>29.4%</span></div><div class="pb"><div class="pf" style="width:29.4%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 ไม่พบเชื้อ 9 แห่ง (25.0%) → รอบ 2 ไม่พบเชื้อ 10 แห่ง (29.4%) ดีขึ้นเล็กน้อย +4.4% แต่<strong>ยังเป็นปัญหาหนักสุด</strong> — Coliform เกิน 24 แห่ง (70.6%), E.coli เกิน 18 แห่ง (52.9%) ในรอบ 2</div></div>
   <div class="cc"><h3>พารามิเตอร์ 23 รายการ & สิ่งที่เกินเกณฑ์</h3><div class="cs">ตรวจทุกจุดตามเกณฑ์กรมอนามัย 2563</div><div class="cw"><canvas id="w68Heavy"></canvas></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11.5px">
-      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะหนักพิษที่เกิน:</strong><br><span style="color:var(--t3)">As, Cd, Pb (รอบ 2 พบ Pb, Cd เกินเพิ่ม)</span></div>
-      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ เคมี/โลหะทั่วไปที่เกิน:</strong><br><span style="color:var(--t3)">Fe, Mn, TDS, Hardness, Sulfate, Fluoride</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะหนักพิษที่เกิน:</strong><br><span style="color:var(--t3)">As 1-2 แห่ง (#2 เขาตะพานนาก ทั้ง 2 รอบ)<br>Cd เกินรอบ 2 ถึง 7 แห่ง (รอบ 1 ไม่พบ)</span></div>
+      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะทั่วไป/เคมีที่เกิน:</strong><br><span style="color:var(--t3)">Fe เกิน 5-7 แห่ง, Mn เกิน 4-6 แห่ง<br>TDS, Hardness, Sulfate, Fluoride</span></div>
     </div>
-    <div class="db" style="margin-top:8px"><strong>📌 สรุป:</strong> ตรวจ 23 พารามิเตอร์ — <strong>ปัญหาหลักคือ Coliform/E.coli</strong> เชื้อแบคทีเรียปนเปื้อน 70-75% ของระบบ ตามด้วย Fe (เหล็ก) เกิน 26.5% และ Mn (แมงกานีส) เกิน 11.8% ในรอบ 2 ส่วนโลหะหนักพิษพบ As, Cd เกินเกณฑ์ในบางจุด</div>
+    <div class="db" style="margin-top:8px"><strong>📌 สรุป:</strong> ตรวจ 23 พารามิเตอร์ — <strong>ปัญหาหลักคือ Coliform/E.coli</strong> เชื้อแบคทีเรียปนเปื้อน 70-75% ของระบบ ตามด้วย Fe (เหล็ก) เกิน 20-26% และ Mn (แมงกานีส) เกิน 11-17% ส่วน <strong>รอบ 2 พบ Cd (แคดเมียม) เกินมาตรฐานถึง 7 แห่ง</strong> และ As (สารหนู) เกิน 1 แห่ง</div>
+  </div>
+</div>
+
+<!-- ═══ Heavy Metal Exceedance Detail ═══ -->
+<div class="stit"><span>⚠️ ระบบประปาที่สารโลหะหนักเกินมาตรฐาน (น้ำออก)</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>รอบ 1 — เม.ย. 2568 (เก็บ 21-22 เม.ย. 68)</h3>
+    <div class="cs">เกณฑ์: Fe ≤0.3 | Mn ≤0.3 | As ≤0.01 | Cd ≤0.003 | Pb ≤0.01 mg/L</div>
+    <div style="overflow-x:auto;margin-top:10px">
+    <table style="width:100%;border-collapse:separate;border-spacing:0 3px;font-size:12px;min-width:600px">
+    <thead><tr style="font-size:10.5px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">
+      <td style="padding:5px 8px">ลำดับ</td><td style="padding:5px 8px">ชื่อระบบประปา</td><td style="padding:5px 8px">ตำบล</td><td style="padding:5px 8px;text-align:center">สารที่เกิน</td><td style="padding:5px 8px;text-align:center">ค่าที่ตรวจได้</td>
+    </tr></thead>
+    <tbody>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">1</td><td style="padding:6px 8px">ประปาบ้านเกาะแก้ว ม.1</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe, Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 0.515 / Mn 0.314</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">2</td><td style="padding:6px 8px">ประปาบ้านเขาตะพานนาก ม.2</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.12);color:#dc2626;font-size:10.5px;font-weight:600">Fe, Mn, As</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 0.799 / Mn 0.953 / As 0.068</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">5</td><td style="padding:6px 8px">ประปาบ้านหนองระมาน (อบต.) ม.3</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.12);color:#dc2626;font-size:10.5px;font-weight:600">Mn, As</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Mn 1.12 / As 0.023</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">11</td><td style="padding:6px 8px">ประปาบ้านไดวน (ตัวใหม่) ม.5</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 8.56 ⚠️</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">27</td><td style="padding:6px 8px">ประปาบ้านเนินพลวง ม.11</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe, Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 1.9 / Mn 0.594</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">32</td><td style="padding:6px 8px">ประปาบ้านลำประดา (ซอยรุ้งทอง) ม.3</td><td style="padding:6px 8px;color:var(--t3)">เขาทราย</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe, Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 1.84 / Mn 0.813</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">36</td><td style="padding:6px 8px">ประปาวัดเกาะแก้วลำประดา ม.13</td><td style="padding:6px 8px;color:var(--t3)">เขาทราย</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Mn 5.68 ⚠️</td></tr>
+    </tbody></table></div>
+    <div class="db dr" style="margin-top:8px"><strong>📌 รอบ 1:</strong> พบโลหะหนักเกิน <strong>7 ระบบ</strong> — Fe เกิน 5 แห่ง, Mn เกิน 6 แห่ง, <strong>As (สารหนู) เกินพิษ 2 แห่ง</strong> (#2 เขาตะพานนาก 0.068 & #5 หนองระมาน 0.023 — เกณฑ์ ≤0.01)</div>
+  </div>
+
+  <div class="cc fl">
+    <h3>รอบ 2 — ต.ค. 2568 (เก็บ 20-21 ต.ค. 68)</h3>
+    <div class="cs">เกณฑ์: Fe ≤0.3 | Mn ≤0.3 | As ≤0.01 | Cd ≤0.003 | Pb ≤0.01 mg/L</div>
+    <div style="overflow-x:auto;margin-top:10px">
+    <table style="width:100%;border-collapse:separate;border-spacing:0 3px;font-size:12px;min-width:600px">
+    <thead><tr style="font-size:10.5px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">
+      <td style="padding:5px 8px">ลำดับ</td><td style="padding:5px 8px">ชื่อระบบประปา</td><td style="padding:5px 8px">ตำบล</td><td style="padding:5px 8px;text-align:center">สารที่เกิน</td><td style="padding:5px 8px;text-align:center">ค่าที่ตรวจได้</td>
+    </tr></thead>
+    <tbody>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">1</td><td style="padding:6px 8px">ประปาบ้านเกาะแก้ว ม.1</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 1.99</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">2</td><td style="padding:6px 8px">ประปาบ้านเขาตะพานนาก ม.2</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.12);color:#dc2626;font-size:10.5px;font-weight:600">Mn, As</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Mn 0.49 / As 0.017</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">3</td><td style="padding:6px 8px">ประปาวัดประชาบำรุง ม.2</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe, Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 3.61 / Mn 1.06 ⚠️</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">12</td><td style="padding:6px 8px">ประปาบ้านเขาโล้น (หัวเขาบ้านฝน) ม.6</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe, Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 0.53 / Mn 0.52</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">14</td><td style="padding:6px 8px">ประปา อบต.เขาเจ็ดลูก ม.7</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0051</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">15</td><td style="padding:6px 8px">ประปาบ้านหนองขนาก (ช่างแชมป์) ม.7</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0031</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">23</td><td style="padding:6px 8px">ประปาวัดนิคม ม.8</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0040</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">24</td><td style="padding:6px 8px">ประปาบ้านเขาหม้อ ม.9</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 1.43</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">25</td><td style="padding:6px 8px">ประปาบ้านใดน้ำขุ่น ม.10</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0053</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">27</td><td style="padding:6px 8px">ประปาบ้านเนินพลวง ม.11</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 1.02</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">32</td><td style="padding:6px 8px">ประปาบ้านลำประดา (ซอยรุ้งทอง) ม.3</td><td style="padding:6px 8px;color:var(--t3)">เขาทราย</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe, Mn</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 1.17 / Mn 0.60</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">33</td><td style="padding:6px 8px">ประปาบ้านลำประดา (ผญ.เก่า) ม.3</td><td style="padding:6px 8px;color:var(--t3)">เขาทราย</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0031</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">37</td><td style="padding:6px 8px">ประปาเกาะแก้วลำประดา (ตัวใหม่ หน้าปากซอย) ม.13</td><td style="padding:6px 8px;color:var(--t3)">เขาทราย</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0052</td></tr>
+    <tr style="background:var(--card)"><td style="padding:6px 8px;font-weight:700">38</td><td style="padding:6px 8px">ประปาบ้านแสงทอง ม.8</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(245,158,11,.12);color:#b45309;font-size:10.5px;font-weight:600">Fe</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Fe 0.52</td></tr>
+    <tr style="background:rgba(239,68,68,.04)"><td style="padding:6px 8px;font-weight:700">39</td><td style="padding:6px 8px">ประปาบ้านตาดาว ม.4</td><td style="padding:6px 8px;color:var(--t3)">เขาเจ็ดลูก</td><td style="padding:6px 8px;text-align:center"><span style="padding:2px 6px;border-radius:10px;background:rgba(239,68,68,.15);color:#dc2626;font-size:10.5px;font-weight:600">Cd ☠️</span></td><td style="padding:6px 8px;text-align:center;color:var(--danger);font-weight:600">Cd 0.0038</td></tr>
+    </tbody></table></div>
+    <div class="db dr" style="margin-top:8px"><strong>📌 รอบ 2:</strong> พบโลหะหนักเกิน <strong>15 ระบบ</strong> — Fe เกิน 7 แห่ง, Mn เกิน 4 แห่ง, As (สารหนู) เกินพิษ 1 แห่ง, <strong style="color:#dc2626">Cd (แคดเมียม) เกินมาตรฐาน 7 แห่ง!</strong> (☠️ เกณฑ์ ≤0.003 mg/L) — เพิ่มขึ้นจากรอบ 1 ที่ไม่พบ Cd เกินเลย</div>
+  </div>
+
+  <div class="cc fl">
+    <h3>สรุปเปรียบเทียบ รอบ 1 vs รอบ 2</h3>
+    <div class="cs">เฉพาะสารโลหะหนักพิษที่เกินมาตรฐาน (น้ำออก)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+      <div style="padding:12px;border-radius:10px;background:var(--primary-s)">
+        <div style="font-weight:700;font-size:13px;color:var(--t1);margin-bottom:6px">🔵 รอบ 1 (เม.ย. 68)</div>
+        <div style="font-size:12px;color:var(--t2);line-height:1.8">
+          • Fe เกิน: <strong>5</strong> ระบบ<br>
+          • Mn เกิน: <strong>6</strong> ระบบ<br>
+          • As เกิน: <strong>2</strong> ระบบ (#2, #5)<br>
+          • Cd เกิน: <strong>0</strong> ระบบ<br>
+          • Pb/Cr/Hg/CN: ไม่พบเกิน
+        </div>
+      </div>
+      <div style="padding:12px;border-radius:10px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12)">
+        <div style="font-weight:700;font-size:13px;color:var(--danger);margin-bottom:6px">🔴 รอบ 2 (ต.ค. 68)</div>
+        <div style="font-size:12px;color:var(--t2);line-height:1.8">
+          • Fe เกิน: <strong>7</strong> ระบบ (+2)<br>
+          • Mn เกิน: <strong>4</strong> ระบบ (−2)<br>
+          • As เกิน: <strong>1</strong> ระบบ (#2)<br>
+          • <strong style="color:#dc2626">Cd เกิน: 7 ระบบ ❗(+7)</strong><br>
+          • Pb/Cr/Hg/CN: ไม่พบเกิน
+        </div>
+      </div>
+    </div>
+    <div class="db dr" style="margin-top:10px"><strong>⚠️ จุดวิกฤต:</strong> รอบ 2 พบ <strong>แคดเมียม (Cd)</strong> เกินมาตรฐาน 7 ระบบ (เกณฑ์ ≤0.003 mg/L) — กระจายอยู่ทั้ง ม.7, ม.8, ม.10 ต.เขาเจ็ดลูก และ ม.3, ม.13 ต.เขาทราย ซึ่ง<strong>รอบ 1 ไม่พบเกินเลย</strong> → ควรติดตามแหล่งปนเปื้อนเร่งด่วน | #2 ประปาเขาตะพานนาก พบ <strong>As เกินต่อเนื่อง</strong>ทั้ง 2 รอบ</div>
   </div>
 </div>
 
@@ -920,10 +1066,151 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ TAP ▓▓ -->
 <div class="page" id="page-tap">
-<div class="topbar"><span class="topicon">🌿</span><h1>ผลน้ำประปา รพ.</h1></div>
-<div class="pg-pad">
-  <div class="await-card"><span class="aw-ic">🚰</span><h3>รอเพิ่มข้อมูล</h3><p>ข้อมูลผลตรวจน้ำประปาโรงพยาบาลอยู่ระหว่างจัดเตรียม</p></div>
-  <div class="credit">หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
+<div class="topbar"><span class="topicon">🚰</span><h1>ผลน้ำประปา รพ.ทับคล้อ</h1><div class="tb-dd"><button class="tb-btn" onclick="togDD(this)">📥 ส่งออก ▾</button><div class="tb-dd-menu"><a onclick="exportWord('tap')"><span class="dd-ic word">📄</span>ส่งออก Word (.docx)</a><a onclick="window.print();closeDDs()"><span class="dd-ic print">🖨️</span>พิมพ์ / PDF</a></div></div></div>
+<div class="pg-pad" id="tap-content">
+<div class="hero"><div class="hero-bg"></div><div class="hero-ct"><div class="badge">🚰 Hospital Water Quality Dashboard</div><h1>ผลตรวจคุณภาพน้ำประปา<br><em>โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร</em></h1></div></div>
+
+<!-- ═══ แนวทาง (บนสุด) ═══ -->
+<div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางการตรวจน้ำประปา รพ.ทับคล้อ</h3><span class="meth-arr">▾</span></div><div class="meth-b">
+<p><strong>เกณฑ์อ้างอิง</strong> — เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</p>
+<div class="mgr">
+  <div class="mgi"><h4>📍 จุดเก็บตัวอย่าง (2 จุด)</h4><ul><li>จุด 1: น้ำประปา<strong>ก่อน</strong>เข้าระบบ</li><li>จุด 2: น้ำประปา<strong>หลัง</strong>เข้าระบบ (IPD/OPD/แผนไทย)</li></ul></div>
+  <div class="mgi"><h4>🔬 พารามิเตอร์ 21 รายการ</h4><ul><li>กายภาพ (3): สี ความขุ่น pH</li><li>เคมี (8): TDS Hardness Sulfate Chloride Nitrate Nitrite Fluoride</li><li>โลหะหนัก (8): Fe Mn Cu Zn Pb Cr Cd As Hg</li><li>ชีวภาพ (2): Coliforms E.coli</li></ul></div>
+  <div class="mgi"><h4>📅 รอบตรวจ (ปีงบ ต.ค.–ก.ย.)</h4><ul><li><strong>ปีงบ 67:</strong> รอบ 1 (26 ม.ค. 67) + รอบ 2 (16 ส.ค. 67)</li><li><strong>ปีงบ 68:</strong> รอบ 1 (20 มี.ค. 68) + รอบ 2 (26 ส.ค. 68)</li></ul></div>
+  <div class="mgi"><h4>🏢 หน่วยตรวจวิเคราะห์</h4><ul><li>กองท้องปฏิบัติการสาธารณสุข กรมอนามัย</li><li>ศูนย์อนามัยที่ 2 พิษณุโลก</li></ul></div>
+</div></div></div>
+
+<!-- ═══ KPI Summary ═══ -->
+<div class="kpig">
+  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">ครั้งที่ตรวจ (ทั้งหมด)</div><div class="kpi-vl" data-count="4">0</div><div class="kpi-sb">4 รอบ × 2 จุดเก็บ = 8 ตัวอย่าง</div></div>
+  <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🧪</div></div><div class="kpi-lb">พารามิเตอร์ที่ตรวจ</div><div class="kpi-vl" data-count="21">0</div><div class="kpi-sb">กายภาพ 3 / เคมี 8 / โลหะหนัก 8 / ชีวภาพ 2</div></div>
+  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (ตัวอย่าง)</div><div class="kpi-vl" data-count="7">0</div><div class="kpi-sb">87.5% (7 จาก 8 ตัวอย่าง)</div></div>
+  <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์</div><div class="kpi-vl" data-count="1">0</div><div class="kpi-sb">รอบ 2/67 น้ำก่อนเข้าระบบ — Coliform/E.coli</div></div>
+</div>
+
+<!-- ═══ Overall Pass/Fail Chart ═══ -->
+<div class="stit"><span>📊 ภาพรวมผ่าน/ไม่ผ่านเกณฑ์ทุกรอบ</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc"><h3>ผ่าน/ไม่ผ่าน — แยกตามจุดเก็บ (8 ตัวอย่าง)</h3><div class="cs">เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:280px"><canvas id="tapOvr"></canvas></div>
+    <div class="db di"><strong>📌 สรุป:</strong> น้ำ<strong>หลังเข้าระบบ</strong>กรอง (IPD/OPD/แผนไทย) ผ่านเกณฑ์ <strong>100% ทุกรอบ ทุกพารามิเตอร์</strong> — น้ำ<strong>ก่อนเข้าระบบ</strong>ไม่ผ่านเพียงรอบ 2/67 จากปัญหา Coliform/E.coli</div>
+  </div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เฉลี่ยทุกรอบทุกจุด (8 ตัวอย่าง)</div><div class="cw" style="height:280px"><canvas id="tapDim"></canvas></div>
+    <div class="db dg"><strong>📌 สรุป:</strong> ด้านกายภาพ & เคมี & โลหะหนัก ผ่าน <strong>100%</strong> ทุกตัวอย่าง ทุกรอบ — ด้านชีวภาพ ผ่าน <strong>87.5%</strong> (7/8) พบปัญหา Coliform เฉพาะน้ำก่อนเข้าระบบ รอบ 2/67</div>
+  </div>
+</div>
+
+<!-- ═══ Timeline Chart ═══ -->
+<div class="stit"><span>📈 แนวโน้มผ่านเกณฑ์รายรอบ</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl"><h3>จำนวนพารามิเตอร์ที่ผ่านเกณฑ์ (จาก 21 ตัว) — แยกจุดเก็บ</h3><div class="cs">น้ำก่อนเข้าระบบ vs น้ำหลังเข้าระบบ</div><div class="cw" style="height:300px"><canvas id="tapTimeline"></canvas></div>
+    <div class="db di"><strong>📌 แนวโน้ม:</strong> รอบ 2/67 น้ำก่อนเข้าระบบมีปัญหา Coliform/E.coli ทำให้ผ่านเพียง 19/21 → หลังจากนั้นทุกรอบ (รอบ 1/68, รอบ 2/68) <strong>กลับมาผ่านครบ 21/21</strong> ทั้งสองจุด แสดงว่ามีการแก้ไขปัญหาได้ผลดี</div>
+  </div>
+</div>
+
+<!-- ═══ ผลสรุปรายรอบ (compact) ═══ -->
+<div class="stit"><span>📋 ผลสรุปรายรอบ — แยกตามปีงบประมาณ</span><span class="ln"></span></div>
+<div class="cgr"><div class="cc fl">
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12.5px;min-width:620px">
+<thead><tr style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">
+<td style="padding:6px 10px;width:120px">ปีงบประมาณ</td><td style="padding:6px 8px">รอบ</td><td style="padding:6px 8px">วันที่เก็บ / วิเคราะห์</td><td style="padding:6px 8px">หน่วยตรวจ</td><td style="padding:6px 8px;text-align:center">ก่อนเข้าระบบ</td><td style="padding:6px 8px;text-align:center">หลังเข้าระบบ</td>
+</tr></thead>
+<tbody>
+<!-- ปีงบ 2567 -->
+<tr style="background:var(--card);border-radius:8px">
+<td rowspan="2" style="padding:10px;font-weight:700;color:var(--primary);border-radius:8px 0 0 8px;border-left:3px solid var(--primary);vertical-align:middle"><div>ปีงบ 2567</div><div style="font-size:10px;color:var(--t3);font-weight:400;margin-top:2px">ต.ค. 66 – ก.ย. 67</div></td>
+<td style="padding:8px;font-weight:600">รอบ 1</td>
+<td style="padding:8px;color:var(--t2)"><div>เก็บ 26 ม.ค. 67</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 26/1 – 9/2/67</div></td>
+<td style="padding:8px;color:var(--t2);font-size:11.5px">กรมอนามัย</td>
+<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span></td>
+<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">IPD</div></td>
+</tr>
+<tr style="background:var(--card)">
+<td style="padding:8px;font-weight:600">รอบ 2</td>
+<td style="padding:8px;color:var(--t2)"><div>เก็บ 16 ส.ค. 67</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 16 – 30/8/67</div></td>
+<td style="padding:8px;color:var(--t2);font-size:11.5px">กรมอนามัย</td>
+<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(239,68,68,.1);color:#dc2626;font-weight:700;font-size:11.5px">❌ 19/21</span><div style="font-size:9.5px;color:#dc2626;margin-top:2px">Coliform/E.coli</div></td>
+<td style="padding:8px;text-align:center;border-radius:0 8px 8px 0"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">แผนไทย</div></td>
+</tr>
+<!-- ปีงบ 2568 -->
+<tr><td colspan="6" style="padding:2px"></td></tr>
+<tr style="background:var(--card);border-radius:8px">
+<td rowspan="2" style="padding:10px;font-weight:700;color:var(--primary);border-radius:8px 0 0 8px;border-left:3px solid var(--primary);vertical-align:middle"><div>ปีงบ 2568</div><div style="font-size:10px;color:var(--t3);font-weight:400;margin-top:2px">ต.ค. 67 – ก.ย. 68</div></td>
+<td style="padding:8px;font-weight:600">รอบ 1</td>
+<td style="padding:8px;color:var(--t2)"><div>เก็บ 20 มี.ค. 68</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 20/3 – 4/4/68</div></td>
+<td style="padding:8px;color:var(--t2);font-size:11.5px">กรมอนามัย</td>
+<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span></td>
+<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">OPD</div></td>
+</tr>
+<tr style="background:var(--card)">
+<td style="padding:8px;font-weight:600">รอบ 2</td>
+<td style="padding:8px;color:var(--t2)"><div>เก็บ 26 ส.ค. 68</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 26/8/68</div></td>
+<td style="padding:8px;color:var(--t2);font-size:11.5px">ศอ.2 พิษณุโลก</td>
+<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span></td>
+<td style="padding:8px;text-align:center;border-radius:0 8px 8px 0"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">IPD</div></td>
+</tr>
+</tbody></table>
+</div>
+<div class="db di" style="margin-top:10px"><strong>📌</strong> ปีงบประมาณ = ต.ค. – ก.ย. | น้ำหลังเข้าระบบ <strong>ผ่าน 100% ทุกรอบ</strong> — ไม่ผ่านเฉพาะน้ำก่อนเข้าระบบ รอบ 2/67 (Coliform &amp; E.coli)</div>
+</div></div>
+
+<!-- ═══ Heat Table with Year Tabs ═══ -->
+<div class="stit"><span>🔬 ตารางผลตรวจ 21 พารามิเตอร์ — เทียบค่ามาตรฐาน</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <h3 style="margin:0">ผลตรวจ 21 พารามิเตอร์</h3>
+      <div class="ybar" style="margin:0"><button class="wybtn active" onclick="swYT(67,this)">ปีงบ 2567</button><button class="wybtn" onclick="swYT(68,this)">ปีงบ 2568</button></div>
+    </div>
+    <div class="cs">✅ ผ่าน | ❌ ไม่ผ่าน | เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div>
+    <div id="t67" class="wyp wsh">
+      <div id="tapTable67" style="overflow-x:auto;margin-top:10px;font-size:12.5px"></div>
+    </div>
+    <div id="t68" class="wyp">
+      <div id="tapTable68" style="overflow-x:auto;margin-top:10px;font-size:12.5px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Key Parameters Comparison ═══ -->
+<div class="stit"><span>📉 เปรียบเทียบค่าสำคัญ — ปีงบ 2567 vs 2568</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc"><h3>ค่า TDS (ของแข็งละลาย)</h3><div class="cs">เกณฑ์ ≤500 mg/L</div><div class="cw"><canvas id="tapTDS"></canvas></div></div>
+  <div class="cc"><h3>ค่า Hardness (ความกระด้าง)</h3><div class="cs">เกณฑ์ ≤300 mg/L CaCO₃</div><div class="cw"><canvas id="tapHard"></canvas></div></div>
+  <div class="cc"><h3>ค่า pH</h3><div class="cs">เกณฑ์ 6.5-8.5</div><div class="cw"><canvas id="tapPH"></canvas></div></div>
+  <div class="cc"><h3>สัดส่วนด้านที่ผ่านเกณฑ์</h3><div class="cs">ทุกรอบรวม ปีงบ 2567-2568</div><div class="cw"><canvas id="tapPassDn"></canvas></div></div>
+</div>
+
+<!-- ═══ Summary Box ═══ -->
+<div class="stit"><span>📝 สรุปภาพรวมและข้อเสนอแนะ</span><span class="ln"></span></div>
+<div class="cgr">
+  <div class="cc fl">
+    <h3>สรุปผลวิเคราะห์คุณภาพน้ำประปา รพ.ทับคล้อ ปีงบ 2567-2568</h3>
+    <div class="cs">4 รอบ × 2 จุดเก็บ = 8 ตัวอย่าง — 21 พารามิเตอร์ | ปีงบประมาณ ต.ค. – ก.ย.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
+      <div style="padding:14px;border-radius:12px;background:var(--success-l);border:1px solid rgba(22,163,74,.15)">
+        <div style="font-weight:700;color:var(--success);font-size:14px;margin-bottom:6px">✅ จุดแข็ง</div>
+        <div style="font-size:12.5px;color:var(--t2);line-height:1.8">
+          • น้ำหลังเข้าระบบ ผ่านเกณฑ์ <strong>100%</strong> ทุกรอบ<br>
+          • โลหะหนักพิษ (Pb, Cr, Cd, As, Hg) <strong>ไม่พบ/ต่ำกว่าค่า MDL</strong> ทุกตัวอย่าง<br>
+          • ปีงบ 2568 ผ่านเกณฑ์ <strong>ครบ 100%</strong> ทั้ง 4 ตัวอย่าง<br>
+          • ระบบกรองน้ำ รพ. มีประสิทธิภาพดี
+        </div>
+      </div>
+      <div style="padding:14px;border-radius:12px;background:var(--warn-l);border:1px solid rgba(245,158,11,.15)">
+        <div style="font-weight:700;color:var(--warn);font-size:14px;margin-bottom:6px">⚠️ จุดเฝ้าระวัง</div>
+        <div style="font-size:12.5px;color:var(--t2);line-height:1.8">
+          • รอบ 2/67 น้ำก่อนเข้าระบบ พบ Coliform >23 & E.coli >23 MPN/100ml<br>
+          • เน้นตรวจเชื้อจุลินทรีย์ในน้ำดิบต่อเนื่อง<br>
+          • บำรุงรักษาระบบกรอง/ฆ่าเชื้อให้ทำงานเต็มประสิทธิภาพ<br>
+          • ติดตามค่า TDS ที่มีแนวโน้มสูงขึ้นเล็กน้อยในรอบ 2/68
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="credit">ข้อมูล: กองท้องปฏิบัติการสาธารณสุข กรมอนามัย & ศูนย์อนามัยที่ 2 พิษณุโลก | หน่วยบริการด้านปฐมภูมิแบบองค์รวม โรงพยาบาลทับคล้อ</div>
 </div></div>
 
 <!-- ▓▓ OCC ▓▓ -->
@@ -947,7 +1234,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <p style="padding-left:20px">• ผลน้ำประปารอบเหมือง (รอเพิ่มข้อมูล)</p><br>
       <p><strong>🌿 งานสิ่งแวดล้อม</strong></p>
       <p style="padding-left:20px">• ผลบำบัดน้ำเสีย รพ. (ปีงบ 67-69 รายไตรมาส)</p>
-      <p style="padding-left:20px">• ผลน้ำประปา รพ. (รอเพิ่มข้อมูล)</p><br>
+      <p style="padding-left:20px">• ผลน้ำประปา รพ. (ปี 67-68 — 4 รอบ × 2 จุดเก็บ)</p><br>
       <p><strong>🏭 งานอาชีวอนามัย</strong> — ข้อมูลด้านอาชีวอนามัยและความปลอดภัย (รอเพิ่มข้อมูล)</p><br>
       <p>📞 <strong>ติดต่อ:</strong> Tel. 056-641131 ต่อ 227</p>
     </div>
@@ -977,13 +1264,17 @@ function goPage(id,el){
   if(!next||cur===next)return;
   if(cur){cur.classList.add('out');setTimeout(()=>{cur.classList.remove('show','out');
     next.classList.add('show');
-    runCountUp(next);
-    if(id==='home')renderHomeCharts();
-    if(id==='water'&&!rW)renderWater();
-    if(id==='waste'&&!rWs)renderWaste();
-    if(id==='mine'&&!r68)render68();
+    // Use rAF to ensure browser has reflowed (display:block applied) before rendering charts
+    requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+      runCountUp(next);
+      if(id==='home')renderHomeCharts();
+      if(id==='mine'){if(!r67)renderMine67();}
+      if(id==='water'&&!rW)renderWater();
+      if(id==='waste'&&!rWs)renderWaste();
+      if(id==='tap'&&!rTap)renderTap();
+    })});
     next.scrollTo&&window.scrollTo({top:0,behavior:'smooth'});
-  },200)}else{next.classList.add('show');runCountUp(next)}
+  },200)}else{next.classList.add('show');requestAnimationFrame(()=>{requestAnimationFrame(()=>{runCountUp(next)})})}
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelectorAll('.nav-sub a').forEach(a=>a.classList.remove('active'));
   if(el&&el.closest('.nav-sub')){el.classList.add('active');el.closest('.nav-sub').previousElementSibling.classList.add('active')}
@@ -1007,17 +1298,42 @@ function swY(y,btn){
   document.getElementById('y'+y).classList.add('sh');
   document.querySelectorAll('.ybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  if(y===68&&!r68)render68();
-  runCountUp(document.getElementById('y'+y));
+  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+    if(y===67&&!r67)renderMine67();
+    if(y===68&&!r68)render68();
+    runCountUp(document.getElementById('y'+y));
+    // Resize any existing charts in the now-visible panel
+    document.getElementById('y'+y).querySelectorAll('canvas').forEach(cv=>{
+      const c=Chart.getChart(cv);if(c)c.resize();
+    });
+  })});
 }
 function swYW(y,btn){
   document.querySelectorAll('.wyp').forEach(p=>p.classList.remove('wsh'));
   document.getElementById('w'+y).classList.add('wsh');
   document.querySelectorAll('.wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  if(y===67&&!rW)renderWater();
-  if(y===68&&!rW68)renderWater68();
-  runCountUp(document.getElementById('w'+y));
+  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+    if(y===67&&!rW)renderWater();
+    if(y===68&&!rW68)renderWater68();
+    runCountUp(document.getElementById('w'+y));
+    document.getElementById('w'+y).querySelectorAll('canvas').forEach(cv=>{
+      const c=Chart.getChart(cv);if(c)c.resize();
+    });
+  })});
+}
+function swYT(y,btn){
+  document.querySelectorAll('#page-tap .wyp').forEach(p=>p.classList.remove('wsh'));
+  document.getElementById('t'+y).classList.add('wsh');
+  document.querySelectorAll('#page-tap .wybtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+    if(!rTap)renderTap();
+    runCountUp(document.getElementById('t'+y));
+    document.getElementById('t'+y).querySelectorAll('canvas').forEach(cv=>{
+      const c=Chart.getChart(cv);if(c)c.resize();
+    });
+  })});
 }
 function togM(el){el.classList.toggle('open')}
 
@@ -1033,7 +1349,7 @@ function runCountUp(container){
       el.textContent=(isFloat?current.toFixed(1):Math.floor(current))+suffix;},25);
   });
 }
-setTimeout(()=>runCountUp(document.getElementById('y67')),300);
+// y67 countUp handled inside renderMine67()
 
 /* ═══ HOME PAGE INIT ═══ */
 (function initHome(){
@@ -1047,7 +1363,7 @@ setTimeout(()=>runCountUp(document.getElementById('y67')),300);
   setTimeout(()=>runCountUp(document.getElementById('home-content')),400);
 
   // Sparkline mini charts
-  const spkOpt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}},elements:{point:{radius:0},line:{tension:.4,borderWidth:2.5}},animation:{duration:1000,easing:'easeOutQuart',delay:(ctx)=>{if(ctx.type==='data')return ctx.dataIndex*120;return 0}}};
+  const spkOpt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}},elements:{point:{radius:0},line:{tension:.4,borderWidth:2.5}},animation:{duration:1000,easing:'easeOutQuart'}};
 
   function mkSpk(id,data,color,fillColor){
     const ctx=document.getElementById(id);if(!ctx)return;
@@ -1084,7 +1400,7 @@ function renderHomeCharts(){
       scales:{y:{beginAtZero:true,max:14,grid:{color:cc.g},ticks:{color:'#94a3b8',callback:v=>v+' คน'},title:{display:true,text:'จำนวน (คน)',font:{size:11},color:'#94a3b8'}},
       y1:{position:'right',beginAtZero:true,max:80,grid:{drawOnChartArea:false},ticks:{color:'#94a3b8',callback:v=>v+'%'},title:{display:true,text:'ร้อยละ (%)',font:{size:11},color:'#94a3b8'}},
       x:{grid:{display:false},ticks:{color:cc.t,font:{size:13,weight:'bold'}}}},
-      animation:{duration:1000,easing:'easeOutQuart',delay:(ctx)=>{if(ctx.type==='data')return ctx.dataIndex*80+ctx.datasetIndex*150;return 0}}
+      animation:{duration:1000,easing:'easeOutQuart'}
     }
   });
 
@@ -1102,7 +1418,7 @@ function renderHomeCharts(){
       scales:{y:{beginAtZero:true,max:30,grid:{color:cc.g},ticks:{color:'#94a3b8',callback:v=>v+'%'}},
       y1:{position:'right',beginAtZero:true,max:8,grid:{drawOnChartArea:false},ticks:{color:'#94a3b8',stepSize:1}},
       x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}},
-      animation:{duration:1000,easing:'easeOutQuart',delay:(ctx)=>{if(ctx.type==='data')return ctx.dataIndex*80+ctx.datasetIndex*150;return 0}}
+      animation:{duration:1000,easing:'easeOutQuart'}
     }
   });
 
@@ -1120,7 +1436,7 @@ function renderHomeCharts(){
       tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y.toLocaleString()+' MPN'}},
       annotation:{annotations:{limit5k:{type:'line',yMin:5000,yMax:5000,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[6,4],label:{display:true,content:'เกณฑ์ Coliform 5,000',position:'start',font:{size:9},color:'#ef4444'}},limit1k:{type:'line',yMin:1000,yMax:1000,borderColor:'rgba(245,158,11,.5)',borderWidth:1.5,borderDash:[6,4],label:{display:true,content:'เกณฑ์ F.Coliform 1,000',position:'end',font:{size:9},color:'#f59e0b'}}}}},
       scales:{y:{type:'logarithmic',grid:{color:cc.g},ticks:{color:'#94a3b8',callback:function(v){if([1,10,100,1000,5000,10000].includes(v))return v.toLocaleString();return''}}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:11}}}},
-      animation:{duration:1000,easing:'easeOutQuart',delay:(ctx)=>{if(ctx.type==='data')return ctx.dataIndex*80+ctx.datasetIndex*150;return 0}}
+      animation:{duration:1000,easing:'easeOutQuart'}
     }
   });
 }
@@ -1140,22 +1456,13 @@ Chart.defaults.color=cc.t;Chart.defaults.font.family="'Sarabun','Kanit',sans-ser
 Chart.defaults.plugins.legend.labels.padding=14;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.pointStyle='circle';
 
 // ── Chart.js Global Animation Defaults ──
-Chart.defaults.animation={
-  duration:800,
-  easing:'easeOutQuart',
-  delay:(ctx)=>{
-    if(ctx.type==='data'){
-      return ctx.dataIndex*70+ctx.datasetIndex*100;
-    }
-    return 0;
-  }
-};
+Chart.defaults.animation={duration:800,easing:'easeOutQuart'};
 Chart.defaults.transitions={active:{animation:{duration:200}},resize:{animation:{duration:0}}};
 
 // ── Per-type animation presets ──
-const animBar={animation:{delay:(ctx)=>{if(ctx.type==='data')return ctx.dataIndex*80+ctx.datasetIndex*120;return 0},duration:700,easing:'easeOutQuart'}};
+const animBar={animation:{duration:800,easing:'easeOutQuart'}};
 const animDoughnut={animation:{animateRotate:true,animateScale:true,duration:900,easing:'easeOutCirc'}};
-const animLine={animation:{duration:1000,easing:'easeOutQuart',delay:(ctx)=>{if(ctx.type==='data')return ctx.dataIndex*50;return 0}}};
+const animLine={animation:{duration:1000,easing:'easeOutQuart'}};
 const animPolar={animation:{animateRotate:true,animateScale:true,duration:1000,easing:'easeOutCirc'}};
 
 const P={tl:'#0f766e',t2:'#14b8a6',bl:'#0284c7',b2:'#38bdf8',rd:'#dc2626',r2:'#f87171',pu:'#7c3aed',p2:'#a78bfa',gn:'#16a34a',g2:'#4ade80',or:'#d97706',o2:'#fbbf24',pk:'#db2777',cy:'#0891b2',c2:'#22d3ee',gr:'#94a3b8',gl:'#e2e8f0'};
@@ -1164,6 +1471,8 @@ const bdr=()=>isDk()?'rgba(255,255,255,.08)':'#fff';
 function dn(id,l,d,c,co){return new Chart(document.getElementById(id),{type:'doughnut',data:{labels:l,datasets:[{data:d,backgroundColor:c,borderWidth:2,borderColor:bdr(),hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:co||'62%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},...animDoughnut}})}
 function br(id,l,d,c,mx,u){return new Chart(document.getElementById(id),{type:'bar',data:{labels:l,datasets:[{data:d,backgroundColor:c,borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+(u||'')}}},scales:{y:{beginAtZero:true,max:mx,grid:{color:cc.g},ticks:{callback:v=>v+(u||''),color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}},...animBar}})}
 
+let r67=false;
+function renderMine67(){if(r67)return;r67=true;
 dn('g67',['หญิง 75%','ชาย 25%'],[75,25],[P.pk,P.bl]);
 br('a67',['<15','15-30','31-45','46-60','>60'],[3,5,17,33,42],[P.c2,P.g2,P.o2,P.or,P.rd],50,'%');
 dn('o67',['เกษตร 53%','นักเรียน 23%','รับจ้าง 14%','ธุรกิจ 8%','ราชการ 1%','เหมือง 1%'],[53,23,14,8,1,1],[P.gn,P.bl,P.or,P.pu,P.cy,P.tl],'52%');
@@ -1174,6 +1483,8 @@ dn('cn67',['เกิน (95)','ปกติ (41)'],[95,41],[P.bl,P.gl]);
 dn('cs67',['เกิน (4)','ปกติ (9)'],[4,9],[P.cy,P.gl]);
 dn('sm67',['ไม่สูบ 91%','สูบ 9%'],[91,9],[P.gn,P.or]);
 dn('mn67',['ไม่เคย 89%','เคย 11%'],[89,11],[P.gl,P.tl]);
+runCountUp(document.getElementById('y67'));
+}
 
 let r68=false;
 function render68(){r68=true;
@@ -1344,6 +1655,114 @@ document.addEventListener('click',e=>{if(!e.target.closest('.tb-dd'))closeDDs()}
 
 
 /* ═══ EXPORT WORD (.docx) — docx.js v8.5 ═══ */
+let rTap=false;
+function renderTap(){if(rTap)return;rTap=true;
+const cc=getChartColors();
+
+// 1. Overall Pass/Fail bar
+new Chart(document.getElementById('tapOvr'),{type:'bar',data:{labels:['รอบ 1/67\nก่อนเข้าระบบ','รอบ 1/67\nหลังเข้าระบบ','รอบ 2/67\nก่อนเข้าระบบ','รอบ 2/67\nหลังเข้าระบบ','รอบ 1/68\nก่อนเข้าระบบ','รอบ 1/68\nหลังเข้าระบบ','รอบ 2/68\nก่อนเข้าระบบ','รอบ 2/68\nหลังเข้าระบบ'],datasets:[{label:'ผ่านเกณฑ์',data:[21,21,19,21,21,21,21,21],backgroundColor:['#16a34a','#16a34a','#ef4444','#16a34a','#16a34a','#16a34a','#16a34a','#16a34a'],borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.x+'/21 พารามิเตอร์'+(x.parsed.x<21?' ❌':' ✅')}}},scales:{x:{beginAtZero:true,max:21,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},y:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}}}});
+
+// 2. Pass by dimension
+new Chart(document.getElementById('tapDim'),{type:'bar',data:{labels:['กายภาพ\n(สี ขุ่น pH)','เคมี\n(TDS,Hardness ฯ)','โลหะหนัก\n(9 ตัว)','ชีวภาพ\n(Coliform,E.coli)'],datasets:[{label:'% ผ่านเกณฑ์',data:[100,100,100,87.5],backgroundColor:[P.gn,P.bl,P.pu,'rgba(245,158,11,.7)'],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y+'%'}}},scales:{y:{beginAtZero:true,max:110,grid:{color:cc.g},ticks:{callback:v=>v+'%',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}}}});
+
+// 3. Timeline — pass count per round
+new Chart(document.getElementById('tapTimeline'),{type:'line',data:{labels:['รอบ 1/67\n(ม.ค.67)','รอบ 2/67\n(ส.ค.67)','รอบ 1/68\n(มี.ค.68)','รอบ 2/68\n(ส.ค.68)'],datasets:[{label:'น้ำก่อนเข้าระบบ',data:[21,19,21,21],borderColor:'#0284c7',backgroundColor:'rgba(2,132,199,.08)',fill:true,tension:.3,pointRadius:7,pointHoverRadius:10,borderWidth:3,pointBackgroundColor:['#16a34a','#ef4444','#16a34a','#16a34a'],pointBorderColor:'#fff',pointBorderWidth:2},{label:'น้ำหลังเข้าระบบ',data:[21,21,21,21],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,.06)',fill:true,tension:.3,pointRadius:7,pointHoverRadius:10,borderWidth:3,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:12},usePointStyle:true,pointStyle:'circle',padding:16}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+'/21'+(x.parsed.y<21?' ❌':' ✅')}}},scales:{y:{min:17,max:22,grid:{color:cc.g},ticks:{stepSize:1,color:'#94a3b8',callback:v=>v+'/21'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:10}}}},animation:{duration:1200,easing:'easeOutQuart'}}});
+
+// 4. TDS comparison (2568)
+new Chart(document.getElementById('tapTDS'),{type:'bar',data:{labels:['รอบ 1 ก่อนเข้าระบบ','รอบ 1 หลังเข้าระบบ\n(OPD)','รอบ 2 ก่อนเข้าระบบ','รอบ 2 หลังเข้าระบบ\n(IPD)'],datasets:[{label:'TDS (mg/L)',data:[104,114,120,154],backgroundColor:[P.bl,P.t2,P.bl,P.t2],borderRadius:8,borderSkipped:false},{label:'เกณฑ์ (≤500)',data:[500,500,500,500],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return x.dataset.label+': '+v+' mg/L'}}}},scales:{y:{beginAtZero:true,max:550,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
+
+// 5. Hardness comparison (2568)
+new Chart(document.getElementById('tapHard'),{type:'bar',data:{labels:['รอบ 1 ก่อนเข้าระบบ','รอบ 1 หลังเข้าระบบ\n(OPD)','รอบ 2 ก่อนเข้าระบบ','รอบ 2 หลังเข้าระบบ\n(IPD)'],datasets:[{label:'Hardness (mg/L)',data:[68.6,5.7,64.4,36.2],backgroundColor:[P.or,P.o2,P.or,P.o2],borderRadius:8,borderSkipped:false},{label:'เกณฑ์ (≤300)',data:[300,300,300,300],type:'line',borderColor:'#facc15',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}},tooltip:{callbacks:{label:x=>{let v=x.parsed.y;return x.dataset.label+': '+v+' mg/L'}}}},scales:{y:{beginAtZero:true,max:350,grid:{color:cc.g},ticks:{callback:v=>v,color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
+
+// 6. pH comparison (2568) - horizontal line chart style
+new Chart(document.getElementById('tapPH'),{type:'bar',data:{labels:['รอบ 1 ก่อน','รอบ 1 หลัง(OPD)','รอบ 2 ก่อน','รอบ 2 หลัง(IPD)'],datasets:[{label:'pH',data:[8.0,7.8,7.92,7.78],backgroundColor:[P.cy,P.c2,P.cy,P.c2],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>'pH: '+x.parsed.y}},annotation:{annotations:{min:{type:'line',yMin:6.5,yMax:6.5,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[4,3]},max:{type:'line',yMin:8.5,yMax:8.5,borderColor:'rgba(239,68,68,.5)',borderWidth:1.5,borderDash:[4,3]}}}},scales:{y:{min:5.5,max:9.5,grid:{color:cc.g},ticks:{color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t,font:{size:9}}}}}});
+
+// 7. Doughnut — pass by dimension (2568)
+dn('tapPassDn',['กายภาพ 100%','เคมี 100%','โลหะหนัก 100%','ชีวภาพ 100%'],[3,8,8,2],[P.gn,P.bl,P.pu,P.cy],'52%');
+
+// ═══ HEAT TABLES ═══
+const params67=[
+  {name:'สีปรากฏ (Color)',std:'≤15 Pt-Co',r1b:'3',r1a:'1',r2b:'6',r2a:'1',p:[1,1,1,1]},
+  {name:'ความขุ่น (Turbidity)',std:'≤5 NTU',r1b:'0.45',r1a:'0.10',r2b:'1.08',r2a:'0.11',p:[1,1,1,1]},
+  {name:'pH',std:'6.5-8.5',r1b:'8.1',r1a:'7.9',r2b:'7.8',r2a:'6.5',p:[1,1,1,1]},
+  {name:'TDS',std:'≤500 mg/L',r1b:'98',r1a:'100',r2b:'<224.6',r2a:'<224.6',p:[1,1,1,1]},
+  {name:'ความกระด้าง (Hardness)',std:'≤300 mg/L',r1b:'78',r1a:'78',r2b:'61.1',r2a:'<29.2',p:[1,1,1,1]},
+  {name:'ซัลเฟต (Sulfate)',std:'≤250 mg/L',r1b:'5',r1a:'5',r2b:'5',r2a:'ND',p:[1,1,1,1]},
+  {name:'คลอไรด์ (Chloride)',std:'≤250 mg/L',r1b:'11',r1a:'9',r2b:'10',r2a:'<2',p:[1,1,1,1]},
+  {name:'ไนเตรท (Nitrate)',std:'≤50 mg/L',r1b:'1.96',r1a:'0.95',r2b:'1.9',r2a:'<1.0',p:[1,1,1,1]},
+  {name:'ฟลูออไรด์ (Fluoride)',std:'≤0.7 mg/L',r1b:'0.15',r1a:'0.16',r2b:'0.14',r2a:'ND',p:[1,1,1,1]},
+  {name:'ไนไตรท์ (Nitrite)',std:'≤3 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'ND',p:[1,1,1,1]},
+  {name:'เหล็ก (Iron)',std:'≤0.3 mg/L',r1b:'<0.032',r1a:'ND',r2b:'0.017',r2a:'ND',p:[1,1,1,1]},
+  {name:'แมงกานีส (Mn)',std:'≤0.3 mg/L',r1b:'<0.007',r1a:'ND',r2b:'<0.010',r2a:'ND',p:[1,1,1,1]},
+  {name:'ทองแดง (Cu)',std:'≤1 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'<0.010',p:[1,1,1,1]},
+  {name:'สังกะสี (Zn)',std:'≤3 mg/L',r1b:'<0.029',r1a:'0.047',r2b:'0.026',r2a:'0.012',p:[1,1,1,1]},
+  {name:'ตะกั่ว (Pb)',std:'≤0.01 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'ND',p:[1,1,1,1]},
+  {name:'โครเมียม (Cr)',std:'≤0.05 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'ND',p:[1,1,1,1]},
+  {name:'แคดเมียม (Cd)',std:'≤0.003 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'ND',p:[1,1,1,1]},
+  {name:'สารหนู (As)',std:'≤0.01 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'ND',p:[1,1,1,1]},
+  {name:'ปรอท (Hg)',std:'≤0.001 mg/L',r1b:'ND',r1a:'ND',r2b:'ND',r2a:'ND',p:[1,1,1,1]},
+  {name:'Coliforms',std:'<1.1 MPN',r1b:'<1.1',r1a:'<1.1',r2b:'>23',r2a:'<1.1',p:[1,1,0,1]},
+  {name:'E.coli',std:'<1.1 MPN',r1b:'<1.1',r1a:'<1.1',r2b:'>23',r2a:'<1.1',p:[1,1,0,1]}
+];
+
+let ht67='<table style="width:100%;border-collapse:separate;border-spacing:3px;font-size:12px">';
+ht67+='<tr style="font-weight:700;color:var(--t2)"><td style="padding:8px 10px;border-radius:8px;background:var(--bg2);min-width:140px">พารามิเตอร์</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center;min-width:80px">มาตรฐาน</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 1 ก่อนเข้าระบบ<br><small>26 ม.ค. 67</small></td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 1 หลังเข้าระบบ<br><small>(IPD) 26 ม.ค. 67</small></td><td style="padding:8px;border-radius:8px;background:rgba(239,68,68,.08);text-align:center">รอบ 2 ก่อนเข้าระบบ<br><small>16 ส.ค. 67</small></td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 2 หลังเข้าระบบ<br><small>(แผนไทย) 16 ส.ค. 67</small></td></tr>';
+params67.forEach(r=>{
+  ht67+='<tr><td style="padding:6px 10px;font-weight:600;color:var(--t1);border-radius:6px;background:var(--card)">'+r.name+'</td><td style="padding:6px;text-align:center;color:var(--t3);border-radius:6px;background:var(--card);font-size:10.5px">'+r.std+'</td>';
+  [r.r1b,r.r1a,r.r2b,r.r2a].forEach((v,i)=>{
+    const pass=r.p[i];const bg=pass?'rgba(22,163,74,.12)':'rgba(239,68,68,.15)';const cl=pass?'#16a34a':'#ef4444';const icon=pass?'✅':'❌';
+    ht67+='<td style="padding:6px;text-align:center;border-radius:6px;background:'+bg+';color:'+cl+';font-weight:600">'+icon+' '+v+'</td>';
+  });
+  ht67+='</tr>';
+});
+ht67+='<tr style="font-weight:700"><td style="padding:8px 10px;border-radius:6px;background:var(--bg2);color:var(--t1)">รวมผ่าน</td><td></td>';
+[21,21,19,21].forEach(n=>{const bg=n===21?'rgba(22,163,74,.2)':'rgba(239,68,68,.2)';const cl=n===21?'#16a34a':'#ef4444';ht67+='<td style="padding:8px;text-align:center;border-radius:6px;background:'+bg+';color:'+cl+';font-size:13px">'+(n===21?'✅ 21/21':'❌ '+n+'/21')+'</td>'});
+ht67+='</tr></table>';
+document.getElementById('tapTable67').innerHTML=ht67;
+
+// ═══ 2568 TABLE ═══
+const params68=[
+  {name:'สีปรากฏ (Color)',std:'≤15 Pt-Co',r1b:'1',r1a:'1',r2b:'<1',r2a:'<1',p:[1,1,1,1]},
+  {name:'ความขุ่น (Turbidity)',std:'≤5 NTU',r1b:'0.14',r1a:'0.24',r2b:'0.19',r2a:'0.48',p:[1,1,1,1]},
+  {name:'pH',std:'6.5-8.5',r1b:'8.0',r1a:'7.8',r2b:'7.92',r2a:'7.78',p:[1,1,1,1]},
+  {name:'TDS',std:'≤500 mg/L',r1b:'104',r1a:'114',r2b:'120',r2a:'154',p:[1,1,1,1]},
+  {name:'ความกระด้าง (Hardness)',std:'≤300 mg/L',r1b:'68.6',r1a:'<5.7',r2b:'64.4',r2a:'36.2',p:[1,1,1,1]},
+  {name:'ซัลเฟต (Sulfate)',std:'≤250 mg/L',r1b:'8',r1a:'9',r2b:'4.52',r2a:'5.16',p:[1,1,1,1]},
+  {name:'คลอไรด์ (Chloride)',std:'≤250 mg/L',r1b:'5',r1a:'6',r2b:'10.2',r2a:'11.0',p:[1,1,1,1]},
+  {name:'ไนเตรท (Nitrate)',std:'≤50 mg/L',r1b:'1.8',r1a:'ND',r2b:'1.50',r2a:'0.88',p:[1,1,1,1]},
+  {name:'ฟลูออไรด์ (Fluoride)',std:'≤0.7 mg/L',r1b:'0.13',r1a:'0.14',r2b:'0.14',r2a:'0.13',p:[1,1,1,1]},
+  {name:'ไนไตรท์ (Nitrite)',std:'≤3 mg/L',r1b:'ND',r1a:'<0.02',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'เหล็ก (Iron)',std:'≤0.3 mg/L',r1b:'<0.010',r1a:'<0.010',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'แมงกานีส (Mn)',std:'≤0.3 mg/L',r1b:'<0.010',r1a:'ND',r2b:'<MDL',r2a:'0.0625',p:[1,1,1,1]},
+  {name:'ทองแดง (Cu)',std:'≤1 mg/L',r1b:'ND',r1a:'ND',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'สังกะสี (Zn)',std:'≤3 mg/L',r1b:'<0.010',r1a:'0.019',r2b:'<LOQ',r2a:'<LOQ',p:[1,1,1,1]},
+  {name:'ตะกั่ว (Pb)',std:'≤0.01 mg/L',r1b:'ND',r1a:'ND',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'โครเมียม (Cr)',std:'≤0.05 mg/L',r1b:'ND',r1a:'ND',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'แคดเมียม (Cd)',std:'≤0.003 mg/L',r1b:'ND',r1a:'ND',r2b:'0.0028',r2a:'0.0028',p:[1,1,1,1]},
+  {name:'สารหนู (As)',std:'≤0.01 mg/L',r1b:'ND',r1a:'ND',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'ปรอท (Hg)',std:'≤0.001 mg/L',r1b:'ND',r1a:'ND',r2b:'<MDL',r2a:'<MDL',p:[1,1,1,1]},
+  {name:'Coliforms',std:'<1.1 MPN',r1b:'<1.1',r1a:'<1.1',r2b:'<1.1',r2a:'<1.1',p:[1,1,1,1]},
+  {name:'E.coli',std:'<1.1 MPN',r1b:'<1.1',r1a:'<1.1',r2b:'<1.1',r2a:'<1.1',p:[1,1,1,1]}
+];
+
+let ht68='<table style="width:100%;border-collapse:separate;border-spacing:3px;font-size:12px">';
+ht68+='<tr style="font-weight:700;color:var(--t2)"><td style="padding:8px 10px;border-radius:8px;background:var(--bg2);min-width:140px">พารามิเตอร์</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center;min-width:80px">มาตรฐาน</td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 1 ก่อนเข้าระบบ<br><small>กรมอนามัย 20 มี.ค. 68</small></td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 1 หลังเข้าระบบ<br><small>(OPD) 20 มี.ค. 68</small></td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 2 ก่อนเข้าระบบ<br><small>ศอ.2 พิษณุโลก 26 ส.ค. 68</small></td><td style="padding:8px;border-radius:8px;background:var(--bg2);text-align:center">รอบ 2 หลังเข้าระบบ<br><small>(IPD) 26 ส.ค. 68</small></td></tr>';
+params68.forEach(r=>{
+  ht68+='<tr><td style="padding:6px 10px;font-weight:600;color:var(--t1);border-radius:6px;background:var(--card)">'+r.name+'</td><td style="padding:6px;text-align:center;color:var(--t3);border-radius:6px;background:var(--card);font-size:10.5px">'+r.std+'</td>';
+  [r.r1b,r.r1a,r.r2b,r.r2a].forEach((v,i)=>{
+    const pass=r.p[i];const bg=pass?'rgba(22,163,74,.12)':'rgba(239,68,68,.15)';const cl=pass?'#16a34a':'#ef4444';const icon=pass?'✅':'❌';
+    ht68+='<td style="padding:6px;text-align:center;border-radius:6px;background:'+bg+';color:'+cl+';font-weight:600">'+icon+' '+v+'</td>';
+  });
+  ht68+='</tr>';
+});
+ht68+='<tr style="font-weight:700"><td style="padding:8px 10px;border-radius:6px;background:var(--bg2);color:var(--t1)">รวมผ่าน</td><td></td>';
+[21,21,21,21].forEach(n=>{ht68+='<td style="padding:8px;text-align:center;border-radius:6px;background:rgba(22,163,74,.2);color:#16a34a;font-size:13px">✅ 21/21</td>'});
+ht68+='</tr></table>';
+document.getElementById('tapTable68').innerHTML=ht68;
+
+setTimeout(()=>runCountUp(document.getElementById('tap-content')),100);
+}
+
 function exportWord(pageId){
   closeDDs();
   if(typeof docx==='undefined'){alert('กำลังโหลด docx library... กรุณากดอีกครั้ง');return}
@@ -1581,6 +2000,58 @@ function exportWord(pageId){
     ];
   }
 
+  // ════════════════════════════════════════════════
+  // TAP WATER REPORT
+  // ════════════════════════════════════════════════
+  if(pageId==='tap'){
+    fn='รายงานน้ำประปา_รพทับคล้อ';
+    sec=[...cover('รายงานผลตรวจคุณภาพน้ำประปา','โรงพยาบาลทับคล้อ จังหวัดพิจิตร'),
+      h2('1. ภาพรวมผลตรวจน้ำประปา รพ.ทับคล้อ'),
+      t('ตรวจตามเกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563 จำนวน 21 พารามิเตอร์ — ตรวจ 2 จุด (ก่อนเข้าระบบ & หลังเข้าระบบ) ปีละ 2 รอบ รวม 4 รอบ 8 ตัวอย่าง'),
+      h3('1.1 สรุปผลรายรอบ'),
+      mkTable(['รอบ','จุดก่อนเข้าระบบ','จุดหลังเข้าระบบ','หน่วยตรวจ'],[
+        [P('รอบ 1/2567 (ม.ค.)'),Ps('✅ ผ่าน 21/21'),Ps('✅ ผ่าน 21/21'),P('กรมอนามัย')],
+        [P('รอบ 2/2567 (ส.ค.)'),Pf('❌ 19/21'),Ps('✅ ผ่าน 21/21'),P('กรมอนามัย')],
+        [P('รอบ 1/2568 (มี.ค.)'),Ps('✅ ผ่าน 21/21'),Ps('✅ ผ่าน 21/21'),P('กรมอนามัย')],
+        [P('รอบ 2/2568 (ส.ค.)'),Ps('✅ ผ่าน 21/21'),Ps('✅ ผ่าน 21/21'),P('ศอ.2 พิษณุโลก')]
+      ]),
+      summaryBox('รวม: ผ่านเกณฑ์ 7 จาก 8 ตัวอย่าง (87.5%) — น้ำหลังเข้าระบบผ่าน 100% ทุกรอบ ระบบกรอง/ฆ่าเชื้อทำงานมีประสิทธิภาพ','green'),
+      h3('1.2 รอบที่ไม่ผ่าน — รอบ 2/2567 น้ำก่อนเข้าระบบ'),
+      mkTable(['พารามิเตอร์','เกณฑ์','ค่าที่ตรวจได้','สถานะ'],[
+        ['Coliforms',P('<1.1 MPN/100ml'),Pf('>23 MPN/100ml'),Pf('❌ ไม่ผ่าน')],
+        ['E.coli',P('<1.1 MPN/100ml'),Pf('>23 MPN/100ml'),Pf('❌ ไม่ผ่าน')]
+      ]),
+      summaryBox('น้ำดิบก่อนเข้าระบบ รอบ ส.ค. 2567 มีเชื้อจุลินทรีย์เกินมาตรฐาน แต่น้ำหลังเข้าระบบ (แผนไทย) ผ่านเกณฑ์ครบ แสดงว่าระบบกรองทำงานได้ผล','yellow'),
+      spacer(),
+      h2('2. ผลตรวจรายพารามิเตอร์ — ปี 2568 (ผ่านครบ 100%)'),
+      mkTable(['พารามิเตอร์','มาตรฐาน','รอบ 1 ก่อน','รอบ 1 หลัง(OPD)','รอบ 2 ก่อน','รอบ 2 หลัง(IPD)'],[
+        ['สีปรากฏ',P('≤15 Pt-Co'),Ps('1'),Ps('1'),Ps('<1'),Ps('<1')],
+        ['ความขุ่น',P('≤5 NTU'),Ps('0.14'),Ps('0.24'),Ps('0.19'),Ps('0.48')],
+        ['pH',P('6.5-8.5'),Ps('8.0'),Ps('7.8'),Ps('7.92'),Ps('7.78')],
+        ['TDS',P('≤500'),Ps('104'),Ps('114'),Ps('120'),Ps('154')],
+        ['Hardness',P('≤300'),Ps('68.6'),Ps('<5.7'),Ps('64.4'),Ps('36.2')],
+        ['Sulfate',P('≤250'),Ps('8'),Ps('9'),Ps('4.52'),Ps('5.16')],
+        ['Chloride',P('≤250'),Ps('5'),Ps('6'),Ps('10.2'),Ps('11.0')],
+        ['Nitrate',P('≤50'),Ps('1.8'),Ps('ND'),Ps('1.50'),Ps('0.88')],
+        ['Fluoride',P('≤0.7'),Ps('0.13'),Ps('0.14'),Ps('0.14'),Ps('0.13')],
+        ['Nitrite',P('≤3'),Ps('ND'),Ps('<0.02'),Ps('<MDL'),Ps('<MDL')],
+        ['Fe',P('≤0.3'),Ps('<0.010'),Ps('<0.010'),Ps('<MDL'),Ps('<MDL')],
+        ['Mn',P('≤0.3'),Ps('<0.010'),Ps('ND'),Ps('<MDL'),Ps('0.0625')],
+        ['Cu',P('≤1'),Ps('ND'),Ps('ND'),Ps('<MDL'),Ps('<MDL')],
+        ['Zn',P('≤3'),Ps('<0.010'),Ps('0.019'),Ps('<LOQ'),Ps('<LOQ')],
+        ['Pb',P('≤0.01'),Ps('ND'),Ps('ND'),Ps('<MDL'),Ps('<MDL')],
+        ['Cr',P('≤0.05'),Ps('ND'),Ps('ND'),Ps('<MDL'),Ps('<MDL')],
+        ['Cd',P('≤0.003'),Ps('ND'),Ps('ND'),Ps('0.0028'),Ps('0.0028')],
+        ['As',P('≤0.01'),Ps('ND'),Ps('ND'),Ps('<MDL'),Ps('<MDL')],
+        ['Hg',P('≤0.001'),Ps('ND'),Ps('ND'),Ps('<MDL'),Ps('<MDL')],
+        ['Coliforms',P('<1.1 MPN'),Ps('<1.1'),Ps('<1.1'),Ps('<1.1'),Ps('<1.1')],
+        ['E.coli',P('<1.1 MPN'),Ps('<1.1'),Ps('<1.1'),Ps('<1.1'),Ps('<1.1')]
+      ]),
+      summaryBox('สรุปปี 2568: ผ่านเกณฑ์ครบ 100% ทั้ง 4 ตัวอย่าง ทุกพารามิเตอร์ — โลหะหนักพิษ (Pb, Cr, Cd, As, Hg) ตรวจไม่พบหรือต่ำกว่าค่าที่สามารถวิเคราะห์ได้ — ระบบประปาของ รพ. มีคุณภาพดี','green'),
+      ...footer()
+    ];
+  }
+
   // ── Generate .docx ──
   const doc=new D.Document({
     creator:'ระบบข้อมูลสุขภาพ รพ.ทับคล้อ',
@@ -1629,16 +2100,14 @@ const obsCallback=(entries)=>{
             vl.textContent=(isFloat?current.toFixed(1):Math.floor(current))+suffix;},25);
         }
       }
-      // Replay chart animation when chart container scrolls into view
+      // Resize charts when container becomes visible (fixes canvas sizing)
       if(e.target.classList.contains('cc')||e.target.classList.contains('timeline-card')){
-        e.target.querySelectorAll('canvas').forEach(canvas=>{
-          const inst=Chart.getChart(canvas);
-          if(inst&&!inst._obsPlayed){
-            inst._obsPlayed=true;
-            inst.reset();
-            inst.update('default');
-          }
-        });
+        setTimeout(()=>{
+          e.target.querySelectorAll('canvas').forEach(canvas=>{
+            const inst=Chart.getChart(canvas);
+            if(inst)inst.resize();
+          });
+        },100);
       }
     }
   });
@@ -1655,10 +2124,9 @@ function applyScrollReveal(page){
     el.style.transitionDelay=(i*50)+'ms';
     scrollObs.observe(el);
   });
-  // Chart containers
-  page.querySelectorAll('.cc').forEach((el,i)=>{
-    el.classList.add('obs-scale');
-    el.style.transitionDelay=(i*60)+'ms';
+  // Chart containers — Chart.js handles its own animation (grow/spin/draw)
+  // Only observe for resize, no opacity hiding
+  page.querySelectorAll('.cc').forEach(el=>{
     scrollObs.observe(el);
   });
   // Section titles
@@ -1688,10 +2156,8 @@ function applyScrollReveal(page){
     el.style.transitionDelay=(i*55)+'ms';
     scrollObs.observe(el);
   });
-  // Sparkline KPI cards (home)
-  page.querySelectorAll('.skpi').forEach((el,i)=>{
-    el.classList.add('obs');
-    el.style.transitionDelay=(i*65)+'ms';
+  // Sparkline KPI cards — Chart.js animates the lines
+  page.querySelectorAll('.skpi').forEach(el=>{
     scrollObs.observe(el);
   });
   // Section cards (home)
@@ -1700,10 +2166,8 @@ function applyScrollReveal(page){
     el.style.transitionDelay=(i*80)+'ms';
     scrollObs.observe(el);
   });
-  // Timeline cards
-  page.querySelectorAll('.timeline-card').forEach((el,i)=>{
-    el.classList.add('obs');
-    el.style.transitionDelay=(i*70)+'ms';
+  // Timeline cards — Chart.js animates the charts
+  page.querySelectorAll('.timeline-card').forEach(el=>{
     scrollObs.observe(el);
   });
   // Store progress bar widths & reset for animation
@@ -1751,21 +2215,20 @@ goPage=function(id,el){
     const page=document.getElementById('page-'+id);
     if(page){
       // Remove previous obs states for re-entry
-      page.querySelectorAll('.obs,.obs-left,.obs-scale').forEach(e=>{
+      page.querySelectorAll('.obs,.obs-left,.obs-scale,.obs-fade').forEach(e=>{
         e.classList.remove('visible');
         scrollObs.unobserve(e);
       });
-      page.querySelectorAll('.obs,.obs-left,.obs-scale').forEach(e=>{
-        e.classList.remove('obs','obs-left','obs-scale');
-      });
-      // Reset chart animation flags for replay
-      page.querySelectorAll('canvas').forEach(cv=>{
-        const inst=Chart.getChart(cv);
-        if(inst)inst._obsPlayed=false;
+      page.querySelectorAll('.obs,.obs-left,.obs-scale,.obs-fade').forEach(e=>{
+        e.classList.remove('obs','obs-left','obs-scale','obs-fade');
       });
       applyScrollReveal(page);
+      // Resize all charts in the page to correct any dimension issues
+      page.querySelectorAll('canvas').forEach(cv=>{
+        const c=Chart.getChart(cv);if(c)c.resize();
+      });
     }
-  },240);
+  },300);
 };
 
 // ── 5. Init scroll reveal on first visible page ──
