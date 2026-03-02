@@ -427,6 +427,38 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 .sc5-pending:hover{opacity:.8}
 
 /* Timeline */
+/* ═══ TAP PAGE COMPACT LAYOUT ═══ */
+.tap-hero{border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(135deg,#0f766e,#0e7490);padding:28px 24px 22px;margin-bottom:14px}
+.tap-hero .hero-pat{position:absolute;inset:0;opacity:.15;background:repeating-linear-gradient(120deg,transparent,transparent 30px,rgba(255,255,255,.03) 30px,rgba(255,255,255,.03) 60px)}
+[data-theme="dark"] .tap-hero{background:linear-gradient(135deg,#0e5f58,#155e75)}
+
+.tap-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.tk-card{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:var(--card);border:1px solid var(--border);box-shadow:var(--sh)}
+.tk-card.tk-alert{border-color:rgba(239,68,68,.15)}
+.tk-ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.tk-val{font-family:'Kanit',sans-serif;font-size:22px;font-weight:800;color:var(--t1);line-height:1.1}
+.tk-lb{font-size:11px;color:var(--t3);font-weight:500;line-height:1.3;margin-top:1px}
+@media(max-width:900px){.tap-kpi-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.tap-kpi-strip{grid-template-columns:1fr}}
+
+.tap-overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+@media(max-width:900px){.tap-overview-grid{grid-template-columns:1fr}}
+
+.tap-insight-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.tib-item{flex:1;min-width:240px;padding:8px 14px;border-radius:10px;font-size:11.5px;line-height:1.5;color:var(--t2)}
+.tib-good{background:var(--success-l);border-left:3px solid var(--success)}
+.tib-warn{background:var(--warn-l);border-left:3px solid var(--warn)}
+
+.tap-compare-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:900px){.tap-compare-grid{grid-template-columns:1fr}}
+
+.tap-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+@media(max-width:700px){.tap-summary-grid{grid-template-columns:1fr}}
+
+/* ═══ WATER PAGE 3-COL DETAIL GRID ═══ */
+.w-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+@media(max-width:1000px){.w-detail-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.w-detail-grid{grid-template-columns:1fr}}
 .timeline-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--sh)}
 .timeline-card h3{font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px}
 .timeline-card .tc-sub{font-size:11.5px;color:var(--t3);margin-bottom:12px}
@@ -840,27 +872,30 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:250px"><canvas id="wOvr"></canvas></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 (N=42) ผ่านเกณฑ์ 6 แห่ง (14.3%) ไม่ผ่าน 36 แห่ง (85.7%) → รอบ 2 (N=41) ผ่านเกณฑ์เพิ่มเป็น 9 แห่ง (22.0%) ไม่ผ่าน 32 แห่ง (78.0%) <strong>แนวโน้มดีขึ้น +7.7%</strong></div></div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:250px"><canvas id="wByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> ทุกด้านมีแนวโน้มดีขึ้น — กายภาพ 66.7→75.6% (+8.9), เคมี 45.2→61.0% (+15.8), ชีวภาพ 21.4→31.7% (+10.3) แต่<strong>ชีวภาพยังเป็นปัญหามากที่สุด</strong> พบเชื้อ Coliform/E.coli สูงถึง 68-79%</div></div>
+  <div class="cc"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:200px"><canvas id="wOvr"></canvas></div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:200px"><canvas id="wByDim"></canvas></div></div>
+</div>
+<div class="tap-insight-bar" style="margin-top:-10px">
+  <div class="tib-item tib-good"><strong>📌 แนวโน้ม:</strong> ผ่านเกณฑ์ 14.3%→22.0% (+7.7%) — ทุกด้านดีขึ้น</div>
+  <div class="tib-item tib-warn"><strong>⚠️ ปัญหาหลัก:</strong> ชีวภาพผ่านเพียง 31.7% พบ Coliform/E.coli 68-79%</div>
 </div>
 
 <div class="stit"><span>🔬 รายละเอียดแยกตามด้าน</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc"><h3>ด้านกายภาพ</h3><div class="cs">สี, ความขุ่น, pH</div><div class="cw"><canvas id="wPhy"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>75.6%</span></div><div class="pb"><div class="pf" style="width:75.6%;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 28 แห่ง (66.7%) ไม่ผ่าน 14 แห่ง → รอบ 2 ผ่าน 31 แห่ง (75.6%) ไม่ผ่าน 10 แห่ง พารามิเตอร์ที่เกิน: <strong>สี (Color), ความขุ่น (Turbidity), pH</strong></div></div>
-  <div class="cc"><h3>ด้านเคมี</h3><div class="cs">TDS, Hardness, Sulfate, Chloride, Nitrate, Fluoride ฯลฯ</div><div class="cw"><canvas id="wChem"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>61.0%</span></div><div class="pb"><div class="pf" style="width:61%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div><div class="db di"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 19 แห่ง (45.2%) ไม่ผ่าน 23 แห่ง → รอบ 2 ผ่าน 25 แห่ง (61.0%) ไม่ผ่าน 16 แห่ง ดีขึ้น +15.8% พารามิเตอร์ที่เกิน: <strong>TDS, Hardness, Sulfate, Chloride</strong></div></div>
-  <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform Bacteria, E.coli</div><div class="cw"><canvas id="wBio"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>31.7%</span></div><div class="pb"><div class="pf" style="width:31.7%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 ไม่พบเชื้อ 9 แห่ง (21.4%) พบเชื้อ 33 แห่ง (78.6%) → รอบ 2 ไม่พบเชื้อ 13 แห่ง (31.7%) พบเชื้อ 28 แห่ง (68.3%) <strong>เป็นด้านที่มีปัญหามากที่สุด</strong> (&lt;1.1 MPN/100ml)</div></div>
-  <div class="cc"><h3>พารามิเตอร์ 23 รายการ & สิ่งที่เกินเกณฑ์</h3><div class="cs">ตรวจทุกจุดตามเกณฑ์กรมอนามัย 2563</div><div class="cw"><canvas id="wHeavy"></canvas></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11.5px">
-      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะหนักพิษที่เกิน:</strong><br><span style="color:var(--t3)">Pb, Cd, As, CN, Fe, Mn</span></div>
-      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ เคมีทั่วไปที่เกิน:</strong><br><span style="color:var(--t3)">TDS, Hardness, Sulfate, Cl⁻</span></div>
-    </div>
-    <div class="db" style="margin-top:8px"><strong>📌 สรุป:</strong> ตรวจ 23 พารามิเตอร์ แบ่งเป็น กายภาพ 3, เคมีทั่วไป 7, โลหะหนักพิษ 7 (Pb Cr Cd As Hg CN Ni), โลหะหนักทั่วไป 4 (Fe Mn Cu Zn), ชีวภาพ 2 — ระบบประปาส่วนใหญ่ไม่ผ่านเกณฑ์เรื่อง<strong>โลหะหนักพิษและเชื้อแบคทีเรียเป็นหลัก</strong></div>
-  </div>
+<div class="w-detail-grid">
+  <div class="cc"><h3>ด้านกายภาพ</h3><div class="cs">สี, ความขุ่น, pH</div><div class="cw" style="height:170px"><canvas id="wPhy"></canvas></div><div class="pw"><div class="pl"><span>ผ่าน (รอบ 2)</span><span>75.6%</span></div><div class="pb"><div class="pf" style="width:75.6%;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div></div></div>
+  <div class="cc"><h3>ด้านเคมี</h3><div class="cs">TDS, Hardness, Sulfate ฯลฯ</div><div class="cw" style="height:170px"><canvas id="wChem"></canvas></div><div class="pw"><div class="pl"><span>ผ่าน (รอบ 2)</span><span>61.0%</span></div><div class="pb"><div class="pf" style="width:61%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div></div>
+  <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform, E.coli</div><div class="cw" style="height:170px"><canvas id="wBio"></canvas></div><div class="pw"><div class="pl"><span>ผ่าน (รอบ 2)</span><span>31.7%</span></div><div class="pb"><div class="pf" style="width:31.7%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div></div>
 </div>
-
-<div class="stit"><span>📍 แยกตามพื้นที่ตำบล</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc fl"><h3>จำนวนระบบประปาแยกตำบล & แหล่งน้ำดิบ</h3><div class="cs">42 ระบบประปา ใน 4 ตำบล</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:260px"><div class="cw"><canvas id="wLoc"></canvas></div><div class="cw"><canvas id="wSrc"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> ต.เขาเจ็ดลูกมีประปามากสุด 30 แห่ง (71.4%), ต.เขาทราย 7 แห่ง, ต.หนองพระ 4 แห่ง, ต.วังทรายพูน 1 แห่ง | แหล่งน้ำดิบส่วนใหญ่เป็น<strong>น้ำบาดาล 36 แห่ง (85.7%)</strong> และน้ำผิวดิน 6 แห่ง (14.3%)</div></div>
+<div class="cgr" style="margin-top:10px">
+  <div class="cc"><h3>พารามิเตอร์ 23 รายการ</h3><div class="cs">แยกตามหมวด</div><div class="cw" style="height:185px"><canvas id="wHeavy"></canvas></div>
+    <div style="display:flex;gap:6px;margin-top:8px;font-size:10.5px;flex-wrap:wrap">
+      <span style="padding:3px 8px;border-radius:6px;background:rgba(239,68,68,.08);color:#dc2626">⚠️ พิษเกิน: Pb, Cd, As, CN</span>
+      <span style="padding:3px 8px;border-radius:6px;background:rgba(245,158,11,.08);color:#b45309">⚠️ เคมีเกิน: TDS, Hardness, Sulfate</span>
+    </div>
+  </div>
+  <div class="cc"><h3>แยกตำบล & แหล่งน้ำดิบ</h3><div class="cs">42 ระบบ ใน 4 ตำบล</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:185px"><div class="cw"><canvas id="wLoc"></canvas></div><div class="cw"><canvas id="wSrc"></canvas></div></div>
+    <div style="font-size:10.5px;color:var(--t3);margin-top:8px;line-height:1.5">ต.เขาเจ็ดลูก 30 แห่ง (71.4%) | น้ำบาดาล 36 แห่ง (85.7%)</div>
+  </div>
 </div>
 
 <div class="stit"><span>✅ ระบบประปาที่ผ่านเกณฑ์รอบ 2</span><span class="ln"></span></div>
@@ -924,21 +959,29 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div class="stit"><span>📊 ภาพรวมผลตรวจ 2 รอบ</span><span class="ln"></span></div>
 <div class="cgr">
-  <div class="cc fl"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:250px"><canvas id="w68Ovr"></canvas></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 (N=36) ผ่านเกณฑ์ 6 แห่ง (16.7%) ไม่ผ่าน 30 แห่ง (83.3%) → รอบ 2 (N=34) ผ่านเกณฑ์ 6 แห่ง (17.6%) ไม่ผ่าน 28 แห่ง (82.4%) <strong>สถานการณ์ทรงตัว</strong> ระบบส่วนใหญ่ยังไม่ผ่านเกณฑ์กว่า 80%</div></div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:250px"><canvas id="w68ByDim"></canvas></div><div class="db di"><strong>📌 สรุป:</strong> กายภาพลดลง 80.6→73.5% (−7.1), เคมีดีขึ้นเล็กน้อย 75.0→79.4% (+4.4), ชีวภาพดีขึ้นเล็กน้อย 25.0→29.4% (+4.4) <strong>ชีวภาพยังเป็นปัญหาหนักสุด</strong> พบ Coliform 70-75% ของระบบทั้งหมด</div></div>
+  <div class="cc"><h3>ผ่าน/ไม่ผ่านเกณฑ์ — ภาพรวม</h3><div class="cs">เกณฑ์น้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:200px"><canvas id="w68Ovr"></canvas></div></div>
+  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เปรียบเทียบรอบ 1 vs รอบ 2</div><div class="cw" style="height:200px"><canvas id="w68ByDim"></canvas></div></div>
+</div>
+<div class="tap-insight-bar" style="margin-top:-10px">
+  <div class="tib-item tib-warn"><strong>📌 สถานการณ์:</strong> ทรงตัว ผ่านเกณฑ์ 16.7%→17.6% — ระบบ 80%+ ยังไม่ผ่าน</div>
+  <div class="tib-item tib-warn"><strong>⚠️ ปัญหาหลัก:</strong> ชีวภาพผ่านเพียง 29.4% — Coliform 70-75% ของระบบทั้งหมด</div>
 </div>
 
 <div class="stit"><span>🔬 รายละเอียดแยกตามด้าน</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc"><h3>ด้านกายภาพ</h3><div class="cs">สี, ความขุ่น, pH</div><div class="cw"><canvas id="w68Phy"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>73.5%</span></div><div class="pb"><div class="pf" style="width:73.5%;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div></div><div class="db di"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 29 แห่ง (80.6%) → รอบ 2 ผ่าน 25 แห่ง (73.5%) <strong>ลดลง −7.1%</strong> รอบ 2 พบปัญหาความขุ่น (Turbidity) เพิ่มขึ้น 9 แห่ง (26.5%)</div></div>
-  <div class="cc"><h3>ด้านเคมี</h3><div class="cs">TDS, Hardness, Sulfate, Chloride, Nitrate, Fluoride ฯลฯ</div><div class="cw"><canvas id="w68Chem"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>79.4%</span></div><div class="pb"><div class="pf" style="width:79.4%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div><div class="db dg"><strong>📌 สรุป:</strong> รอบ 1 ผ่าน 27 แห่ง (75.0%) → รอบ 2 ผ่าน 27 แห่ง (79.4%) <strong>ดีขึ้นเล็กน้อย +4.4%</strong> TDS เกิน 5 แห่ง, Hardness เกิน 6 แห่ง, พบ Fluoride เกินมาตรฐานในรอบ 2</div></div>
-  <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform Bacteria, E.coli</div><div class="cw"><canvas id="w68Bio"></canvas></div><div class="pw"><div class="pl"><span>ผ่านเกณฑ์ (รอบ 2)</span><span>29.4%</span></div><div class="pb"><div class="pf" style="width:29.4%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div class="db dr"><strong>📌 สรุป:</strong> รอบ 1 ไม่พบเชื้อ 9 แห่ง (25.0%) → รอบ 2 ไม่พบเชื้อ 10 แห่ง (29.4%) ดีขึ้นเล็กน้อย +4.4% แต่<strong>ยังเป็นปัญหาหนักสุด</strong> — Coliform เกิน 24 แห่ง (70.6%), E.coli เกิน 18 แห่ง (52.9%) ในรอบ 2</div></div>
-  <div class="cc"><h3>พารามิเตอร์ 23 รายการ & สิ่งที่เกินเกณฑ์</h3><div class="cs">ตรวจทุกจุดตามเกณฑ์กรมอนามัย 2563</div><div class="cw"><canvas id="w68Heavy"></canvas></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11.5px">
-      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะหนักพิษที่เกิน:</strong><br><span style="color:var(--t3)">As 1-2 แห่ง (#2 เขาตะพานนาก ทั้ง 2 รอบ)<br>Cd เกินรอบ 2 ถึง 7 แห่ง (รอบ 1 ไม่พบ)</span></div>
-      <div style="padding:8px 12px;border-radius:8px;background:var(--primary-s)"><strong style="color:var(--t1)">⚠️ โลหะทั่วไป/เคมีที่เกิน:</strong><br><span style="color:var(--t3)">Fe เกิน 5-7 แห่ง, Mn เกิน 4-6 แห่ง<br>TDS, Hardness, Sulfate, Fluoride</span></div>
+<div class="w-detail-grid">
+  <div class="cc"><h3>ด้านกายภาพ</h3><div class="cs">สี, ความขุ่น, pH</div><div class="cw" style="height:170px"><canvas id="w68Phy"></canvas></div><div class="pw"><div class="pl"><span>ผ่าน (รอบ 2)</span><span>73.5%</span></div><div class="pb"><div class="pf" style="width:73.5%;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div></div></div>
+  <div class="cc"><h3>ด้านเคมี</h3><div class="cs">TDS, Hardness, Sulfate ฯลฯ</div><div class="cw" style="height:170px"><canvas id="w68Chem"></canvas></div><div class="pw"><div class="pl"><span>ผ่าน (รอบ 2)</span><span>79.4%</span></div><div class="pb"><div class="pf" style="width:79.4%;background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div></div></div>
+  <div class="cc"><h3>ด้านชีวภาพ</h3><div class="cs">Coliform, E.coli</div><div class="cw" style="height:170px"><canvas id="w68Bio"></canvas></div><div class="pw"><div class="pl"><span>ผ่าน (รอบ 2)</span><span>29.4%</span></div><div class="pb"><div class="pf" style="width:29.4%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div></div>
+</div>
+<div class="cgr" style="margin-top:10px">
+  <div class="cc"><h3>พารามิเตอร์ 23 รายการ</h3><div class="cs">แยกตามหมวด</div><div class="cw" style="height:185px"><canvas id="w68Heavy"></canvas></div>
+    <div style="display:flex;gap:6px;margin-top:8px;font-size:10.5px;flex-wrap:wrap">
+      <span style="padding:3px 8px;border-radius:6px;background:rgba(239,68,68,.08);color:#dc2626">⚠️ As เกิน 1-2 แห่ง | Cd เกินรอบ 2: 7 แห่ง</span>
+      <span style="padding:3px 8px;border-radius:6px;background:rgba(245,158,11,.08);color:#b45309">⚠️ Fe 5-7 แห่ง | Mn 4-6 แห่ง</span>
     </div>
-    <div class="db" style="margin-top:8px"><strong>📌 สรุป:</strong> ตรวจ 23 พารามิเตอร์ — <strong>ปัญหาหลักคือ Coliform/E.coli</strong> เชื้อแบคทีเรียปนเปื้อน 70-75% ของระบบ ตามด้วย Fe (เหล็ก) เกิน 20-26% และ Mn (แมงกานีส) เกิน 11-17% ส่วน <strong>รอบ 2 พบ Cd (แคดเมียม) เกินมาตรฐานถึง 7 แห่ง</strong> และ As (สารหนู) เกิน 1 แห่ง</div>
+  </div>
+  <div class="cc"><h3>แยกตำบล & แหล่งน้ำดิบ</h3><div class="cs">36 ระบบ ใน 2 ตำบล</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:185px"><div class="cw"><canvas id="w68Loc"></canvas></div><div class="cw"><canvas id="w68Src"></canvas></div></div>
+    <div style="font-size:10.5px;color:var(--t3);margin-top:8px;line-height:1.5">ต.เขาเจ็ดลูก 29 แห่ง (80.6%) | น้ำบาดาล 33 แห่ง (91.7%)</div>
   </div>
 </div>
 
@@ -1020,11 +1063,6 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
     </div>
     <div class="db dr" style="margin-top:10px"><strong>⚠️ จุดวิกฤต:</strong> รอบ 2 พบ <strong>แคดเมียม (Cd)</strong> เกินมาตรฐาน 7 ระบบ (เกณฑ์ ≤0.003 mg/L) — กระจายอยู่ทั้ง ม.7, ม.8, ม.10 ต.เขาเจ็ดลูก และ ม.3, ม.13 ต.เขาทราย ซึ่ง<strong>รอบ 1 ไม่พบเกินเลย</strong> → ควรติดตามแหล่งปนเปื้อนเร่งด่วน | #2 ประปาเขาตะพานนาก พบ <strong>As เกินต่อเนื่อง</strong>ทั้ง 2 รอบ</div>
   </div>
-</div>
-
-<div class="stit"><span>📍 แยกตามพื้นที่ตำบล & แหล่งน้ำ</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc fl"><h3>จำนวนระบบประปาแยกตำบล & แหล่งน้ำดิบ</h3><div class="cs">36 ระบบประปา (รอบ 1) ใน 2 ตำบล</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;height:260px"><div class="cw"><canvas id="w68Loc"></canvas></div><div class="cw"><canvas id="w68Src"></canvas></div></div><div class="db dg"><strong>📌 สรุป:</strong> ต.เขาเจ็ดลูกมีประปามากสุด 29 แห่ง (80.6%), ต.เขาทราย 7 แห่ง (19.4%) | แหล่งน้ำดิบส่วนใหญ่เป็น<strong>น้ำบาดาล 33 แห่ง (91.7%)</strong> และน้ำผิวดิน 3 แห่ง (8.3%)</div></div>
 </div>
 
 <div class="stit"><span>✅ ระบบประปาที่ผ่านเกณฑ์</span><span class="ln"></span></div>
@@ -1259,10 +1297,18 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div class="page" id="page-tap">
 <div class="topbar"><span class="topicon">🚰</span><h1>ผลน้ำประปา รพ.ทับคล้อ</h1><div class="tb-dd"><button class="tb-btn" onclick="togDD(this)">📥 ส่งออก ▾</button><div class="tb-dd-menu"><a onclick="exportWord('tap')"><span class="dd-ic word">📄</span>ส่งออก Word (.docx)</a><a onclick="window.print();closeDDs()"><span class="dd-ic print">🖨️</span>พิมพ์ / PDF</a></div></div></div>
 <div class="pg-pad" id="tap-content">
-<div class="hero"><div class="hero-bg"></div><div class="hero-ct"><div class="badge">🚰 Hospital Water Quality Dashboard</div><h1>ผลตรวจคุณภาพน้ำประปา<br><em>โรงพยาบาลทับคล้อ อ.ทับคล้อ จ.พิจิตร</em></h1></div></div>
+
+<!-- ═══ COMPACT HERO ═══ -->
+<div class="tap-hero">
+  <div class="hero-pat"></div>
+  <div style="position:relative;z-index:1;text-align:center">
+    <h1 style="font-family:'Kanit',sans-serif;font-size:clamp(18px,2.4vw,24px);font-weight:800;color:#fff;margin-bottom:4px">🚰 ผลตรวจคุณภาพน้ำประปา รพ.ทับคล้อ</h1>
+    <p style="color:rgba(255,255,255,.65);font-size:12.5px;margin:0">เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563 — 21 พารามิเตอร์ × 2 จุดเก็บ × 4 รอบ</p>
+  </div>
+</div>
 
 <!-- ═══ แนวทาง (บนสุด) ═══ -->
-<div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางการตรวจน้ำประปา รพ.ทับคล้อ</h3><span class="meth-arr">▾</span></div><div class="meth-b">
+<div class="meth open" onclick="togM(this)"><div class="meth-h"><h3>📋 แนวทางและรายละเอียดการตรวจ</h3><span class="meth-arr">▾</span></div><div class="meth-b">
 <p><strong>เกณฑ์อ้างอิง</strong> — เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</p>
 <div class="mgr">
   <div class="mgi"><h4>📍 จุดเก็บตัวอย่าง (2 จุด)</h4><ul><li>จุด 1: น้ำประปา<strong>ก่อน</strong>เข้าระบบ</li><li>จุด 2: น้ำประปา<strong>หลัง</strong>เข้าระบบ (IPD/OPD/แผนไทย)</li></ul></div>
@@ -1271,132 +1317,122 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   <div class="mgi"><h4>🏢 หน่วยตรวจวิเคราะห์</h4><ul><li>กองท้องปฏิบัติการสาธารณสุข กรมอนามัย</li><li>ศูนย์อนามัยที่ 2 พิษณุโลก</li></ul></div>
 </div></div></div>
 
-<!-- ═══ KPI Summary ═══ -->
-<div class="kpig">
-  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">📊</div></div><div class="kpi-lb">ครั้งที่ตรวจ (ทั้งหมด)</div><div class="kpi-vl" data-count="4">0</div><div class="kpi-sb">4 รอบ × 2 จุดเก็บ = 8 ตัวอย่าง</div></div>
-  <div class="kpi kt"><div class="kpi-top"><div class="kpi-ic">🧪</div></div><div class="kpi-lb">พารามิเตอร์ที่ตรวจ</div><div class="kpi-vl" data-count="21">0</div><div class="kpi-sb">กายภาพ 3 / เคมี 8 / โลหะหนัก 8 / ชีวภาพ 2</div></div>
-  <div class="kpi kgr"><div class="kpi-top"><div class="kpi-ic">✅</div></div><div class="kpi-lb">ผ่านเกณฑ์ (ตัวอย่าง)</div><div class="kpi-vl" data-count="7">0</div><div class="kpi-sb">87.5% (7 จาก 8 ตัวอย่าง)</div></div>
-  <div class="kpi kr"><div class="kpi-top"><div class="kpi-ic">⚠️</div></div><div class="kpi-lb">ไม่ผ่านเกณฑ์</div><div class="kpi-vl" data-count="1">0</div><div class="kpi-sb">รอบ 2/67 น้ำก่อนเข้าระบบ — Coliform/E.coli</div></div>
-</div>
-
-<!-- ═══ Overall Pass/Fail Chart ═══ -->
-<div class="stit"><span>📊 ภาพรวมผ่าน/ไม่ผ่านเกณฑ์ทุกรอบ</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc"><h3>ผ่าน/ไม่ผ่าน — แยกตามจุดเก็บ (8 ตัวอย่าง)</h3><div class="cs">เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div><div class="cw" style="height:250px"><canvas id="tapOvr"></canvas></div>
-    <div class="db di"><strong>📌 สรุป:</strong> น้ำ<strong>หลังเข้าระบบ</strong>กรอง (IPD/OPD/แผนไทย) ผ่านเกณฑ์ <strong>100% ทุกรอบ ทุกพารามิเตอร์</strong> — น้ำ<strong>ก่อนเข้าระบบ</strong>ไม่ผ่านเพียงรอบ 2/67 จากปัญหา Coliform/E.coli</div>
+<!-- ═══ KPI STRIP ═══ -->
+<div class="tap-kpi-strip">
+  <div class="tk-card">
+    <div class="tk-ic" style="background:rgba(2,132,199,.1);color:#0284c7">📊</div>
+    <div><div class="tk-val" data-count="4">0</div><div class="tk-lb">รอบตรวจ</div></div>
   </div>
-  <div class="cc"><h3>อัตราผ่านเกณฑ์แยกด้าน</h3><div class="cs">เฉลี่ยทุกรอบทุกจุด (8 ตัวอย่าง)</div><div class="cw" style="height:250px"><canvas id="tapDim"></canvas></div>
-    <div class="db dg"><strong>📌 สรุป:</strong> ด้านกายภาพ & เคมี & โลหะหนัก ผ่าน <strong>100%</strong> ทุกตัวอย่าง ทุกรอบ — ด้านชีวภาพ ผ่าน <strong>87.5%</strong> (7/8) พบปัญหา Coliform เฉพาะน้ำก่อนเข้าระบบ รอบ 2/67</div>
+  <div class="tk-card">
+    <div class="tk-ic" style="background:rgba(124,58,237,.1);color:#7c3aed">🧪</div>
+    <div><div class="tk-val" data-count="21">0</div><div class="tk-lb">พารามิเตอร์</div></div>
   </div>
-</div>
-
-<!-- ═══ Timeline Chart ═══ -->
-<div class="stit"><span>📈 แนวโน้มผ่านเกณฑ์รายรอบ</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc fl"><h3>จำนวนพารามิเตอร์ที่ผ่านเกณฑ์ (จาก 21 ตัว) — แยกจุดเก็บ</h3><div class="cs">น้ำก่อนเข้าระบบ vs น้ำหลังเข้าระบบ</div><div class="cw" style="height:260px"><canvas id="tapTimeline"></canvas></div>
-    <div class="db di"><strong>📌 แนวโน้ม:</strong> รอบ 2/67 น้ำก่อนเข้าระบบมีปัญหา Coliform/E.coli ทำให้ผ่านเพียง 19/21 → หลังจากนั้นทุกรอบ (รอบ 1/68, รอบ 2/68) <strong>กลับมาผ่านครบ 21/21</strong> ทั้งสองจุด แสดงว่ามีการแก้ไขปัญหาได้ผลดี</div>
+  <div class="tk-card">
+    <div class="tk-ic" style="background:rgba(22,163,74,.1);color:#16a34a">✅</div>
+    <div><div class="tk-val">87.5<span style="font-size:14px;font-weight:600">%</span></div><div class="tk-lb">ผ่านเกณฑ์ (7/8)</div></div>
+  </div>
+  <div class="tk-card tk-alert">
+    <div class="tk-ic" style="background:rgba(239,68,68,.1);color:#ef4444">⚠️</div>
+    <div><div class="tk-val" data-count="1">0</div><div class="tk-lb">ไม่ผ่าน (ร.2/67 ก่อนระบบ)</div></div>
   </div>
 </div>
 
-<!-- ═══ ผลสรุปรายรอบ (compact) ═══ -->
-<div class="stit"><span>📋 ผลสรุปรายรอบ — แยกตามปีงบประมาณ</span><span class="ln"></span></div>
+<!-- ═══ SECTION 1: ภาพรวม + แนวโน้ม (3 กราฟรวม 1 section) ═══ -->
+<div class="stit"><span>📊 ภาพรวมผลตรวจทุกรอบ</span><span class="ln"></span></div>
+<div class="tap-overview-grid">
+  <div class="cc"><h3>ผ่าน/ไม่ผ่าน — แยกจุดเก็บ</h3><div class="cs">8 ตัวอย่าง (4 รอบ × 2 จุด)</div><div class="cw" style="height:210px"><canvas id="tapOvr"></canvas></div></div>
+  <div class="cc"><h3>อัตราผ่านแยกด้าน</h3><div class="cs">เฉลี่ยทุกรอบทุกจุด</div><div class="cw" style="height:210px"><canvas id="tapDim"></canvas></div></div>
+  <div class="cc" style="grid-column:1/-1"><h3>แนวโน้มผ่านเกณฑ์รายรอบ — น้ำก่อน vs หลังเข้าระบบ</h3><div class="cs">จำนวนพารามิเตอร์ผ่าน (จาก 21 ตัว)</div><div class="cw" style="height:200px"><canvas id="tapTimeline"></canvas></div></div>
+</div>
+<div class="tap-insight-bar">
+  <div class="tib-item tib-good"><strong>✅ น้ำหลังระบบ:</strong> ผ่าน 100% ทุกรอบ ทุกพารามิเตอร์</div>
+  <div class="tib-item tib-warn"><strong>⚠️ น้ำก่อนระบบ:</strong> รอบ 2/67 ไม่ผ่าน Coliform/E.coli → ปี 68 กลับมาผ่านครบ</div>
+</div>
+
+<!-- ═══ SECTION 2: ผลสรุปรายรอบ (ตาราง compact) ═══ -->
+<div class="stit"><span>📋 ผลสรุปรายรอบ</span><span class="ln"></span></div>
 <div class="cgr"><div class="cc fl">
 <div style="overflow-x:auto">
-<table style="width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12.5px;min-width:620px">
-<thead><tr style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">
-<td style="padding:6px 10px;width:120px">ปีงบประมาณ</td><td style="padding:6px 8px">รอบ</td><td style="padding:6px 8px">วันที่เก็บ / วิเคราะห์</td><td style="padding:6px 8px">หน่วยตรวจ</td><td style="padding:6px 8px;text-align:center">ก่อนเข้าระบบ</td><td style="padding:6px 8px;text-align:center">หลังเข้าระบบ</td>
+<table style="width:100%;border-collapse:separate;border-spacing:0 3px;font-size:12px;min-width:580px">
+<thead><tr style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">
+<td style="padding:5px 8px;width:100px">ปีงบ</td><td style="padding:5px 6px">รอบ</td><td style="padding:5px 6px">วันเก็บ</td><td style="padding:5px 6px">หน่วยตรวจ</td><td style="padding:5px 6px;text-align:center">ก่อนระบบ</td><td style="padding:5px 6px;text-align:center">หลังระบบ</td>
 </tr></thead>
 <tbody>
-<!-- ปีงบ 2567 -->
-<tr style="background:var(--card);border-radius:8px">
-<td rowspan="2" style="padding:10px;font-weight:700;color:var(--primary);border-radius:8px 0 0 8px;border-left:3px solid var(--primary);vertical-align:middle"><div>ปีงบ 2567</div><div style="font-size:10px;color:var(--t3);font-weight:400;margin-top:2px">ต.ค. 66 – ก.ย. 67</div></td>
-<td style="padding:8px;font-weight:600">รอบ 1</td>
-<td style="padding:8px;color:var(--t2)"><div>เก็บ 26 ม.ค. 67</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 26/1 – 9/2/67</div></td>
-<td style="padding:8px;color:var(--t2);font-size:11.5px">กรมอนามัย</td>
-<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span></td>
-<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">IPD</div></td>
+<tr style="background:var(--card)">
+<td rowspan="2" style="padding:8px;font-weight:700;color:var(--primary);border-left:3px solid var(--primary);border-radius:6px 0 0 0;vertical-align:middle;font-size:12.5px">2567</td>
+<td style="padding:6px;font-weight:600">รอบ 1</td>
+<td style="padding:6px;color:var(--t2)">26 ม.ค. 67</td>
+<td style="padding:6px;color:var(--t3);font-size:11px">กรมอนามัย</td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
 </tr>
 <tr style="background:var(--card)">
-<td style="padding:8px;font-weight:600">รอบ 2</td>
-<td style="padding:8px;color:var(--t2)"><div>เก็บ 16 ส.ค. 67</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 16 – 30/8/67</div></td>
-<td style="padding:8px;color:var(--t2);font-size:11.5px">กรมอนามัย</td>
-<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(239,68,68,.1);color:#dc2626;font-weight:700;font-size:11.5px">❌ 19/21</span><div style="font-size:9.5px;color:#dc2626;margin-top:2px">Coliform/E.coli</div></td>
-<td style="padding:8px;text-align:center;border-radius:0 8px 8px 0"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">แผนไทย</div></td>
+<td style="padding:6px;font-weight:600">รอบ 2</td>
+<td style="padding:6px;color:var(--t2)">16 ส.ค. 67</td>
+<td style="padding:6px;color:var(--t3);font-size:11px">กรมอนามัย</td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(239,68,68,.1);color:#dc2626;font-weight:700;font-size:11px">❌ 19/21</span></td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
 </tr>
-<!-- ปีงบ 2568 -->
-<tr><td colspan="6" style="padding:2px"></td></tr>
-<tr style="background:var(--card);border-radius:8px">
-<td rowspan="2" style="padding:10px;font-weight:700;color:var(--primary);border-radius:8px 0 0 8px;border-left:3px solid var(--primary);vertical-align:middle"><div>ปีงบ 2568</div><div style="font-size:10px;color:var(--t3);font-weight:400;margin-top:2px">ต.ค. 67 – ก.ย. 68</div></td>
-<td style="padding:8px;font-weight:600">รอบ 1</td>
-<td style="padding:8px;color:var(--t2)"><div>เก็บ 20 มี.ค. 68</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 20/3 – 4/4/68</div></td>
-<td style="padding:8px;color:var(--t2);font-size:11.5px">กรมอนามัย</td>
-<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span></td>
-<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">OPD</div></td>
+<tr><td colspan="6" style="padding:1px"></td></tr>
+<tr style="background:var(--card)">
+<td rowspan="2" style="padding:8px;font-weight:700;color:var(--primary);border-left:3px solid var(--primary);border-radius:6px 0 0 0;vertical-align:middle;font-size:12.5px">2568</td>
+<td style="padding:6px;font-weight:600">รอบ 1</td>
+<td style="padding:6px;color:var(--t2)">20 มี.ค. 68</td>
+<td style="padding:6px;color:var(--t3);font-size:11px">กรมอนามัย</td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
 </tr>
 <tr style="background:var(--card)">
-<td style="padding:8px;font-weight:600">รอบ 2</td>
-<td style="padding:8px;color:var(--t2)"><div>เก็บ 26 ส.ค. 68</div><div style="font-size:10px;color:var(--t3)">วิเคราะห์ 26/8/68</div></td>
-<td style="padding:8px;color:var(--t2);font-size:11.5px">ศอ.2 พิษณุโลก</td>
-<td style="padding:8px;text-align:center"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span></td>
-<td style="padding:8px;text-align:center;border-radius:0 8px 8px 0"><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11.5px">✅ 21/21</span><div style="font-size:9.5px;color:var(--t3);margin-top:2px">IPD</div></td>
+<td style="padding:6px;font-weight:600">รอบ 2</td>
+<td style="padding:6px;color:var(--t2)">26 ส.ค. 68</td>
+<td style="padding:6px;color:var(--t3);font-size:11px">ศอ.2 พิษณุโลก</td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
+<td style="padding:6px;text-align:center"><span style="padding:2px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:#16a34a;font-weight:700;font-size:11px">✅ 21/21</span></td>
 </tr>
 </tbody></table>
 </div>
-<div class="db di" style="margin-top:10px"><strong>📌</strong> ปีงบประมาณ = ต.ค. – ก.ย. | น้ำหลังเข้าระบบ <strong>ผ่าน 100% ทุกรอบ</strong> — ไม่ผ่านเฉพาะน้ำก่อนเข้าระบบ รอบ 2/67 (Coliform &amp; E.coli)</div>
 </div></div>
 
-<!-- ═══ Heat Table with Year Tabs ═══ -->
-<div class="stit"><span>🔬 ตารางผลตรวจ 21 พารามิเตอร์ — เทียบค่ามาตรฐาน</span><span class="ln"></span></div>
+<!-- ═══ SECTION 3: ตารางผลตรวจ 21 พารามิเตอร์ ═══ -->
+<div class="stit"><span>🔬 ตารางผลตรวจ 21 พารามิเตอร์</span><span class="ln"></span></div>
 <div class="cgr">
   <div class="cc fl">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
-      <h3 style="margin:0">ผลตรวจ 21 พารามิเตอร์</h3>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <h3 style="margin:0">ผลตรวจเทียบค่ามาตรฐาน</h3>
       <div class="ybar" style="margin:0"><button class="wybtn active" onclick="swYT(67,this)">ปีงบ 2567</button><button class="wybtn" onclick="swYT(68,this)">ปีงบ 2568</button></div>
     </div>
     <div class="cs">✅ ผ่าน | ❌ ไม่ผ่าน | เกณฑ์คุณภาพน้ำประปาดื่มได้ กรมอนามัย พ.ศ. 2563</div>
     <div id="t67" class="wyp wsh">
-      <div id="tapTable67" style="overflow-x:auto;margin-top:10px;font-size:12.5px"></div>
+      <div id="tapTable67" style="overflow-x:auto;margin-top:8px;font-size:12px"></div>
     </div>
     <div id="t68" class="wyp">
-      <div id="tapTable68" style="overflow-x:auto;margin-top:10px;font-size:12.5px"></div>
+      <div id="tapTable68" style="overflow-x:auto;margin-top:8px;font-size:12px"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══ Key Parameters Comparison ═══ -->
-<div class="stit"><span>📉 เปรียบเทียบค่าสำคัญ — ปีงบ 2567 vs 2568</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc"><h3>ค่า TDS (ของแข็งละลาย)</h3><div class="cs">เกณฑ์ ≤500 mg/L | <span style="color:#7c3aed">■</span> ปี 67 <span style="color:#0284c7">■</span> ปี 68</div><div class="cw" style="height:240px"><canvas id="tapTDS"></canvas></div></div>
-  <div class="cc"><h3>ค่า Hardness (ความกระด้าง)</h3><div class="cs">เกณฑ์ ≤300 mg/L CaCO₃ | <span style="color:#7c3aed">■</span> ปี 67 <span style="color:#d97706">■</span> ปี 68</div><div class="cw" style="height:240px"><canvas id="tapHard"></canvas></div></div>
-  <div class="cc"><h3>ค่า pH</h3><div class="cs">เกณฑ์ 6.5-8.5 | <span style="color:#7c3aed">■</span> ปี 67 <span style="color:#0891b2">■</span> ปี 68</div><div class="cw" style="height:240px"><canvas id="tapPH"></canvas></div></div>
-  <div class="cc"><h3>สัดส่วนด้านที่ผ่านเกณฑ์</h3><div class="cs">ทุกรอบรวม ปีงบ 2567-2568</div><div class="cw" style="height:240px"><canvas id="tapPassDn"></canvas></div></div>
+<!-- ═══ SECTION 4: เปรียบเทียบค่าสำคัญ (compact 2+2+doughnut) ═══ -->
+<div class="stit"><span>📉 เปรียบเทียบค่าสำคัญ ปีงบ 67 vs 68</span><span class="ln"></span></div>
+<div class="tap-compare-grid">
+  <div class="cc"><h3>TDS (ของแข็งละลาย)</h3><div class="cs">เกณฑ์ ≤500 mg/L</div><div class="cw" style="height:185px"><canvas id="tapTDS"></canvas></div></div>
+  <div class="cc"><h3>Hardness (ความกระด้าง)</h3><div class="cs">เกณฑ์ ≤300 mg/L CaCO₃</div><div class="cw" style="height:185px"><canvas id="tapHard"></canvas></div></div>
+  <div class="cc"><h3>ค่า pH</h3><div class="cs">เกณฑ์ 6.5–8.5</div><div class="cw" style="height:185px"><canvas id="tapPH"></canvas></div></div>
+  <div class="cc"><h3>สัดส่วนด้านที่ผ่านเกณฑ์</h3><div class="cs">ปีงบ 2567–2568 รวม</div><div class="cw" style="height:185px"><canvas id="tapPassDn"></canvas></div></div>
 </div>
 
-<!-- ═══ Summary Box ═══ -->
-<div class="stit"><span>📝 สรุปภาพรวมและข้อเสนอแนะ</span><span class="ln"></span></div>
-<div class="cgr">
-  <div class="cc fl">
-    <h3>สรุปผลวิเคราะห์คุณภาพน้ำประปา รพ.ทับคล้อ ปีงบ 2567-2568</h3>
-    <div class="cs">4 รอบ × 2 จุดเก็บ = 8 ตัวอย่าง — 21 พารามิเตอร์ | ปีงบประมาณ ต.ค. – ก.ย.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
-      <div style="padding:14px;border-radius:12px;background:var(--success-l);border:1px solid rgba(22,163,74,.15)">
-        <div style="font-weight:700;color:var(--success);font-size:14px;margin-bottom:6px">✅ จุดแข็ง</div>
-        <div style="font-size:12.5px;color:var(--t2);line-height:1.8">
-          • น้ำหลังเข้าระบบ ผ่านเกณฑ์ <strong>100%</strong> ทุกรอบ<br>
-          • โลหะหนักพิษ (Pb, Cr, Cd, As, Hg) <strong>ไม่พบ/ต่ำกว่าค่า MDL</strong> ทุกตัวอย่าง<br>
-          • ปีงบ 2568 ผ่านเกณฑ์ <strong>ครบ 100%</strong> ทั้ง 4 ตัวอย่าง<br>
-          • ระบบกรองน้ำ รพ. มีประสิทธิภาพดี
-        </div>
-      </div>
-      <div style="padding:14px;border-radius:12px;background:var(--warn-l);border:1px solid rgba(245,158,11,.15)">
-        <div style="font-weight:700;color:var(--warn);font-size:14px;margin-bottom:6px">⚠️ จุดเฝ้าระวัง</div>
-        <div style="font-size:12.5px;color:var(--t2);line-height:1.8">
-          • รอบ 2/67 น้ำก่อนเข้าระบบ พบ Coliform >23 & E.coli >23 MPN/100ml<br>
-          • เน้นตรวจเชื้อจุลินทรีย์ในน้ำดิบต่อเนื่อง<br>
-          • บำรุงรักษาระบบกรอง/ฆ่าเชื้อให้ทำงานเต็มประสิทธิภาพ<br>
-          • ติดตามค่า TDS ที่มีแนวโน้มสูงขึ้นเล็กน้อยในรอบ 2/68
-        </div>
-      </div>
+<!-- ═══ SECTION 5: สรุป + แนวทาง (compact) ═══ -->
+<div class="stit"><span>📝 สรุปและข้อเสนอแนะ</span><span class="ln"></span></div>
+<div class="tap-summary-grid">
+  <div class="cc" style="border-left:3px solid var(--success)">
+    <h3 style="color:var(--success);font-size:13.5px">✅ จุดแข็ง</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:1.8;margin-top:6px">
+      น้ำหลังเข้าระบบผ่านเกณฑ์ <strong>100%</strong> ทุกรอบ ทุกพารามิเตอร์ — โลหะหนักพิษ (Pb, Cr, Cd, As, Hg) ไม่พบ/ต่ำกว่า MDL ทุกตัวอย่าง — ปีงบ 68 ผ่านครบ 100% ทั้ง 4 ตัวอย่าง — ระบบกรองมีประสิทธิภาพดี
+    </div>
+  </div>
+  <div class="cc" style="border-left:3px solid var(--warn)">
+    <h3 style="color:var(--warn);font-size:13.5px">⚠️ จุดเฝ้าระวัง</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:1.8;margin-top:6px">
+      รอบ 2/67 น้ำก่อนระบบพบ Coliform &gt;23 &amp; E.coli &gt;23 MPN/100ml — เน้นตรวจเชื้อจุลินทรีย์ในน้ำดิบต่อเนื่อง — บำรุงระบบกรอง/ฆ่าเชื้อ — ติดตาม TDS ที่มีแนวโน้มสูงขึ้นเล็กน้อย
     </div>
   </div>
 </div>
@@ -1478,17 +1514,30 @@ function goPage(id,el){
     next.classList.add('show');
     // Force reflow so browser computes layout before chart rendering
     void next.offsetHeight;
-    setTimeout(()=>{
+    setTimeout(function(){
       try{
         runCountUp(next);
         if(id==='home')renderHomeCharts();
-        else if(id==='mine'){if(!r67)renderMine67();if(!r68)render68();}
-        else if(id==='water'){if(!rW)renderWater();if(!rW68)renderWater68();}
+        else if(id==='mine'){
+          // Only render the currently visible tab
+          var minePanel67=document.getElementById('y67');
+          var minePanel68=document.getElementById('y68');
+          if(minePanel67&&minePanel67.classList.contains('sh')&&!r67)renderMine67();
+          if(minePanel68&&minePanel68.classList.contains('sh')&&!r68)render68();
+        }
+        else if(id==='water'){
+          var wPanel67=document.getElementById('w67');
+          var wPanel68=document.getElementById('w68');
+          if(wPanel67&&wPanel67.classList.contains('wsh')&&!rW)renderWater();
+          if(wPanel68&&wPanel68.classList.contains('wsh')&&!rW68)renderWater68();
+        }
         else if(id==='waste'){if(!rWs)renderWaste();}
         else if(id==='tap'){if(!rTap)renderTap();}
         resizeChartsIn(next);
       }catch(e){console.warn('Page render error:',e)}
-    },220);
+      // Safety resize after animations fully settle
+      setTimeout(function(){resizeChartsIn(next)},500);
+    },280);
     window.scrollTo({top:0});
   }
   if(cur){
@@ -1514,58 +1563,62 @@ function toggleAlerts(){var extra=document.getElementById('alertExtra');var btn=
 /* ═══ TAB SWITCHERS ═══ */
 function swY(y,btn){
   document.querySelectorAll('.yp').forEach(p=>p.classList.remove('sh'));
-  document.getElementById('y'+y).classList.add('sh');
+  var panel=document.getElementById('y'+y);
+  panel.classList.add('sh');
   document.querySelectorAll('.ybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  setTimeout(()=>{
+  void panel.offsetHeight;
+  setTimeout(function(){
     try{
-      const cc=getChartColors();
       if(y===67&&!r67)renderMine67();
       if(y===68&&!r68)render68();
-      const panel=document.getElementById('y'+y);
-      void panel.offsetHeight;
       runCountUp(panel);
       resizeChartsIn(panel);
     }catch(e){console.warn('swY error:',e)}
-  },150);
+    setTimeout(function(){resizeChartsIn(panel)},400);
+  },300);
 }
 function swYW(y,btn){
   document.querySelectorAll('.wyp').forEach(p=>p.classList.remove('wsh'));
-  document.getElementById('w'+y).classList.add('wsh');
+  var panel=document.getElementById('w'+y);
+  panel.classList.add('wsh');
   document.querySelectorAll('#page-water .wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  setTimeout(()=>{
+  // Force reflow so canvas gets real dimensions
+  void panel.offsetHeight;
+  setTimeout(function(){
     try{
       if(y===67&&!rW)renderWater();
       if(y===68&&!rW68)renderWater68();
-      const panel=document.getElementById('w'+y);
-      void panel.offsetHeight;
       runCountUp(panel);
       resizeChartsIn(panel);
     }catch(e){console.warn('swYW error:',e)}
-  },150);
+    // Safety resize after animations settle
+    setTimeout(function(){resizeChartsIn(panel)},400);
+  },300);
 }
 function swYT(y,btn){
   document.querySelectorAll('#page-tap .wyp').forEach(p=>p.classList.remove('wsh'));
-  document.getElementById('t'+y).classList.add('wsh');
+  var panel=document.getElementById('t'+y);
+  panel.classList.add('wsh');
   document.querySelectorAll('#page-tap .wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  setTimeout(()=>{
+  void panel.offsetHeight;
+  setTimeout(function(){
     try{
       if(!rTap)renderTap();
-      const panel=document.getElementById('t'+y);
-      void panel.offsetHeight;
       runCountUp(panel);
       resizeChartsIn(panel);
     }catch(e){console.warn('swYT error:',e)}
-  },150);
+    setTimeout(function(){resizeChartsIn(panel)},400);
+  },300);
 }
 function togM(el){el.classList.toggle('open')}
 
 /* ═══ COUNT UP ═══ */
 function runCountUp(container){
   if(!container)return;
-  container.querySelectorAll('.kpi-vl[data-count],.ks-val[data-count]').forEach(el=>{
+  container.querySelectorAll('.kpi-vl[data-count],.ks-val[data-count],.tk-val[data-count]').forEach(el=>{
     const target=parseFloat(el.dataset.count);const suffix=el.dataset.suffix||'';
     const isFloat=String(target).includes('.');
     let current=0;const step=isFloat?target/40:Math.max(1,Math.floor(target/40));
@@ -1599,7 +1652,7 @@ function runCountUp(container){
 /* ═══ HOME TIMELINE CHARTS ═══ */
 let rHome=false;
 function renderHomeCharts(){
-  if(rHome)return;rHome=true;
+  if(rHome)return;
   const cc=getChartColors();
 
   // 1. Health indicators now shown as HTML stat cards (no chart needed)
@@ -1639,6 +1692,7 @@ function renderHomeCharts(){
       animation:{duration:1000,easing:'easeOutQuart'}
     }
   });
+  rHome=true;
 }
 // Render immediately since home is visible
 setTimeout(renderHomeCharts,500);
@@ -1701,7 +1755,7 @@ window.addEventListener('error',e=>{
 });
 
 let r67=false;
-function renderMine67(){if(r67)return;r67=true;
+function renderMine67(){if(r67)return;
 const cc=getChartColors();
 dn('g67',['หญิง 75%','ชาย 25%'],[75,25],[P.pk,P.bl]);
 br('a67',['<15','15-30','31-45','46-60','>60'],[3,5,17,33,42],[P.c2,P.g2,P.o2,P.or,P.rd],50,'%');
@@ -1714,10 +1768,11 @@ dn('cs67',['เกิน (4)','ปกติ (9)'],[4,9],[P.cy,P.gl]);
 dn('sm67',['ไม่สูบ 91%','สูบ 9%'],[91,9],[P.gn,P.or]);
 dn('mn67',['ไม่เคย 89%','เคย 11%'],[89,11],[P.gl,P.tl]);
 runCountUp(document.getElementById('y67'));
+r67=true;
 }
 
 let r68=false;
-function render68(){r68=true;
+function render68(){if(r68)return;
 const cc=getChartColors();
 dn('g68',['หญิง 73%','ชาย 27%'],[73,27],[P.pk,P.bl]);
 br('a68',['<15','15-30','31-45','46-60','>60'],[4,5,21,52,68],[P.c2,P.g2,P.t2,P.or,P.gr],80,' คน');
@@ -1747,10 +1802,11 @@ dn('farm68',['ปลูก 74%','ไม่ปลูก 26%'],[74,26],[P.bl,P.or]
 br('scn68',['สูบบุหรี่','ไม่สูบบุหรี่'],[30,120],[P.rd,P.gn],140,' คน');
 br('scnS68',['เกินอ้างอิง','ปกติ'],[6,24],[P.rd,P.gn],30,' คน');
 br('scnN68',['เกินอ้างอิง','ปกติ'],[43,77],[P.rd,P.gn],100,' คน');
+r68=true;
 }
 
 let rW=false;let rW68=false;let rWs=false;
-function renderWater(){if(rW)return;rW=true;
+function renderWater(){if(rW)return;
 const cc=getChartColors();
 // Overall pass/fail grouped bar
 safeChart('wOvr',{type:'bar',data:{labels:['รอบ 1 ส.ค. 67\n(N=42)','รอบ 2 พ.ย. 67\n(N=41)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,9],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[36,32],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:45,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
@@ -1769,9 +1825,10 @@ dn('wLoc',['ต.เขาเจ็ดลูก 30','ต.เขาทราย 7'
 // Water source
 dn('wSrc',['น้ำบาดาล 36','น้ำผิวดิน 6'],[36,6],[P.bl,P.gn],'58%');
 setTimeout(()=>runCountUp(document.getElementById('water-content')),100);
+rW=true;
 }
 
-function renderWater68(){if(rW68)return;rW68=true;
+function renderWater68(){if(rW68)return;
 const cc=getChartColors();
 
 safeChart('w68Ovr',{type:'bar',data:{labels:['รอบ 1 เม.ย. 68\n(N=36)','รอบ 2 ต.ค. 68\n(N=34)'],datasets:[{label:'ผ่านเกณฑ์',data:[6,6],backgroundColor:P.gn,borderRadius:8,borderSkipped:false},{label:'ไม่ผ่านเกณฑ์',data:[30,28],backgroundColor:P.rd,borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}},tooltip:{callbacks:{label:x=>x.dataset.label+': '+x.parsed.y+' แห่ง'}}},scales:{y:{beginAtZero:true,max:35,grid:{color:cc.g},ticks:{callback:v=>v+' แห่ง',color:'#94a3b8'}},x:{grid:{display:false},ticks:{color:cc.t}}}}});
@@ -1791,9 +1848,10 @@ dn('w68Loc',['ต.เขาเจ็ดลูก 29','ต.เขาทราย 
 dn('w68Src',['น้ำบาดาล 33','น้ำผิวดิน 3'],[33,3],[P.bl,P.gn],'58%');
 
 setTimeout(()=>runCountUp(document.getElementById('w68')),100);
+rW68=true;
 }
 
-function renderWaste(){if(rWs)return;rWs=true;
+function renderWaste(){if(rWs)return;
 const cc=getChartColors();
 const Q=['Q3/67','Q2/68','Q3/68','Q1/69'];
 
@@ -1880,6 +1938,7 @@ safeChart('wsBeforeAfter',{type:'bar',data:{
 // Bacteria data now shown as HTML stat cards (no chart needed)
 
 setTimeout(()=>runCountUp(document.getElementById('waste-content')),100);
+rWs=true;
 }
 
 /* ═══ EXPORT DROPDOWN ═══ */
