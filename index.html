@@ -1510,6 +1510,8 @@ function goPage(id,el){
   const cur=document.querySelector('.page.show');
   const next=document.getElementById('page-'+id);
   if(!next||cur===next)return;
+  // Save state to URL hash for refresh persistence
+  try{history.replaceState(null,'','#'+id)}catch(e){}
   function activate(){
     next.classList.add('show');
     // Force reflow so browser computes layout before chart rendering
@@ -1567,6 +1569,7 @@ function swY(y,btn){
   panel.classList.add('sh');
   document.querySelectorAll('.ybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  try{history.replaceState(null,'','#mine/'+y)}catch(e){}
   void panel.offsetHeight;
   setTimeout(function(){
     try{
@@ -1584,6 +1587,7 @@ function swYW(y,btn){
   panel.classList.add('wsh');
   document.querySelectorAll('#page-water .wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  try{history.replaceState(null,'','#water/'+y)}catch(e){}
   // Force reflow so canvas gets real dimensions
   void panel.offsetHeight;
   setTimeout(function(){
@@ -1603,6 +1607,7 @@ function swYT(y,btn){
   panel.classList.add('wsh');
   document.querySelectorAll('#page-tap .wybtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  try{history.replaceState(null,'','#tap/'+y)}catch(e){}
   void panel.offsetHeight;
   setTimeout(function(){
     try{
@@ -1647,6 +1652,52 @@ function runCountUp(container){
   mkSpk('spkSCN',[75,72,69.9,35.8],'#16a34a','rgba(22,163,74,.08)');
   mkSpk('spkWater',[14.3,22.0,16.7,17.6],'#f59e0b','rgba(245,158,11,.08)');
   mkSpk('spkWaste',[100,100,100,0],'#ef4444','rgba(239,68,68,.08)');
+})();
+
+/* ═══ RESTORE PAGE FROM URL HASH ON REFRESH ═══ */
+(function restoreFromHash(){
+  var hash=location.hash.replace('#','');
+  if(!hash)return;
+  var parts=hash.split('/');
+  var page=parts[0];
+  var sub=parts[1]?parseInt(parts[1]):null;
+  // Valid pages
+  var validPages=['home','mine','water','waste','tap','occ','about'];
+  if(validPages.indexOf(page)===-1)return;
+  if(page==='home')return; // home is default
+  // Small delay to let DOM settle
+  setTimeout(function(){
+    goPage(page,null);
+    highlightNav(page);
+    // Also expand the correct sub-menu
+    var subMenus=document.querySelectorAll('.nav-sub');
+    subMenus.forEach(function(sm){
+      sm.querySelectorAll('a').forEach(function(a){
+        var map={mine:'ผลตรวจสุขภาพประชาชน',water:'ประปารอบเหมืองทอง',waste:'ผลบำบัดน้ำเสีย',tap:'ผลน้ำประปา',occ:'งานอาชีวอนามัย',about:'เกี่ยวกับระบบ'};
+        if(map[page]&&a.textContent.includes(map[page])){
+          sm.classList.add('open');
+          if(sm.previousElementSibling)sm.previousElementSibling.classList.add('expanded');
+        }
+      });
+    });
+    // Restore sub-tab if specified
+    if(sub){
+      setTimeout(function(){
+        if(page==='mine'){
+          var btn=document.querySelector('.ybtn:nth-child('+(sub===67?'1':'2')+')');
+          if(btn)swY(sub,btn);
+        }else if(page==='water'){
+          var btns=document.querySelectorAll('#page-water .wybtn');
+          var btn=sub===67?btns[0]:btns[1];
+          if(btn)swYW(sub,btn);
+        }else if(page==='tap'){
+          var btns=document.querySelectorAll('#page-tap .wybtn');
+          var btn=sub===67?btns[0]:btns[1];
+          if(btn)swYT(sub,btn);
+        }
+      },400);
+    }
+  },200);
 })();
 
 /* ═══ HOME TIMELINE CHARTS ═══ */
