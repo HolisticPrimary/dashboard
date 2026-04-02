@@ -525,7 +525,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 /* ═══ TRASH PAGE ═══ */
 .tr-setup{margin-bottom:14px}
 .tr-setup summary{font-size:12px;font-weight:600;color:#0284c7;cursor:pointer;padding:10px 14px;background:rgba(2,132,199,.04);border:1px solid rgba(2,132,199,.1);border-radius:10px}
-.tr-input{background:linear-gradient(135deg,rgba(15,118,110,.04),rgba(14,116,144,.02));border:2px dashed rgba(15,118,110,.15);border-radius:14px;padding:16px;margin-bottom:14px}
+.tr-input{background:linear-gradient(135deg,rgba(15,118,110,.04),rgba(14,116,144,.02));border:1px solid rgba(15,118,110,.12);border-radius:14px;padding:16px;margin-bottom:14px}
+.tr-form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end}
+@media(max-width:700px){.tr-form{grid-template-columns:1fr 1fr}}
 .tr-st{padding:8px 12px;border-radius:8px;font-size:11.5px;margin-top:8px;display:none;line-height:1.5}
 .tr-st.show{display:block}
 .tr-st.success{background:rgba(22,163,74,.06);color:#166534;border:1px solid rgba(22,163,74,.12)}
@@ -1581,17 +1583,48 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   </div>
 </details>
 
-<!-- Input -->
+<!-- Input: Manual Form -->
 <div class="tr-input">
-  <h3 style="font-family:'Kanit';font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px">📋 วางข้อความจาก LINE</h3>
-  <div style="font-size:11px;color:var(--t3);margin-bottom:8px">ก็อปแชทมาวางได้เลย — ระบบจะอ่านจุดเก็บ วันที่ และน้ำหนัก (กก./ขีด/โล) ให้อัตโนมัติ</div>
-  <textarea id="trInput" style="width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:10px;font-size:12.5px;resize:vertical" placeholder="ตัวอย่าง:&#10;01/4/69 จุดเวชปฏิบัติ ขยะทั่วไป 1กก.&#10;ห้อง lab 4โล&#10;จุดกายภาพ 2กก.2ขีด"></textarea>
-  <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-    <button class="ybtn" id="trParseBtn" onclick="trParse()" style="padding:7px 16px;font-size:12px">🤖 อ่านข้อมูล</button>
-    <button class="ybtn" onclick="document.getElementById('trInput').value='';document.getElementById('trStatus').className='tr-st'" style="padding:7px 16px;font-size:12px;background:transparent;color:var(--t3);border:1px solid var(--border)">ล้าง</button>
-    <button class="ybtn" onclick="trLoadData()" style="padding:7px 16px;font-size:12px;background:transparent;color:var(--t3);border:1px solid var(--border)">🔄 รีเฟรช</button>
+  <h3 style="font-family:'Kanit';font-size:14px;font-weight:700;color:var(--accent);margin-bottom:6px">📋 บันทึกข้อมูลขยะ</h3>
+  <div class="tr-form">
+    <div>
+      <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">วันที่</div>
+      <input type="date" id="trDate" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun'">
+    </div>
+    <div>
+      <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">จุดเก็บ</div>
+      <select id="trPoint" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun';background:var(--card)">
+        <option value="">— เลือกจุด —</option>
+        <option>เวชปฏิบัติ</option>
+        <option>ห้อง Lab</option>
+        <option>กายภาพ</option>
+        <option>ตึกผู้ป่วยใน</option>
+        <option>ฉุกเฉิน/OPD</option>
+        <option>ตึกกลาง/LR</option>
+        <option>ทันตกรรม</option>
+        <option>แผนไทย</option>
+        <option>ซับพลาย</option>
+      </select>
+    </div>
+    <div>
+      <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">น้ำหนัก (กก.)</div>
+      <input type="number" id="trKgInput" step="0.1" min="0" placeholder="เช่น 2.5" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun'">
+    </div>
+    <button class="ybtn" onclick="trAddManual()" style="padding:8px 18px;font-size:12px;white-space:nowrap">➕ เพิ่ม</button>
   </div>
   <div class="tr-st" id="trStatus"></div>
+
+  <!-- AI Paste (secondary) -->
+  <details style="margin-top:10px">
+    <summary style="font-size:11px;color:var(--t3);cursor:pointer">📱 วางข้อความจาก LINE (อ่านอัตโนมัติ)</summary>
+    <div style="margin-top:8px">
+      <textarea id="trInput" style="width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:8px;font-size:12px;resize:vertical" placeholder="วางข้อความจาก LINE..."></textarea>
+      <div style="display:flex;gap:6px;margin-top:6px">
+        <button class="ybtn" id="trParseBtn" onclick="trParse()" style="padding:5px 14px;font-size:11px">📱 อ่านข้อมูล</button>
+        <button class="ybtn" onclick="document.getElementById('trInput').value=''" style="padding:5px 14px;font-size:11px;background:transparent;color:var(--t3);border:1px solid var(--border)">ล้าง</button>
+      </div>
+    </div>
+  </details>
 </div>
 
 <!-- KPI -->
@@ -2744,32 +2777,162 @@ function trSaveItems(items){
 function trParse(){
   var text=document.getElementById('trInput').value.trim();
   if(!text){trShowSt('กรุณาวางข้อความก่อน','error');return}
-  var btn=document.getElementById('trParseBtn');btn.disabled=true;
-  trShowSt('🤖 กำลังอ่านข้อมูล...','loading');
-  var now=new Date(),cm=now.getMonth()+1,cy=now.getFullYear()+543;
-  fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:2000,
-      system:'You extract daily waste data from Thai hospital LINE chat. Return ONLY valid JSON array.\n\nEach item: {"point":"<n>","kg":<number>,"date":"<DD/MM/YY>"}\n\nCOLLECTION POINTS (standardize):\n- "เวชปฏิบัติ"\n- "ห้อง Lab"\n- "กายภาพ"\n- "ตึกผู้ป่วยใน"\n- "ฉุกเฉิน/OPD"\n- "ตึกกลาง/LR"\n- "ทันตกรรม"\n- "แผนไทย"\n- "ซับพลาย"\n\nWEIGHT: ขีด=0.1กก., โล=กก.\nDATE: DD/MM/YY Buddhist. If no date use previous entry date.\nIgnore sender names.\n\nExample: [{"point":"เวชปฏิบัติ","kg":1,"date":"01/04/69"}]',
-      messages:[{role:"user",content:text}]
-    })
-  }).then(r=>r.json()).then(function(data){
-    var content=data.content.map(function(b){return b.text||''}).join('');
-    var parsed=JSON.parse(content.replace(/```json|```/g,'').trim());
-    if(!Array.isArray(parsed)||!parsed.length){trShowSt('❌ อ่านไม่ได้','error');btn.disabled=false;return}
-    var items=[];
-    parsed.forEach(function(item){
-      if(item.point&&item.kg>0){
-        var parts=(item.date||'').split('/');
-        var day=Number(parts[0])||1,mon=Number(parts[1])||cm,yr=Number(parts[2])||(cy%100);
-        var row={id:String(Date.now())+String(Math.random()).slice(2,7),point:item.point,kg:Math.round(Number(item.kg)*100)/100,day:day,month:mon,year:2500+yr,date:String(day).padStart(2,'0')+'/'+String(mon).padStart(2,'0')+'/'+yr,addedAt:new Date().toISOString()};
-        trData.push(row);items.push(row);
+
+  // ═══ POINT NAME MAPPING ═══
+  var ptMap=[
+    {name:'เวชปฏิบัติ',keys:['เวชปฏิบัติ','เวชปฎิบัติ','เวชปฏิบัต','เวชปฎิบัต','pcu','จุดเวช']},
+    {name:'ห้อง Lab',keys:['lab','แลบ','แลป','แล็บ','ห้องแลบ','ห้องแลป','ห้อง lab','ห้องlab','ห้องแล็บ']},
+    {name:'กายภาพ',keys:['กายภาพ','กายภาพบำบัด','กายภาพฯ']},
+    {name:'ตึกผู้ป่วยใน',keys:['ผู้ป่วยใน','ipd','ตึกผู้ป่วย','วอร์ด','ward']},
+    {name:'ฉุกเฉิน/OPD',keys:['ฉุกเฉิน','ฉุเฉิน','opd','ผู้ป่วยนอก','อุบัติเหตุ','er','ตึกฉุก']},
+    {name:'ตึกกลาง/LR',keys:['ตึกกลาง','lr','ห้องคลอด','labor','เลเบอร์']},
+    {name:'ทันตกรรม',keys:['ทันตกรรม','ทันต์','ทันต','dental','ฟัน']},
+    {name:'แผนไทย',keys:['แผนไทย','แพทย์แผนไทย','ttm','แผนไท']},
+    {name:'ซับพลาย',keys:['ซับพลาย','ซัพพลาย','supply','cssd','จ่ายกลาง','ซัพพลาย์']}
+  ];
+  function matchPt(s){
+    var low=s.toLowerCase().replace(/\s+/g,' ');
+    // Try longer keys first for accuracy
+    for(var i=0;i<ptMap.length;i++){
+      var keys=ptMap[i].keys.slice().sort(function(a,b){return b.length-a.length});
+      for(var j=0;j<keys.length;j++){
+        var k=keys[j].toLowerCase();
+        // Short English keys (2-4 chars) → word boundary match
+        if(k.length<=4&&/^[a-z]+$/.test(k)){
+          var rx=new RegExp('(?:^|[^a-z])'+k+'(?:$|[^a-z])','i');
+          if(rx.test(low))return ptMap[i].name;
+        }else{
+          if(low.indexOf(k)!==-1)return ptMap[i].name;
+        }
       }
+    }
+    return null;
+  }
+
+  // ═══ WEIGHT PARSER ═══
+  function parseKg(s){
+    var kg=0,found=false;
+    // Remove commas in numbers (1,250 → 1250)
+    var c=s.replace(/,/g,'');
+    // Pattern: Xกก. / X กิโลกรัม / Xโล / Xกิโล
+    var m1=c.match(/(\d+\.?\d*)\s*(?:กก\.?|กิโลกรัม|กิโล\w*|โล\w*)/i);
+    if(m1){kg+=parseFloat(m1[1]);found=true}
+    // Pattern: Xขีด
+    var m2=c.match(/(\d+\.?\d*)\s*ขีด/i);
+    if(m2){kg+=parseFloat(m2[1])*0.1;found=true}
+    // Pattern: Xกรัม (not กิโลกรัม)
+    if(!found){
+      var m4=c.match(/(\d+\.?\d*)\s*กรัม/i);
+      if(m4&&c.indexOf('กิโลกรัม')===-1){kg+=parseFloat(m4[1])/1000;found=true}
+    }
+    if(found)return kg;
+    // Fallback: line is mostly just a number (short line, no point name)
+    var stripped=c.replace(/[^\d\.]/g,'');
+    if(stripped&&c.trim().length<20){
+      var val=parseFloat(stripped);
+      if(val>0&&val<9999)return val;
+    }
+    return 0;
+  }
+
+  // ═══ DATE PARSER ═══
+  function parseDate(s){
+    var m=s.match(/(\d{1,2})\s*[\/\-]\s*(\d{1,2})\s*[\/\-]\s*(\d{2,4})/);
+    if(!m)return null;
+    var d=Number(m[1]),mo=Number(m[2]),y=Number(m[3]);
+    if(y>2500)y=y%100;
+    return{day:d,month:mo,yr:y,str:String(d).padStart(2,'0')+'/'+String(mo).padStart(2,'0')+'/'+String(y).padStart(2,'0')};
+  }
+
+  // ═══ CLEAN LINE ═══
+  function cleanLine(l){
+    return l
+      .replace(/^\[?\d{1,2}[:.]\d{2}\]?\s*/,'')  // [12:34] timestamp
+      .replace(/^[\u0E00-\u0E7Fa-zA-Z\s\.]+[:：]\s*/,'') // sender name:
+      .replace(/^[\s\-–•·]+/,'')
+      .replace(/ค่ะ|ครับ|จ้า|จร้า|คะ|นะคะ|ครัช|คับ|จ้ะ|น่ะ|นะ|ค่า|คร้า|จร้|จ๊ะ/g,'')
+      .replace(/ขยะทั่วไป/g,'')
+      .replace(/^จุด/,'')
+      .replace(/รายงาน\w*/,'')
+      .trim();
+  }
+
+  // ═══ TWO-PASS PARSE ═══
+  var rawLines=text.split(/\n/).map(function(l){return l.trim()}).filter(function(l){return l.length>0});
+  
+  // Pass 1: Extract date, point, weight per line
+  var parsed=rawLines.map(function(raw){
+    var clean=cleanLine(raw);
+    return{raw:raw,clean:clean,date:parseDate(raw),point:matchPt(clean),kg:parseKg(clean)};
+  });
+
+  // Pass 2: Connect across lines
+  // If line has point but no weight → look at NEXT line for weight
+  // If line has weight but no point → attach to PREVIOUS point
+  var lastDate=null,lastPoint=null;
+  var items=[];
+  var now=new Date(),defDate={day:now.getDate(),month:now.getMonth()+1,yr:(now.getFullYear()+543)%100};
+  defDate.str=String(defDate.day).padStart(2,'0')+'/'+String(defDate.month).padStart(2,'0')+'/'+String(defDate.yr).padStart(2,'0');
+
+  for(var i=0;i<parsed.length;i++){
+    var cur=parsed[i];
+    
+    // Update date
+    if(cur.date)lastDate=cur.date;
+    
+    // Case 1: Has both point + weight → complete record
+    if(cur.point&&cur.kg>0){
+      lastPoint=cur.point;
+      addItem(cur.point,cur.kg);
+      continue;
+    }
+    
+    // Case 2: Has point but NO weight → peek next line
+    if(cur.point&&cur.kg===0){
+      lastPoint=cur.point;
+      if(i+1<parsed.length){
+        var next=parsed[i+1];
+        var nextKg=parseKg(cleanLine(next.raw));
+        if(nextKg>0&&!next.point){
+          if(next.date)lastDate=next.date;
+          addItem(cur.point,nextKg);
+          i++; // skip next line (consumed)
+          continue;
+        }
+      }
+      continue; // point without weight, skip
+    }
+    
+    // Case 3: Has weight but NO point → use previous point
+    if(!cur.point&&cur.kg>0&&lastPoint){
+      addItem(lastPoint,cur.kg);
+      continue;
+    }
+  }
+
+  function addItem(point,kg){
+    var useDate=lastDate||defDate;
+    items.push({
+      id:String(Date.now())+String(Math.random()).slice(2,7),
+      point:point,kg:Math.round(kg*100)/100,
+      day:useDate.day,month:useDate.month,year:2500+useDate.yr,
+      date:useDate.str,addedAt:new Date().toISOString()
     });
-    if(items.length){trSaveItems(items);trUpdateAll();trShowSt('✅ เพิ่ม '+items.length+' รายการ','success');document.getElementById('trInput').value=''}
-    else trShowSt('❌ ไม่พบข้อมูล','error');
-    btn.disabled=false;
-  }).catch(function(e){trShowSt('❌ '+e.message,'error');btn.disabled=false})
+  }
+
+  // ═══ RESULT ═══
+  if(items.length){
+    // Show preview before adding
+    var preview=items.map(function(r){return r.date+' | '+r.point+' | '+r.kg+' กก.'}).join('\n');
+    if(confirm('พบ '+items.length+' รายการ:\n\n'+preview+'\n\nต้องการบันทึก?')){
+      items.forEach(function(r){trData.push(r)});
+      trSaveItems(items);trUpdateAll();
+      trShowSt('✅ บันทึก '+items.length+' รายการ','success');
+      document.getElementById('trInput').value='';
+    }
+  }else{
+    trShowSt('❌ ไม่พบข้อมูล — ตรวจสอบว่ามีชื่อจุดเก็บและน้ำหนัก','error');
+  }
 }
 
 function trShowSt(m,t){var e=document.getElementById('trStatus');e.className='tr-st show '+t;e.innerHTML=m;if(t==='success')setTimeout(function(){e.classList.remove('show')},4000)}
@@ -2859,8 +3022,29 @@ function trSw(v,tab){['overview','bypoint','daily','monthly','table'].forEach(fu
 function trDelR(id){if(!confirm('ลบ?'))return;trData=trData.filter(function(d){return d.id!==id});trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'delete',id:id})}).catch(function(){})}else{try{localStorage.setItem('tr-waste-data',JSON.stringify(trData))}catch(e){}}trUpdateAll()}
 function trClearAll(){if(!confirm('ล้างข้อมูลทั้งหมด?'))return;trData=[];trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'clearAll'})}).catch(function(){})}else{try{localStorage.setItem('tr-waste-data',JSON.stringify([]))}catch(e){}}trUpdateAll()}
 function trExpCSV(){if(!trData.length)return;var c='วันที่,จุดเก็บ,น้ำหนัก(กก.)\n';trData.forEach(function(d){c+=d.date+','+d.point+','+d.kg+'\n'});var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='waste_data.csv';a.click()}
-// Init saved URL
-(function(){trURL=trGetUrl();if(trURL){var el=document.getElementById('trSheetUrl');if(el)el.value=trURL}})();
+// Init saved URL + set default date
+(function(){trURL=trGetUrl();if(trURL){var el=document.getElementById('trSheetUrl');if(el)el.value=trURL}
+  var di=document.getElementById('trDate');if(di){var now=new Date();di.value=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')}
+})();
+
+function trAddManual(){
+  var dateEl=document.getElementById('trDate');
+  var pointEl=document.getElementById('trPoint');
+  var kgEl=document.getElementById('trKgInput');
+  var point=pointEl.value,kg=parseFloat(kgEl.value);
+  if(!point){trShowSt('กรุณาเลือกจุดเก็บ','error');return}
+  if(!kg||kg<=0){trShowSt('กรุณาใส่น้ำหนัก','error');return}
+  var dv=dateEl.value;if(!dv){trShowSt('กรุณาเลือกวันที่','error');return}
+  var dp=dv.split('-');
+  var day=Number(dp[2]),mon=Number(dp[1]),yr=Number(dp[0])+543;
+  var dateStr=String(day).padStart(2,'0')+'/'+String(mon).padStart(2,'0')+'/'+(yr%100);
+  var row={id:String(Date.now())+String(Math.random()).slice(2,7),point:point,kg:Math.round(kg*100)/100,day:day,month:mon,year:yr,date:dateStr,addedAt:new Date().toISOString()};
+  trData.push(row);
+  trSaveItems([row]);
+  trUpdateAll();
+  trShowSt('✅ เพิ่ม '+point+' '+kg+' กก. ('+dateStr+')','success');
+  kgEl.value='';
+}
 
 /* ═══ ANIMATION ENGINE ═══ */
 
