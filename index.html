@@ -1646,6 +1646,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
         <option>ทันตกรรม</option>
         <option>แผนไทย</option>
         <option>ซับพลาย</option>
+        <option>ห้องประชุม</option>
       </select>
     </div>
     <div>
@@ -2836,7 +2837,8 @@ function trParse(){
     {name:'ตึกกลาง/LR',keys:['ตึกกลาง','lr','ห้องคลอด','labor','เลเบอร์']},
     {name:'ทันตกรรม',keys:['ทันตกรรม','ทันต์','ทันต','dental','ฟัน']},
     {name:'แผนไทย',keys:['แผนไทย','แพทย์แผนไทย','ttm','แผนไท']},
-    {name:'ซับพลาย',keys:['ซับพลาย','ซัพพลาย','supply','cssd','จ่ายกลาง','ซัพพลาย์']}
+    {name:'ซับพลาย',keys:['ซับพลาย','ซัพพลาย','supply','cssd','จ่ายกลาง','ซัพพลาย์']},
+    {name:'ห้องประชุม',keys:['ห้องประชุม','ประชุม','meeting']}
   ];
   function matchPt(s){
     var low=s.toLowerCase().replace(/\s+/g,' ');
@@ -2993,7 +2995,7 @@ function trUpdateKPI(){
   document.getElementById('trKDay').textContent=new Set(trData.map(function(d){return d.date})).size;
 }
 
-var TR_COLORS={'เวชปฏิบัติ':'#0f766e','ห้อง Lab':'#0284c7','กายภาพ':'#7c3aed','ตึกผู้ป่วยใน':'#dc2626','ฉุกเฉิน/OPD':'#d97706','ตึกกลาง/LR':'#0891b2','ทันตกรรม':'#db2777','แผนไทย':'#16a34a','ซับพลาย':'#f59e0b'};
+var TR_COLORS={'เวชปฏิบัติ':'#0f766e','ห้อง Lab':'#0284c7','กายภาพ':'#7c3aed','ตึกผู้ป่วยใน':'#dc2626','ฉุกเฉิน/OPD':'#d97706','ตึกกลาง/LR':'#0891b2','ทันตกรรม':'#db2777','แผนไทย':'#16a34a','ซับพลาย':'#f59e0b','ห้องประชุม':'#6366f1'};
 var TR_CL=Object.values(TR_COLORS);
 function trPtColor(n){return TR_COLORS[n]||TR_CL[Object.keys(TR_COLORS).indexOf(n)%TR_CL.length]||'#64748b'}
 
