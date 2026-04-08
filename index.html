@@ -2810,13 +2810,28 @@ function trTestConn(){
 }
 function trShowSS(m,t){var e=document.getElementById('trSetupSt');e.className='tr-st show '+t;e.innerHTML=m;if(t==='success')setTimeout(function(){e.classList.remove('show')},3000)}
 
+// Normalize old point names to current canonical names
+function trNormalize(){
+  var nameMap={
+    'ฉุกเฉิน/OPD':'ฉุกเฉิน/OPD/ห้องยา',
+    'ฉุกเฉิน':'ฉุกเฉิน/OPD/ห้องยา',
+    'OPD':'ฉุกเฉิน/OPD/ห้องยา',
+    'ER':'ฉุกเฉิน/OPD/ห้องยา',
+    'ห้องยา':'ฉุกเฉิน/OPD/ห้องยา'
+  };
+  trData.forEach(function(d){
+    if(nameMap[d.point])d.point=nameMap[d.point];
+  });
+}
+
 function trLoadData(){
   trURL=trGetUrl();
   if(trURL){
     trShowSt('🔄 โหลดจาก Sheets...','loading');
-    fetch(trURL+'?action=getAll').then(r=>r.json()).then(d=>{trData=d;trShowSt('✅ โหลด '+d.length+' รายการ','success');trUpdateAll()}).catch(e=>{trData=[];trShowSt('❌ '+e.message,'error');trUpdateAll()})
+    fetch(trURL+'?action=getAll').then(r=>r.json()).then(d=>{trData=d;trNormalize();trShowSt('✅ โหลด '+d.length+' รายการ','success');trUpdateAll()}).catch(e=>{trData=[];trShowSt('❌ '+e.message,'error');trUpdateAll()})
   }else{
     try{var s=localStorage.getItem('tr-waste-data');if(s)trData=JSON.parse(s)}catch(e){trData=[]}
+    trNormalize();
     trUpdateAll();
   }
 }
