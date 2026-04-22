@@ -1627,18 +1627,22 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">📍 จุดเก็บ</div>
       <select id="trPoint" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun';background:var(--card)">
         <option value="">— เลือกจุด —</option>
-        <option>เวชปฏิบัติ</option>
-        <option>ห้อง Lab</option>
-        <option>กายภาพ</option>
-        <option>ตึกผู้ป่วยใน</option>
         <option>ฉุกเฉิน/OPD/ห้องยา</option>
-        <option>ตึกกลาง/LR</option>
-        <option>ทันตกรรม</option>
+        <option>ตึกผู้ป่วยใน</option>
         <option>แผนไทย</option>
+        <option>ห้องคลอด/LR/ตึกกลาง</option>
+        <option>มัดรวม Lab+X-ray+ประกัน</option>
+        <option>เวชปฏิบัติ</option>
+        <option>Lab (แยก)</option>
+        <option>ห้อง Lab</option>
+        <option>ห้องบริหาร</option>
+        <option>ทันตกรรม</option>
+        <option>ห้องผลิต (ยา)</option>
+        <option>กายภาพ</option>
+        <option>เอกซเรย์ (แยก)</option>
+        <option>งานประกัน (แยก)</option>
         <option>ซับพลาย</option>
         <option>ห้องประชุม</option>
-        <option>ห้องบริหาร</option>
-        <option>ห้องผลิตยาสมุนไพร</option>
       </select>
     </div>
     <div>
@@ -1678,7 +1682,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <div id="tr-overview">
   <div class="cgr">
-    <div class="cc"><h3>📍 ขยะแยกจุดเก็บ (กก.)</h3><div class="cw" style="height:320px"><canvas id="trCBar"></canvas></div></div>
+    <div class="cc"><h3>📍 ขยะแยกจุดเก็บ (กก.)</h3><div class="cw" style="height:400px"><canvas id="trCBar"></canvas></div></div>
     <div class="cc"><h3>🥧 สัดส่วนแยกจุด</h3><div class="cw" style="height:230px"><canvas id="trCPie"></canvas></div></div>
   </div>
   <div class="cc"><h3>📈 แนวโน้มรายเดือน</h3><div class="cw" style="height:220px"><canvas id="trCTrend"></canvas></div></div>
@@ -2796,28 +2800,57 @@ function exportWord(pageId){
 }
 
 /* ═══ TRASH (ขยะทั่วไป) MODULE ═══ */
-var trData=[];var trURL='https://script.google.com/macros/s/AKfycbzyG85W10B0xVG-WISgErBI7eb-NdJAUoXEtYclIcU_YM1GCqSn5PPVpwaZhlhdf42Y/exec';var trCharts={};
-var TR_DEFAULT_URL='https://script.google.com/macros/s/AKfycbzyG85W10B0xVG-WISgErBI7eb-NdJAUoXEtYclIcU_YM1GCqSn5PPVpwaZhlhdf42Y/exec';
+var trData=[];var trURL='https://script.google.com/macros/s/AKfycbzt3IWEcg-ZKZH8ronEc2ZrfaDemwytZQCr6ONjxExIMiNyk0uaSMelHgXDuaWnXHYK/exec';var trCharts={};
+var TR_DEFAULT_URL='https://script.google.com/macros/s/AKfycbzt3IWEcg-ZKZH8ronEc2ZrfaDemwytZQCr6ONjxExIMiNyk0uaSMelHgXDuaWnXHYK/exec';
 function trGetUrl(){return localStorage.getItem('tr-sheet-url')||TR_DEFAULT_URL}
 function trSaveUrl(){var u=document.getElementById('trSheetUrl').value.trim();if(!u)return;localStorage.setItem('tr-sheet-url',u);trURL=u;trShowSS('✅ บันทึกแล้ว','success');trTestConn()}
 function trTestConn(){
   trURL=trGetUrl();if(!trURL){trShowSS('❌ ยังไม่ได้ใส่ URL','error');return}
   trShowSS('🔗 ทดสอบ...','loading');
-  fetch(trURL+'?action=getAll').then(r=>r.json()).then(d=>{
-    if(Array.isArray(d)){trShowSS('✅ เชื่อมต่อสำเร็จ! '+d.length+' รายการ','success');trData=d;trUpdateAll()}
+  fetch(trURL+'?action=getAll',{redirect:'follow'}).then(function(r){return r.json()}).then(function(d){
+    if(Array.isArray(d)){trShowSS('✅ เชื่อมต่อสำเร็จ! '+d.length+' รายการ','success');trData=d;trNormalize();trUpdateAll()}
     else throw new Error('Invalid')
-  }).catch(e=>{trShowSS('❌ '+e.message,'error')})
+  }).catch(function(e){trShowSS('❌ '+e.message+' (ลอง deploy Apps Script ใหม่)','error')})
 }
 function trShowSS(m,t){var e=document.getElementById('trSetupSt');e.className='tr-st show '+t;e.innerHTML=m;if(t==='success')setTimeout(function(){e.classList.remove('show')},3000)}
 
 // Normalize old point names to current canonical names
 function trNormalize(){
   var nameMap={
+    // ER/OPD variants
     'ฉุกเฉิน/OPD':'ฉุกเฉิน/OPD/ห้องยา',
     'ฉุกเฉิน':'ฉุกเฉิน/OPD/ห้องยา',
     'OPD':'ฉุกเฉิน/OPD/ห้องยา',
     'ER':'ฉุกเฉิน/OPD/ห้องยา',
-    'ห้องยา':'ฉุกเฉิน/OPD/ห้องยา'
+    'ER/OPD/ห้องยา':'ฉุกเฉิน/OPD/ห้องยา',
+    'ห้องยา':'ฉุกเฉิน/OPD/ห้องยา',
+    'ฉุกเฉิน/OPD':'ฉุกเฉิน/OPD/ห้องยา',
+    // ตึกกลาง/LR variants
+    'ตึกกลาง/LR':'ห้องคลอด/LR/ตึกกลาง',
+    'ตึกกลาง':'ห้องคลอด/LR/ตึกกลาง',
+    'ห้องคลอด':'ห้องคลอด/LR/ตึกกลาง',
+    'LR':'ห้องคลอด/LR/ตึกกลาง',
+    // ห้องผลิต variants
+    'ห้องผลิตยาสมุนไพร':'ห้องผลิต (ยา)',
+    'ห้องผลิตยา':'ห้องผลิต (ยา)',
+    // เวชปฏิบัติ variants
+    'จุดเวชปฏิบัติ':'เวชปฏิบัติ',
+    'จุดเวชปฎิบัติ':'เวชปฏิบัติ',
+    'เวชปฎิบัติ':'เวชปฏิบัติ',
+    'จุดเวชปฏิบัติ':'เวชปฏิบัติ',
+    // กายภาพ
+    'จุดกายภาพ':'กายภาพ',
+    // ตึกผู้ป่วยใน
+    'ตึกผู้ป่วยใน (IPD)':'ตึกผู้ป่วยใน',
+    // Lab
+    'ห้อง Lab':'ห้อง Lab',
+    'Lab (แยก)':'Lab (แยก)',
+    // เอกซเรย์
+    'เอกซเรย์ (แยก)':'เอกซเรย์ (แยก)',
+    'เอกซเรย์(แยก)':'เอกซเรย์ (แยก)',
+    // ประกัน
+    'งานประกัน (แยก)':'งานประกัน (แยก)',
+    'งานประกัน(แยก)':'งานประกัน (แยก)'
   };
   trData.forEach(function(d){
     if(nameMap[d.point])d.point=nameMap[d.point];
@@ -2828,17 +2861,40 @@ function trLoadData(){
   trURL=trGetUrl();
   if(trURL){
     trShowSt('🔄 โหลดจาก Sheets...','loading');
-    fetch(trURL+'?action=getAll').then(r=>r.json()).then(d=>{trData=d;trNormalize();trShowSt('✅ โหลด '+d.length+' รายการ','success');trUpdateAll()}).catch(e=>{trData=[];trShowSt('❌ '+e.message,'error');trUpdateAll()})
+    fetch(trURL+'?action=getAll',{redirect:'follow'}).then(function(r){return r.json()}).then(function(d){trData=d;trNormalize();trShowSt('✅ โหลด '+d.length+' รายการ','success');trUpdateAll()}).catch(function(e){
+      // Fallback: JSONP via script tag
+      trLoadJSONP();
+    })
   }else{
     try{var s=localStorage.getItem('tr-waste-data');if(s)trData=JSON.parse(s)}catch(e){trData=[]}
     trNormalize();
     trUpdateAll();
   }
 }
+// JSONP fallback for CORS issues
+function trLoadJSONP(){
+  var cb='_trCb'+Date.now();
+  window[cb]=function(d){trData=d;trNormalize();trShowSt('✅ โหลด '+d.length+' รายการ','success');trUpdateAll();delete window[cb]};
+  var s=document.createElement('script');
+  s.src=trURL+'?action=getAll&callback='+cb;
+  s.onerror=function(){
+    trData=[];
+    // Try localStorage fallback
+    try{var ls=localStorage.getItem('tr-waste-data');if(ls)trData=JSON.parse(ls)}catch(e){}
+    trNormalize();trUpdateAll();
+    trShowSt('⚠️ ใช้ข้อมูลจากเครื่อง (ไม่สามารถเชื่อมต่อ Sheets)','error');
+    delete window[cb];
+  };
+  document.body.appendChild(s);
+}
 function trSaveItems(items){
   trURL=trGetUrl();
-  if(trURL){fetch(trURL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'add',items:items})}).catch(function(){})}
-  else{try{localStorage.setItem('tr-waste-data',JSON.stringify(trData))}catch(e){}}
+  if(trURL){
+    // Save to Sheets via no-cors POST + also save locally as backup
+    fetch(trURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'add',items:items})}).catch(function(){});
+  }
+  // Always save locally as backup
+  try{localStorage.setItem('tr-waste-data',JSON.stringify(trData))}catch(e){}
 }
 
 function trParse(){
@@ -2847,18 +2903,22 @@ function trParse(){
 
   // ═══ POINT NAME MAPPING ═══
   var ptMap=[
-    {name:'เวชปฏิบัติ',keys:['เวชปฏิบัติ','เวชปฎิบัติ','เวชปฏิบัต','เวชปฎิบัต','pcu','จุดเวช']},
+    {name:'เวชปฏิบัติ',keys:['เวชปฏิบัติ','เวชปฎิบัติ','เวชปฏิบัต','เวชปฎิบัต','pcu','จุดเวช','จุดเวชป']},
+    {name:'มัดรวม Lab+X-ray+ประกัน',keys:['มัดรวม','lab+x-ray','lab+xray']},
+    {name:'Lab (แยก)',keys:['lab (แยก)','lab(แยก)','แลบ แยก','แลบแยก']},
+    {name:'เอกซเรย์ (แยก)',keys:['เอกซเรย์','x-ray','xray','เอ็กซเรย์','เอกซ์เรย์']},
+    {name:'งานประกัน (แยก)',keys:['งานประกัน','ประกัน (แยก)','ประกัน(แยก)']},
     {name:'ห้อง Lab',keys:['lab','lab.','แลบ','แลป','แล็บ','ห้องแลบ','ห้องแลป','ห้อง lab','ห้องlab','ห้องแล็บ']},
-    {name:'กายภาพ',keys:['กายภาพ','กายภาพบำบัด','กายภาพฯ']},
+    {name:'กายภาพ',keys:['กายภาพ','กายภาพบำบัด','กายภาพฯ','จุดกายภาพ']},
     {name:'ตึกผู้ป่วยใน',keys:['ผู้ป่วยใน','ipd','ตึกผู้ป่วย','วอร์ด','ward']},
-    {name:'ฉุกเฉิน/OPD/ห้องยา',keys:['ฉุกเฉิน','ฉุเฉิน','opd','0pd','ผู้ป่วยนอก','อุบัติเหตุ','er','ตึกฉุก','ห้องยา']},
-    {name:'ตึกกลาง/LR',keys:['ตึกกลาง','lr','ห้องคลอด','labor','เลเบอร์']},
+    {name:'ฉุกเฉิน/OPD/ห้องยา',keys:['ฉุกเฉิน','ฉุเฉิน','opd','0pd','ผู้ป่วยนอก','อุบัติเหตุ','er','ตึกฉุก','ห้องยา','er/opd']},
+    {name:'ห้องคลอด/LR/ตึกกลาง',keys:['ห้องคลอด','ตึกกลาง','lr','labor','เลเบอร์']},
     {name:'ทันตกรรม',keys:['ทันตกรรม','ทันต์','ทันต','ทันตะ','dental','ฟัน']},
     {name:'แผนไทย',keys:['แผนไทย','แพทย์แผนไทย','ttm','แผนไท']},
     {name:'ซับพลาย',keys:['ซับพลาย','ซัพพลาย','supply','cssd','จ่ายกลาง','ซัพพลาย์']},
     {name:'ห้องประชุม',keys:['ห้องประชุม','ประชุม','meeting']},
     {name:'ห้องบริหาร',keys:['ห้องบริหาร','บริหาร','สำนักงาน','ออฟฟิศ']},
-    {name:'ห้องผลิตยาสมุนไพร',keys:['ห้องผลิตยา','ผลิตยาสมุนไพร','ผลิตยา','สมุนไพร']}
+    {name:'ห้องผลิต (ยา)',keys:['ห้องผลิตยา','ผลิตยาสมุนไพร','ผลิตยา','สมุนไพร','ห้องผลิต']}
   ];
   function matchPt(s){
     var low=s.toLowerCase().replace(/\s+/g,' ');
@@ -3016,7 +3076,7 @@ function trUpdateKPI(){
   document.getElementById('trKDay').textContent=new Set(trData.map(function(d){return d.date})).size;
 }
 
-var TR_COLORS={'เวชปฏิบัติ':'#0f766e','ห้อง Lab':'#0284c7','กายภาพ':'#7c3aed','ตึกผู้ป่วยใน':'#dc2626','ฉุกเฉิน/OPD/ห้องยา':'#d97706','ตึกกลาง/LR':'#0891b2','ทันตกรรม':'#db2777','แผนไทย':'#16a34a','ซับพลาย':'#f59e0b','ห้องประชุม':'#6366f1','ห้องบริหาร':'#0369a1','ห้องผลิตยาสมุนไพร':'#059669'};
+var TR_COLORS={'ฉุกเฉิน/OPD/ห้องยา':'#d97706','ตึกผู้ป่วยใน':'#dc2626','แผนไทย':'#16a34a','ห้องคลอด/LR/ตึกกลาง':'#0891b2','มัดรวม Lab+X-ray+ประกัน':'#7c3aed','เวชปฏิบัติ':'#0f766e','Lab (แยก)':'#0284c7','ห้อง Lab':'#0284c7','ห้องบริหาร':'#0369a1','ทันตกรรม':'#db2777','ห้องผลิต (ยา)':'#059669','กายภาพ':'#8b5cf6','เอกซเรย์ (แยก)':'#6366f1','งานประกัน (แยก)':'#a855f7','ซับพลาย':'#f59e0b','ห้องประชุม':'#475569'};
 var TR_CL=Object.values(TR_COLORS);
 function trPtColor(n){return TR_COLORS[n]||TR_CL[Object.keys(TR_COLORS).indexOf(n)%TR_CL.length]||'#64748b'}
 
@@ -3101,8 +3161,8 @@ function trRenderMon(){
 }
 
 function trSw(v,tab){['overview','bypoint','daily','monthly','table'].forEach(function(x){document.getElementById('tr-'+x).style.display=x===v?'':'none'});tab.closest('.ybar').querySelectorAll('.wybtn').forEach(function(t){t.classList.remove('active')});tab.classList.add('active');if(v==='overview'){setTimeout(function(){trRenderCharts();ensureCharts(document.getElementById('trash-content'),trRenderCharts)},100)}}
-function trDelR(id){if(!confirm('ลบ?'))return;trData=trData.filter(function(d){return d.id!==id});trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'delete',id:id})}).catch(function(){})}else{try{localStorage.setItem('tr-waste-data',JSON.stringify(trData))}catch(e){}}trUpdateAll()}
-function trClearAll(){if(!confirm('ล้างข้อมูลทั้งหมด?'))return;trData=[];trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'clearAll'})}).catch(function(){})}else{try{localStorage.setItem('tr-waste-data',JSON.stringify([]))}catch(e){}}trUpdateAll()}
+function trDelR(id){if(!confirm('ลบ?'))return;trData=trData.filter(function(d){return d.id!==id});trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'delete',id:id})}).catch(function(){})};try{localStorage.setItem('tr-waste-data',JSON.stringify(trData))}catch(e){};trUpdateAll()}
+function trClearAll(){if(!confirm('ล้างข้อมูลทั้งหมด?'))return;trData=[];trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'clearAll'})}).catch(function(){})};try{localStorage.setItem('tr-waste-data',JSON.stringify([]))}catch(e){};trUpdateAll()}
 function trExpCSV(){if(!trData.length)return;var c='วันที่,จุดเก็บ,น้ำหนัก(กก.)\n';trData.forEach(function(d){c+=d.date+','+d.point+','+d.kg+'\n'});var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='waste_data.csv';a.click()}
 // Init saved URL + set default date
 (function(){trURL=trGetUrl();if(trURL){var el=document.getElementById('trSheetUrl');if(el)el.value=trURL}
