@@ -512,8 +512,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 @keyframes fadeSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
 /* ═══ SECTION CARDS 5-GRID ═══ */
-.sec-grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
-@media(max-width:1100px){.sec-grid5{grid-template-columns:repeat(3,1fr)}}
+.sec-grid5{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+@media(min-width:1100px){.sec-grid5{grid-template-columns:repeat(6,1fr)}}
 @media(max-width:700px){.sec-grid5{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.sec-grid5{grid-template-columns:1fr}}
 .sc5{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--sh);transition:all .35s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden;text-align:center}
@@ -836,7 +836,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ═══ 5. SECTION CARDS (5 modules + status badges) ═══ -->
 <div class="stit"><span>📂 เข้าถึงข้อมูลแต่ละหมวด</span><span class="ln"></span></div>
-<div class="sec-grid5">
+<div class="sec-grid5" style="grid-template-columns:repeat(6,1fr)">
   <div class="sc5" onclick="goPage('mine');highlightNav('mine')">
     <div class="sc5-status sc5-ok">แนวโน้มดี</div>
     <div class="sc5-ic" style="background:rgba(245,158,11,.1)">⛏️</div>
@@ -858,30 +858,40 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
     </div>
   </div>
   <div class="sc5" onclick="goPage('waste');highlightNav('waste')">
-    <div class="sc5-status sc5-alert">เฝ้าระวัง</div>
+    <div class="sc5-status sc5-ok">ผ่าน Q2/69</div>
     <div class="sc5-ic" style="background:rgba(22,163,74,.1)">🌿</div>
     <div class="sc5-title">น้ำเสีย รพ.ทับคล้อ</div>
     <div class="sc5-sub">10 พารามิเตอร์ — ทุกไตรมาส</div>
     <div class="sc5-stats">
       <div><span class="sc5-v" style="color:#16a34a">ผ่าน ✅</span><span class="sc5-l">Q2/69</span></div>
-      <div><span class="sc5-v" style="color:#16a34a">75%</span><span class="sc5-l">ผ่านรวม</span></div>
+      <div><span class="sc5-v" style="color:#16a34a">80%</span><span class="sc5-l">ผ่านรวม</span></div>
     </div>
   </div>
   <div class="sc5" onclick="goPage('tap');highlightNav('tap')">
     <div class="sc5-status sc5-ok">ปกติ</div>
     <div class="sc5-ic" style="background:rgba(14,165,233,.1)">🚰</div>
     <div class="sc5-title">น้ำประปา รพ.ทับคล้อ</div>
-    <div class="sc5-sub">21 พารามิเตอร์ — 4 รอบตรวจ</div>
+    <div class="sc5-sub">21 พารามิเตอร์ — 5 รอบตรวจ</div>
     <div class="sc5-stats">
-      <div><span class="sc5-v" style="color:#16a34a">100%</span><span class="sc5-l">ผ่านเกณฑ์</span></div>
-      <div><span class="sc5-v" style="color:#16a34a">21/21</span><span class="sc5-l">ปี 68</span></div>
+      <div><span class="sc5-v" style="color:#16a34a">90%</span><span class="sc5-l">ผ่านเกณฑ์</span></div>
+      <div><span class="sc5-v" style="color:#16a34a">21/21</span><span class="sc5-l">หลังระบบ</span></div>
+    </div>
+  </div>
+  <div class="sc5" onclick="goPage('trash');highlightNav('trash')">
+    <div class="sc5-status sc5-ok">กำลังเก็บ</div>
+    <div class="sc5-ic" style="background:rgba(100,116,139,.1)">🗑️</div>
+    <div class="sc5-title">ขยะทั่วไป</div>
+    <div class="sc5-sub">13 จุดเก็บ — รายวัน</div>
+    <div class="sc5-stats">
+      <div><span class="sc5-v" id="homeTrashKg" style="color:var(--t2)">—</span><span class="sc5-l">กก. รวม</span></div>
+      <div><span class="sc5-v" id="homeTrashDays" style="color:var(--t2)">—</span><span class="sc5-l">วัน</span></div>
     </div>
   </div>
   <div class="sc5 sc5-pending" onclick="goPage('occ');highlightNav('occ')">
     <div class="sc5-status sc5-wait">รอข้อมูล</div>
     <div class="sc5-ic" style="background:rgba(148,163,184,.1)">🏭</div>
     <div class="sc5-title">งานอาชีวอนามัย</div>
-    <div class="sc5-sub">อยู่ระหว่างจัดเตรียมข้อมูล</div>
+    <div class="sc5-sub">อยู่ระหว่างจัดเตรียม</div>
     <div class="sc5-stats">
       <div><span class="sc5-v" style="color:var(--t3)">—</span><span class="sc5-l">รอเพิ่ม</span></div>
       <div><span class="sc5-v" style="color:var(--t3)">—</span><span class="sc5-l">รอเพิ่ม</span></div>
@@ -1621,7 +1631,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
 
 <!-- ▓▓ TRASH (ขยะทั่วไป) ▓▓ -->
 <div class="page" id="page-trash">
-<div class="topbar"><span class="topicon">🗑️</span><h1>ข้อมูลขยะทั่วไป</h1></div>
+<div class="topbar"><span class="topicon">🗑️</span><h1>ข้อมูลขยะทั่วไป & รีไซเคิล</h1></div>
 <div class="pg-pad" id="trash-content">
 
 <!-- Setup Google Sheets (URL ฝังแล้ว — ซ่อนไว้กรณีต้องเปลี่ยน) -->
@@ -1642,7 +1652,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
     <h3 style="font-family:'Kanit';font-size:14px;font-weight:700;color:var(--accent);margin:0">📋 บันทึกข้อมูลขยะ</h3>
   </div>
-  <div class="tr-form">
+  <div class="tr-form" style="grid-template-columns:1fr 1.2fr .7fr .7fr auto">
     <div>
       <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">📅 วันที่</div>
       <input type="date" id="trDate" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun';background:var(--card)">
@@ -1667,8 +1677,12 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
       </select>
     </div>
     <div>
-      <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">⚖️ น้ำหนัก (กก.)</div>
+      <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">🗑️ ขยะทั่วไป (กก.)</div>
       <input type="number" id="trKgInput" step="0.1" min="0" placeholder="เช่น 2.5" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun';background:var(--card)">
+    </div>
+    <div>
+      <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:3px">♻️ รีไซเคิล (กก.)</div>
+      <input type="number" id="trRecInput" step="0.1" min="0" placeholder="0" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:'Sarabun';background:var(--card)">
     </div>
     <button class="ybtn" onclick="trAddManual()" style="padding:8px 18px;font-size:12px;white-space:nowrap;border-radius:8px">➕ เพิ่ม</button>
   </div>
@@ -1685,9 +1699,10 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
   </details>
 </div>
 
-<!-- KPI — 3 cards only -->
-<div class="tr-kpi-row">
-  <div class="tr-kpi"><span class="tr-kpi-ic">🗑️</span><div><div class="tr-kpi-val" id="trKKg">0</div><div class="tr-kpi-lb">กก. รวม</div></div></div>
+<!-- KPI — 4 cards -->
+<div class="tr-kpi-row" style="grid-template-columns:repeat(4,1fr)">
+  <div class="tr-kpi"><span class="tr-kpi-ic">🗑️</span><div><div class="tr-kpi-val" id="trKKg">0</div><div class="tr-kpi-lb">ขยะทั่วไป (กก.)</div></div></div>
+  <div class="tr-kpi"><span class="tr-kpi-ic">♻️</span><div><div class="tr-kpi-val" id="trKRec">0</div><div class="tr-kpi-lb">รีไซเคิล (กก.)</div></div></div>
   <div class="tr-kpi"><span class="tr-kpi-ic">📍</span><div><div class="tr-kpi-val" id="trKPt">0</div><div class="tr-kpi-lb">จุดเก็บ</div></div></div>
   <div class="tr-kpi"><span class="tr-kpi-ic">📅</span><div><div class="tr-kpi-val" id="trKDay">0</div><div class="tr-kpi-lb">วัน</div></div></div>
 </div>
@@ -1706,7 +1721,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--t1);min-h
     <div class="cc"><h3>📍 ขยะแยกจุดเก็บ (กก.)</h3><div class="cw" style="height:400px"><canvas id="trCBar"></canvas></div></div>
     <div class="cc"><h3>🥧 สัดส่วนแยกจุด</h3><div class="cw" style="height:230px"><canvas id="trCPie"></canvas></div></div>
   </div>
-  <div class="cc"><h3>📈 แนวโน้มรายเดือน</h3><div class="cw" style="height:220px"><canvas id="trCTrend"></canvas></div></div>
+  <div class="cc"><h3>📈 ขยะทั่วไป vs รีไซเคิล รายเดือน</h3><div class="cw" style="height:220px"><canvas id="trCTrend"></canvas></div></div>
 </div>
 <div id="tr-bypoint" style="display:none"><div id="trPtCards"></div></div>
 <div id="tr-daily" style="display:none"><div id="trDayCards"></div></div>
@@ -3131,9 +3146,15 @@ function trParse(){
 function trShowSt(m,t){var e=document.getElementById('trStatus');e.className='tr-st show '+t;e.innerHTML=m;if(t==='success')setTimeout(function(){e.classList.remove('show')},4000)}
 function trUpdateAll(){trUpdateKPI();trRenderCharts();trRenderTbl();trRenderPt();trRenderDay();trRenderMon()}
 function trUpdateKPI(){
-  document.getElementById('trKKg').textContent=trData.reduce(function(s,d){return s+(Number(d.kg)||0)},0).toLocaleString(undefined,{maximumFractionDigits:1});
+  var totalKg=trData.reduce(function(s,d){return s+(Number(d.kg)||0)},0);
+  var totalRec=trData.reduce(function(s,d){return s+(Number(d.rec)||0)},0);
+  document.getElementById('trKKg').textContent=totalKg.toLocaleString(undefined,{maximumFractionDigits:1});
+  document.getElementById('trKRec').textContent=totalRec.toLocaleString(undefined,{maximumFractionDigits:1});
   document.getElementById('trKPt').textContent=new Set(trData.map(function(d){return d.point})).size;
   document.getElementById('trKDay').textContent=new Set(trData.map(function(d){return d.date})).size;
+  // Update home page card
+  var hKg=document.getElementById('homeTrashKg');if(hKg)hKg.textContent=totalKg?totalKg.toLocaleString(undefined,{maximumFractionDigits:0})+' กก.':'—';
+  var hDay=document.getElementById('homeTrashDays');if(hDay)hDay.textContent=trData.length?new Set(trData.map(function(d){return d.date})).size+' วัน':'—';
 }
 
 var TR_COLORS={'ฉุกเฉิน/OPD/ห้องยา':'#d97706','ตึกผู้ป่วยใน':'#dc2626','แผนไทย':'#16a34a','ห้องคลอด/LR/ตึกกลาง':'#0891b2','มัดรวม Lab+X-ray+ประกัน':'#7c3aed','เวชปฏิบัติ':'#0f766e','ห้อง Lab':'#0284c7','ห้องบริหาร':'#0369a1','ทันตกรรม':'#db2777','ห้องผลิต (ยา)':'#059669','กายภาพ':'#8b5cf6','ซับพลาย':'#f59e0b','ห้องประชุม':'#475569'};
@@ -3152,10 +3173,13 @@ function trRenderCharts(){
   trDc('trCPie');
   trCharts.trCPie=safeChart('trCPie',{type:'doughnut',data:{labels:pn.map(function(n,i){return n+' '+pv[i]+' กก.'}),datasets:[{data:pv,backgroundColor:pc,borderWidth:2,borderColor:bdr()}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{font:{size:9.5},padding:6}}}}});
   var thM=['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-  var mm={};trData.forEach(function(d){var k=d.year+'-'+d.month;if(!mm[k])mm[k]={kg:0,month:Number(d.month),year:Number(d.year)};mm[k].kg+=Number(d.kg)||0});
+  var mm={};trData.forEach(function(d){var k=d.year+'-'+d.month;if(!mm[k])mm[k]={kg:0,rec:0,month:Number(d.month),year:Number(d.year)};mm[k].kg+=Number(d.kg)||0;mm[k].rec+=Number(d.rec)||0});
   var mons=Object.values(mm).sort(function(a,b){return(a.year*100+a.month)-(b.year*100+b.month)});
   trDc('trCTrend');
-  trCharts.trCTrend=safeChart('trCTrend',{type:'line',data:{labels:mons.map(function(m){return(thM[m.month]||m.month)+' '+m.year%100}),datasets:[{data:mons.map(function(m){return Math.round(m.kg*10)/10}),borderColor:'#0f766e',backgroundColor:'rgba(15,118,110,.06)',fill:true,tension:.3,borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#0f766e',pointBorderColor:bdr(),pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(x){return x.parsed.y.toLocaleString()+' กก.'}}}},scales:{y:{beginAtZero:true,grid:{color:cc.g},ticks:{callback:function(v){return v+' กก.'}}},x:{grid:{display:false},ticks:{font:{size:11}}}}}});
+  trCharts.trCTrend=safeChart('trCTrend',{type:'bar',data:{labels:mons.map(function(m){return(thM[m.month]||m.month)+' '+m.year%100}),datasets:[
+    {label:'ขยะทั่วไป (กก.)',data:mons.map(function(m){return Math.round(m.kg*10)/10}),backgroundColor:'rgba(100,116,139,.5)',borderRadius:6,borderSkipped:false,maxBarThickness:40},
+    {label:'ขยะรีไซเคิล (กก.)',data:mons.map(function(m){return Math.round(m.rec*10)/10}),backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false,maxBarThickness:40}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},usePointStyle:true,pointStyle:'circle',padding:12}},tooltip:{callbacks:{label:function(x){return x.dataset.label+': '+x.parsed.y.toLocaleString()+' กก.'}}}},scales:{y:{beginAtZero:true,stacked:false,grid:{color:cc.g},ticks:{callback:function(v){return v+' กก.'}}},x:{grid:{display:false},ticks:{font:{size:11}}}}}});
   // Safety resize
   setTimeout(function(){try{resizeChartsIn(document.getElementById('trash-content'))}catch(e){}},400);
 }
@@ -3163,10 +3187,11 @@ function trRenderCharts(){
 function trRenderTbl(){
   var el=document.getElementById('trTblData');
   if(!trData.length){el.innerHTML='<div style="text-align:center;padding:30px;color:var(--t3)"><div style="font-size:40px;margin-bottom:8px">📋</div><p>ยังไม่มีข้อมูล</p></div>';return}
-  var h='<table style="width:100%;border-collapse:separate;border-spacing:0 2px;font-size:12px"><thead><tr><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px">วันที่</td><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px">จุดเก็บ</td><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px;text-align:right">กก.</td><td></td></tr></thead><tbody>';
+  var h='<table style="width:100%;border-collapse:separate;border-spacing:0 2px;font-size:12px"><thead><tr><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px">วันที่</td><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px">จุดเก็บ</td><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px;text-align:right">🗑️ กก.</td><td style="font-size:9.5px;font-weight:700;color:var(--t3);padding:5px 8px;text-align:right">♻️ กก.</td><td></td></tr></thead><tbody>';
   trData.slice().sort(function(a,b){var pa=(a.date||'').split('/').map(Number),pb=(b.date||'').split('/').map(Number);return(pb[2]*10000+pb[1]*100+pb[0])-(pa[2]*10000+pa[1]*100+pa[0])}).forEach(function(d){
     var c=trPtColor(d.point);
-    h+='<tr><td style="padding:6px 8px">'+d.date+'</td><td style="padding:6px 8px"><span class="tr-badge" style="background:'+c+'15;color:'+c+'">'+d.point+'</span></td><td style="padding:6px 8px;text-align:right;font-weight:700">'+(Number(d.kg)||0).toLocaleString(undefined,{maximumFractionDigits:1})+'</td><td style="padding:6px 8px"><button style="background:none;border:none;color:#dc2626;cursor:pointer;opacity:.35;font-size:13px" onclick="trDelR(\''+d.id+'\')">✕</button></td></tr>'});
+    var recVal=Number(d.rec)||0;
+    h+='<tr><td style="padding:6px 8px">'+d.date+'</td><td style="padding:6px 8px"><span class="tr-badge" style="background:'+c+'15;color:'+c+'">'+d.point+'</span></td><td style="padding:6px 8px;text-align:right;font-weight:700">'+(Number(d.kg)||0).toLocaleString(undefined,{maximumFractionDigits:1})+'</td><td style="padding:6px 8px;text-align:right;color:#16a34a;font-weight:600">'+(recVal>0?recVal.toLocaleString(undefined,{maximumFractionDigits:1}):'—')+'</td><td style="padding:6px 8px"><button style="background:none;border:none;color:#dc2626;cursor:pointer;opacity:.35;font-size:13px" onclick="trDelR(\''+d.id+'\')">✕</button></td></tr>'});
   el.innerHTML=h+'</tbody></table>';
 }
 
@@ -3223,7 +3248,7 @@ function trRenderMon(){
 function trSw(v,tab){['overview','bypoint','daily','monthly','table'].forEach(function(x){document.getElementById('tr-'+x).style.display=x===v?'':'none'});tab.closest('.ybar').querySelectorAll('.wybtn').forEach(function(t){t.classList.remove('active')});tab.classList.add('active');if(v==='overview'){setTimeout(function(){trRenderCharts();ensureCharts(document.getElementById('trash-content'),trRenderCharts)},100)}}
 function trDelR(id){if(!confirm('ลบ?'))return;trData=trData.filter(function(d){return d.id!==id});trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'delete',id:id})}).catch(function(){})};try{localStorage.setItem('tr-waste-data',JSON.stringify(trData))}catch(e){};trUpdateAll()}
 function trClearAll(){if(!confirm('ล้างข้อมูลทั้งหมด?'))return;trData=[];trURL=trGetUrl();if(trURL){fetch(trURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'clearAll'})}).catch(function(){})};try{localStorage.setItem('tr-waste-data',JSON.stringify([]))}catch(e){};trUpdateAll()}
-function trExpCSV(){if(!trData.length)return;var c='วันที่,จุดเก็บ,น้ำหนัก(กก.)\n';trData.forEach(function(d){c+=d.date+','+d.point+','+d.kg+'\n'});var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='waste_data.csv';a.click()}
+function trExpCSV(){if(!trData.length)return;var c='วันที่,จุดเก็บ,ขยะทั่วไป(กก.),รีไซเคิล(กก.)\n';trData.forEach(function(d){c+=d.date+','+d.point+','+(d.kg||0)+','+(d.rec||0)+'\n'});var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c],{type:'text/csv'}));a.download='waste_data.csv';a.click()}
 // Init saved URL + set default date
 (function(){trURL=trGetUrl();if(trURL){var el=document.getElementById('trSheetUrl');if(el)el.value=trURL}
   var di=document.getElementById('trDate');if(di){var now=new Date();di.value=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')}
@@ -3233,19 +3258,23 @@ function trAddManual(){
   var dateEl=document.getElementById('trDate');
   var pointEl=document.getElementById('trPoint');
   var kgEl=document.getElementById('trKgInput');
-  var point=pointEl.value,kg=parseFloat(kgEl.value);
+  var recEl=document.getElementById('trRecInput');
+  var point=pointEl.value,kg=parseFloat(kgEl.value)||0,rec=parseFloat(recEl.value)||0;
   if(!point){trShowSt('กรุณาเลือกจุดเก็บ','error');return}
-  if(!kg||kg<=0){trShowSt('กรุณาใส่น้ำหนัก','error');return}
+  if(kg<=0&&rec<=0){trShowSt('กรุณาใส่น้ำหนัก','error');return}
   var dv=dateEl.value;if(!dv){trShowSt('กรุณาเลือกวันที่','error');return}
   var dp=dv.split('-');
   var day=Number(dp[2]),mon=Number(dp[1]),yr=Number(dp[0])+543;
   var dateStr=String(day).padStart(2,'0')+'/'+String(mon).padStart(2,'0')+'/'+(yr%100);
-  var row={id:String(Date.now())+String(Math.random()).slice(2,7),point:point,kg:Math.round(kg*100)/100,day:day,month:mon,year:yr,date:dateStr,addedAt:new Date().toISOString()};
+  var row={id:String(Date.now())+String(Math.random()).slice(2,7),point:point,kg:Math.round(kg*100)/100,rec:Math.round(rec*100)/100,day:day,month:mon,year:yr,date:dateStr,addedAt:new Date().toISOString()};
   trData.push(row);
   trSaveItems([row]);
   trUpdateAll();
-  trShowSt('✅ เพิ่ม '+point+' '+kg+' กก. ('+dateStr+')','success');
-  kgEl.value='';
+  var msg='✅ เพิ่ม '+point+' ('+dateStr+')';
+  if(kg>0)msg+=' ขยะ '+kg+' กก.';
+  if(rec>0)msg+=' รีไซเคิล '+rec+' กก.';
+  trShowSt(msg,'success');
+  kgEl.value='';recEl.value='';
 }
 
 /* ═══ ANIMATION ENGINE ═══ */
